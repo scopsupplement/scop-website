@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex">
+  <title>Scōp Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #1a2540; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: Georgia, serif; }
+    .box { background: #1f2d4d; border-radius: 12px; padding: 48px 40px; text-align: center; width: 340px; }
+    .bar { width: 32px; height: 3px; background: #c17f3e; margin: 0 auto 18px; border-radius: 2px; }
+    h1 { color: #efd2bd; font-size: 1.5rem; margin: 0 0 6px; }
+    p { color: #9e8470; font-size: 0.82rem; margin: 0 0 24px; font-family: sans-serif; }
+    button { background: #c17f3e; color: #1a2540; border: none; padding: 13px 0; border-radius: 6px; font-size: 0.95rem; font-weight: 700; cursor: pointer; width: 100%; }
+    button:hover { background: #d4924f; }
+  </style>
+</head>
+<body>
+  <div class="box" id="box">
+    <div class="bar"></div>
+    <h1>scop</h1>
+    <p>Content Manager</p>
+    <button id="btn">Sign in with Netlify</button>
+  </div>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    document.getElementById('btn').addEventListener('click', function() {
+      netlifyIdentity.open();
+    });
+
+    netlifyIdentity.on('login', function() {
+      netlifyIdentity.close();
+      // Redirect to the Netlify CMS app on a different path
+      window.location.href = '/admin/cms.html';
+    });
+
+    // Already logged in
+    netlifyIdentity.on('init', function(user) {
+      if (user) window.location.href = '/admin/cms.html';
+    });
+  </script>
+</body>
+</html>

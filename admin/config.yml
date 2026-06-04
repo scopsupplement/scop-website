@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "articles"
+    label: "Longevity Hub Articles"
+    folder: "_articles"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+
+      - label: "Publish Date"
+        name: "date"
+        widget: "datetime"
+        format: "YYYY-MM-DD"
+        date_format: "DD MMM YYYY"
+        time_format: false
+
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Nutrition & Supplementation", value: "nutrition" }
+          - { label: "Movement & Recovery", value: "movement" }
+          - { label: "Sleep & Restoration", value: "sleep" }
+          - { label: "Stress & Resilience", value: "stress" }
+
+      - label: "Read Time (minutes)"
+        name: "read_time"
+        widget: "number"
+        default: 5
+        value_type: "int"
+        min: 1
+        max: 30
+
+      - label: "Summary"
+        name: "summary"
+        widget: "text"
+
+      - label: "Feature Image"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Body"
+        name: "body"
+        widget: "markdown"
+
+      - label: "Subscription Only"
+        name: "subscriber_only"
+        widget: "boolean"
+        default: true
