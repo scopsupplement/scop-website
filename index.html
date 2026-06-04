@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+     ______                            __
+    / ____/___  ____ ___  ____  __  __/ /____  _____
+   / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+  / /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+  \____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                      /_/
+          Created with Perplexity Computer
+          https://www.perplexity.ai/computer
+  -->
+  <meta name="generator" content="Perplexity Computer">
+  <meta name="author" content="Perplexity Computer">
+  <meta property="og:see_also" content="https://www.perplexity.ai/computer">
+  <link rel="author" href="https://www.perplexity.ai/computer">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scōp — One scoop. Everything.</title>
+  <meta name="description" content="Scōp is an all-in-one daily food supplement. 14 compounds, one daily scoop from a single resealable pouch. Evidence-based. Transparently formulated. Made in the UK.">
+  <meta property="og:title" content="Scōp — One scoop. Everything.">
+  <meta property="og:description" content="14 compounds. One daily scoop from a single resealable pouch. Every ingredient and its quantity clearly declared. Made in the UK.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Redirect Netlify Identity confirmation/recovery links to /admin
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', function(user) {
+        if (!user) {
+          window.netlifyIdentity.on('login', function() {
+            document.location.href = '/admin/';
+          });
+        }
+      });
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="#" class="header__logo" aria-label="Scōp — home">
+        <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Accent bar above the ō -->
+          <line x1="37" y1="3" x2="47" y2="3" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"/>
+          <text x="0" y="20" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="500" letter-spacing="0.02em" fill="currentColor">scop</text>
+        </svg>
+      </a>
+
+      <nav class="header__nav" aria-label="Primary">
+        <a href="#formulation" class="header__link">Formulation</a>
+        <a href="#ingredients" class="header__link">Ingredients</a>
+        <a href="#science" class="header__link">Science</a>
+        <a href="account-login.html" class="header__link">My Account</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="order.html" class="btn btn--primary btn--sm">Order Now</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero">
+      <div class="hero__inner">
+        <div class="hero__content" data-animate>
+          <span class="tag">Launching 2026</span>
+          <h1 class="hero__heading">One scoop.<br>Everything.</h1>
+          <p class="hero__subtitle">14 compounds. One daily scoop from a single resealable pouch. Every ingredient and its quantity clearly declared. Made in the UK.</p>
+          <a href="#waitlist" class="btn btn--primary">Join the Waitlist</a>
+          <a href="account-login.html" class="btn btn--ghost" style="margin-top:var(--space-2);">My Account &rarr;</a>
+        </div>
+        <div class="hero__image" data-animate>
+          <img src="./assets/scop-product.png" alt="Scōp Orange Spritz supplement pouch" width="600" height="600" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STATS BAR ========== -->
+    <section class="stats" aria-label="Key product statistics">
+      <div class="stats__inner">
+        <div class="stats__item" data-animate>
+          <span class="stats__number">13,000 mg</span>
+          <span class="stats__label">Active ingredients per serving</span>
+        </div>
+        <div class="stats__item" data-animate>
+          <span class="stats__number">14</span>
+          <span class="stats__label">compounds per scoop</span>
+        </div>
+        <div class="stats__item" data-animate>
+          <span class="stats__number">20×</span>
+          <span class="stats__label">More than standard capsules</span>
+        </div>
+        <div class="stats__item" data-animate>
+          <span class="stats__number">1</span>
+          <span class="stats__label">Daily scoop. That's it.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WHY POWDER ========== -->
+    <section class="section section--offset" id="formulation">
+      <div class="section__inner">
+        <div class="section__header" data-animate>
+          <span class="tag">Format</span>
+          <h2 class="section__title">Why powder, not capsules?</h2>
+        </div>
+        <div class="powder" data-animate>
+          <div class="powder__text">
+            <p>Our formulation delivers approximately 13,000&nbsp;mg of active ingredients per daily serving — far exceeding the 600–650&nbsp;mg capacity of standard capsules. That would mean 20+ capsules every morning.</p>
+            <p>The powdered format isn't a choice. It's the only way to deliver clinical doses in a single daily scoop with superior bioavailability.</p>
+          </div>
+          <div class="powder__comparison">
+            <div class="powder__card powder__card--scop">
+              <div class="powder__card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="16" stroke="var(--color-accent)" stroke-width="2" fill="none"/><path d="M14 22c0-4 2.5-7 6-7s6 3 6 7" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+              </div>
+              <span class="powder__card-label">Scōp</span>
+              <strong class="powder__card-value">1 scoop</strong>
+              <span class="powder__card-dose">13,000 mg daily</span>
+            </div>
+            <div class="powder__vs">vs</div>
+            <div class="powder__card powder__card--capsules">
+              <div class="powder__card-icon">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="10" width="16" height="20" rx="8" stroke="currentColor" stroke-width="2" fill="none"/><line x1="12" y1="20" x2="28" y2="20" stroke="currentColor" stroke-width="2"/></svg>
+              </div>
+              <span class="powder__card-label">Capsules</span>
+              <strong class="powder__card-value">20+ pills</strong>
+              <span class="powder__card-dose">Same dosage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INGREDIENTS ========== -->
+    <section class="section" id="ingredients">
+      <div class="section__inner">
+        <div class="section__header" data-animate>
+          <span class="tag">Formulation</span>
+          <h2 class="section__title">Every ingredient, every dose</h2>
+          <p class="section__intro">No proprietary blends. Every ingredient and its quantity is clearly declared on the label. Full transparency.</p>
+        </div>
+
+        <!-- Primary Actives -->
+        <div class="ingredients-group" data-animate>
+          <h3 class="ingredients-group__title">Primary Actives</h3>
+          <div class="ingredients-grid">
+            <div class="ingredient-card">
+              <div class="ingredient-card__header">
+                <span class="ingredient-card__name">Creatine Monohydrate</span>
+                <span class="ingredient-card__dose">5,000 mg</span>
+              </div>
+              <p class="ingredient-card__desc">Creatine increases physical performance in successive bursts of short-term, high intensity exercise. Beneficial effect obtained with a daily intake of 3g.*</p>
+            </div>
+            <div class="ingredient-card">
+              <div class="ingredient-card__header">
+                <span class="ingredient-card__name">Glutathione (Reduced)</span>
+                <span class="ingredient-card__dose">1,500 mg</span>
+              </div>
+              <p class="ingredient-card__desc">A tripeptide composed of cysteine, glycine and glutamine.</p>
+            </div>
+            <div class="ingredient-card">
+              <div class="ingredient-card__header">
+                <span class="ingredient-card__name">Moringa Leaf Extract 10:1</span>
+                <span class="ingredient-card__dose">500 mg</span>
+              </div>
+              <p class="ingredient-card__desc">Rich in polyphenols, vitamins and minerals.</p>
+            </div>
+            <div class="ingredient-card">
+              <div class="ingredient-card__header">
+                <span class="ingredient-card__name">Magnesium Glycinate</span>
+                <span class="ingredient-card__dose">400 mg</span>
+              </div>
+              <p class="ingredient-card__desc">Magnesium contributes to normal functioning of the nervous system and a reduction of tiredness and fatigue.*</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fat-Soluble Vitamins -->
+        <div class="ingredients-group" data-animate>
+          <h3 class="ingredients-group__title">Fat-Soluble Vitamins</h3>
+          <div class="ingredients-grid ingredients-grid--2col">
+            <div class="ingredient-card">
+              <div class="ingredient-card__header">
+                <span class="ingredient-card__name">Vitamin D3</span>
+                <span class="ingredient-card__dose">4,000 IU</span>
+              </div>
+              <p class="ingredient-card__desc">Vitamin D contributes to the maintenance of normal bones and normal function of the immune system.*</p>
+            </div>
+            <div class="ingredient-card">
+              <div class="ingredient-card__header">
+                <span class="ingredient-card__name">Vitamin K2 (MK-7)</span>
+                <span class="ingredient-card__dose">100 µg</span>
+              </div>
+              <p class="ingredient-card__desc">Vitamins D and K contribute to the maintenance of normal bones. Works synergistically with Vitamin D3.*</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Methylated B-Complex -->
+        <div class="ingredients-group" data-animate>
+          <h3 class="ingredients-group__title">Methylated B-Complex</h3>
+          <div class="b-complex-grid">
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B1 Thiamine</span>
+              <span class="b-complex-item__dose">20 mg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B2 Riboflavin</span>
+              <span class="b-complex-item__dose">14 mg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B3 Niacin</span>
+              <span class="b-complex-item__dose">48 mg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B5 Pantothenic Acid</span>
+              <span class="b-complex-item__dose">36 mg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B6 Pyridoxine</span>
+              <span class="b-complex-item__dose">10 mg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B7 Biotin</span>
+              <span class="b-complex-item__dose">300 µg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B9 L-Methylfolate</span>
+              <span class="b-complex-item__dose">400 µg</span>
+            </div>
+            <div class="b-complex-item">
+              <span class="b-complex-item__name">B12 Methylcobalamin</span>
+              <span class="b-complex-item__dose">900 µg</span>
+            </div>
+          </div>
+          <p class="ingredients-note">Individual B vitamins contribute to normal energy-yielding metabolism. Folic acid contributes to normal amino acid synthesis. Vitamin B12 contributes to normal red blood cell formation.*</p>
+          <p class="ingredients-note" style="margin-top: var(--space-3); font-size: var(--text-xs);">*These are authorised health claims per the Great Britain Nutrition and Health Claims Register.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== IMAGE BREAK ========== -->
+    <section class="image-break" aria-label="Ingredients photography">
+      <img src="./assets/ai1-ingredients.png" alt="Scōp supplement ingredients flat-lay showing raw compounds and botanicals" width="1600" height="900" loading="lazy">
+    </section>
+
+    <!-- ========== SCIENCE / QUALITY ========== -->
+    <section class="section section--offset" id="science">
+      <div class="section__inner">
+        <div class="section__header" data-animate>
+          <span class="tag">Standards</span>
+          <h2 class="section__title">Uncompromising quality</h2>
+        </div>
+        <div class="quality-grid" data-animate>
+          <div class="quality-card">
+            <h3 class="quality-card__title">High Grade Sourcing</h3>
+            <p class="quality-card__desc">Every ingredient sourced to high standards with full traceability, GMP certification and third-party testing.</p>
+          </div>
+          <div class="quality-card">
+            <h3 class="quality-card__title">Full Transparency</h3>
+            <p class="quality-card__desc">Every ingredient and its quantity clearly declared on the label. No proprietary blends. No hidden doses.</p>
+          </div>
+          <div class="quality-card">
+            <h3 class="quality-card__title">UK Regulatory Compliance</h3>
+            <p class="quality-card__desc">Formulated to meet UK Food Supplement Regulations 2003, EU Directive 2002/46/EC. All dosages within EFSA guidelines.</p>
+          </div>
+          <div class="quality-card">
+            <h3 class="quality-card__title">UK Manufactured</h3>
+            <p class="quality-card__desc">Made in the UK in a GMP-certified facility. Compliant with UK Food Supplement Regulations 2003 and EFSA safety guidelines.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOUNDER ========== -->
+    <section class="section section--founder">
+      <div class="section__inner section__inner--narrow">
+        <div class="section__header" data-animate>
+          <span class="tag">The Story</span>
+          <h2 class="section__title">Built from purpose</h2>
+        </div>
+        <div class="founder" data-animate>
+          <p>I spent years taking separate vitamins and minerals every morning — creatine, magnesium, vitamin D, glutathione, B-vitamins — each taken individually, each dosed inconsistently. The routine was expensive, complicated, and easy to fall off.</p>
+          <p>Scōp is what I built to supplement my daily diet. One daily scoop. Fourteen compounds. Every ingredient and its quantity clearly outlined on the label. Formulated out of a desire to make supplementing a diet consistent and convenient.</p>
+          <div class="founder__sig">
+            <span class="founder__name">Grae, Founder</span>
+            <span class="founder__company">Ellesmere Project Group Ltd</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WAITLIST ========== -->
+    <section class="section section--waitlist" id="waitlist">
+      <div class="section__inner section__inner--narrow">
+        <div class="waitlist" data-animate>
+          <h2 class="section__title">Be the first to know</h2>
+          <p class="waitlist__intro">Scōp is currently in formulation with our manufacturing partner. Join the waitlist for early access, launch pricing and product updates.</p>
+          <form class="waitlist__form" id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="waitlist">
+            <p class="waitlist__honeypot" hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+            <div class="waitlist__input-group">
+              <input type="email" name="email" class="waitlist__input" placeholder="Your email address" aria-label="Email address" required>
+              <button type="submit" class="btn btn--primary">Join Waitlist</button>
+            </div>
+          </form>
+          <p class="waitlist__note">No spam. Just launch updates. Unsubscribe anytime.</p>
+          <div class="waitlist-success" hidden>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+            <p>You're on the list. We'll be in touch.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="footer__logo" aria-label="Scōp — home">
+          <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="37" y1="3" x2="47" y2="3" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"/>
+            <text x="0" y="20" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="500" letter-spacing="0.02em" fill="currentColor">scop</text>
+          </svg>
+        </a>
+        <p class="footer__tagline">Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="#formulation">Formulation</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#science">Science</a>
+        <a href="order.html">Order</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Ellesmere Project Group Ltd. All rights reserved.</p>
+        <p style="font-size: 0.72rem; color: var(--color-text-faint); margin-top: var(--space-2); line-height: 1.5;">Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. Not suitable for persons under 18. Keep out of reach of children. Consult a healthcare professional before use if pregnant, breastfeeding or taking medication.</p>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer__attribution">Created with Perplexity Computer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

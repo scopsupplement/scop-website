@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "creatine-beyond-the-gym",
+    "title": "Creatine Beyond the Gym",
+    "category": "Nutrition",
+    "read_time": 5,
+    "summary": "Emerging research on cognitive function and long-term brain health is repositioning creatine as a nootropic as much as a performance supplement."
+  },
+  {
+    "slug": "magnesium-deficiency",
+    "title": "Why Magnesium Deficiency Is Silently Ageing You",
+    "category": "Nutrition",
+    "read_time": 7,
+    "summary": "The overlooked mineral and its role in over 300 biological processes — from ATP synthesis to DNA repair. Most adults are chronically under-repleting it."
+  },
+  {
+    "slug": "vitamin-d3-k2",
+    "title": "The Case for Vitamin D3 + K2 Together",
+    "category": "Nutrition",
+    "read_time": 6,
+    "summary": "Why the combination matters more than either compound alone — the calcium metabolism pathway that connects bone density, arterial health and immune function."
+  },
+  {
+    "slug": "sleep-architecture-after-35",
+    "title": "How Sleep Architecture Changes After 35",
+    "category": "Sleep",
+    "read_time": 8,
+    "summary": "Slow-wave sleep declines with age — a change that affects memory consolidation, growth hormone secretion, and recovery. Here's the science and what to do about it."
+  },
+  {
+    "slug": "zone2-training-longevity",
+    "title": "Zone 2 Training and Longevity",
+    "category": "Movement",
+    "read_time": 6,
+    "summary": "The science behind low-intensity exercise and mitochondrial health — why training at conversational pace builds the metabolic foundation that protects against age-related decline."
+  },
+  {
+    "slug": "chronic-stress-accelerant",
+    "title": "Chronic Stress Is an Accelerant",
+    "category": "Stress",
+    "read_time": 9,
+    "summary": "The biological mechanisms connecting psychological stress to accelerated cellular ageing — telomere attrition, cortisol dysregulation, and the interventions with the strongest evidence base."
+  }
+]

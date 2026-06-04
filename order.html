@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order Scōp — One scoop. Everything.</title>
+  <meta name="description" content="Order Scōp — 14 clinical-grade compounds per daily scoop. One-time purchase £49 or subscribe and save at £39/month.">
+  <meta property="og:title" content="Order Scōp — One scoop. Everything.">
+  <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── ORDER PAGE STYLES ─────────────────────────────────────────────── */
+
+    /* Sticky buy bar */
+    .sticky-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: var(--color-surface-dark);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-3) var(--space-6);
+      transform: translateY(-100%);
+      transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-bar__inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+    }
+    .sticky-bar__product {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+    .sticky-bar__name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: var(--text-base);
+      color: var(--color-text);
+    }
+    .sticky-bar__price {
+      font-size: var(--text-sm);
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+    .sticky-bar__cta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-shrink: 0;
+    }
+
+    /* Hero product section */
+    .product-hero {
+      padding: calc(var(--space-20) + 4rem) var(--space-6) var(--space-16);
+    }
+    .product-hero__inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+
+    /* Product image */
+    .product-image {
+      position: sticky;
+      top: 5rem;
+    }
+    .product-image img {
+      width: 100%;
+      max-width: 520px;
+      border-radius: var(--radius-xl);
+      display: block;
+    }
+    .product-image__badges {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-top: var(--space-4);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      background: var(--color-surface);
+    }
+    .badge svg { flex-shrink: 0; }
+
+    /* Product details */
+    .product-details { display: flex; flex-direction: column; gap: var(--space-6); }
+
+    .product-details__tag { font-size: var(--text-xs); color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+    .product-details__name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--color-text);
+      margin: 0;
+    }
+    .product-details__name span { color: var(--color-accent); }
+
+    .product-details__tagline {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* Quick benefits */
+    .quick-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-4) 0;
+      border-top: 1px solid var(--color-border-subtle);
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .quick-benefit {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+    .quick-benefit__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    /* Purchase options */
+    .purchase-options { display: flex; flex-direction: column; gap: var(--space-3); }
+    .purchase-options__label {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      font-weight: 600;
+    }
+
+    .option-card {
+      position: relative;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface);
+      cursor: pointer;
+      transition: border-color var(--transition-interactive), background var(--transition-interactive);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+    .option-card:hover { border-color: var(--color-accent); }
+    .option-card.selected {
+      border-color: var(--color-accent);
+      background: var(--color-surface);
+    }
+    .option-card.selected::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: calc(var(--radius-lg) + 2px);
+      border: 2px solid var(--color-accent);
+      pointer-events: none;
+    }
+    .option-card__radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--color-border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color var(--transition-interactive);
+    }
+    .option-card.selected .option-card__radio {
+      border-color: var(--color-accent);
+      background: var(--color-accent);
+    }
+    .option-card.selected .option-card__radio::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-text-inverse);
+    }
+    .option-card__content { flex: 1; }
+    .option-card__title {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: var(--text-base);
+      margin-bottom: var(--space-1);
+    }
+    .option-card__desc {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .option-card__price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .option-card__amount {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--color-text);
+      display: block;
+      line-height: 1;
+    }
+    .option-card__per {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .option-card__saving {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: var(--space-1);
+      white-space: nowrap;
+    }
+
+    /* Best value badge on subscription card */
+    .option-card--featured {
+      border-color: var(--color-accent);
+      background: var(--color-surface);
+    }
+    .option-card__featured-label {
+      position: absolute;
+      top: -12px;
+      left: var(--space-4);
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    /* CTA block */
+    .cta-block { display: flex; flex-direction: column; gap: var(--space-4); }
+    .cta-block__btn {
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--text-base);
+      font-weight: 600;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all var(--transition-interactive);
+      border: none;
+    }
+    .cta-block__btn--primary {
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+    }
+    .cta-block__btn--primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(193, 127, 62, 0.35);
+    }
+
+    .trust-signals {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+    }
+    .trust-signal {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+    }
+    .trust-signal svg { color: var(--color-accent); flex-shrink: 0; }
+
+    /* Comparison / what's inside */
+    .order-section {
+      padding: var(--space-20) var(--space-6);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+    .order-section__inner {
+      max-width: var(--content-default);
+      margin: 0 auto;
+    }
+    .order-section__header {
+      text-align: center;
+      margin-bottom: var(--space-12);
+    }
+    .order-section__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-3);
+    }
+    .order-section__sub {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Vs comparison table */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--text-sm);
+    }
+    .compare-table th {
+      padding: var(--space-4) var(--space-5);
+      text-align: left;
+      font-weight: 600;
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .compare-table th:not(:first-child) { text-align: center; }
+    .compare-table td {
+      padding: var(--space-4) var(--space-5);
+      border-bottom: 1px solid var(--color-border-subtle);
+      color: var(--color-text-muted);
+    }
+    .compare-table td:not(:first-child) { text-align: center; }
+    .compare-table td:first-child { color: var(--color-text); font-weight: 500; }
+    .compare-table .col-sub {
+      background: rgba(193, 127, 62, 0.05);
+      color: var(--color-text);
+      font-weight: 600;
+    }
+    .compare-table th.col-sub { color: var(--color-accent); }
+    .check { color: var(--color-accent); font-size: 1.1em; }
+    .cross { color: var(--color-text-faint); }
+
+    /* Ingredient highlights */
+    .ingredient-highlights {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--space-4);
+    }
+    .ing-highlight {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+    }
+    .ing-highlight__dose {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: var(--space-1);
+    }
+    .ing-highlight__name {
+      font-weight: 600;
+      color: var(--color-text);
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-2);
+    }
+    .ing-highlight__desc {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--color-border-subtle); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: var(--space-5) 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-4);
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      text-align: left;
+    }
+    .faq-question svg {
+      flex-shrink: 0;
+      transition: transform 300ms ease;
+      color: var(--color-accent);
+    }
+    .faq-item.open .faq-question svg { transform: rotate(45deg); }
+    .faq-answer {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease, padding 300ms ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: var(--space-5);
+    }
+
+    /* Bottom CTA band */
+    .order-cta-band {
+      background: var(--color-surface-dark);
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-16) var(--space-6);
+      text-align: center;
+    }
+    .order-cta-band__inner {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      align-items: center;
+    }
+    .order-cta-band__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--color-text);
+      font-weight: 600;
+    }
+    .order-cta-band__sub { color: var(--color-text-muted); font-size: var(--text-sm); }
+
+    /* ── RESPONSIVE ─────────────────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .product-hero { padding: calc(var(--space-16) + 4rem) var(--space-4) var(--space-12); }
+      .product-hero__inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-10);
+      }
+      .product-image { position: static; }
+      .product-image img { max-width: 100%; }
+      .sticky-bar__cta { display: none; }
+      .sticky-bar__name { font-size: var(--text-sm); }
+      .order-section { padding: var(--space-12) var(--space-4); }
+      .compare-table { font-size: 0.8rem; }
+      .compare-table th, .compare-table td { padding: var(--space-3); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== STICKY BUY BAR ========== -->
+  <div class="sticky-bar" id="stickyBar" aria-hidden="true">
+    <div class="sticky-bar__inner">
+      <div class="sticky-bar__product">
+        <div>
+          <div class="sticky-bar__name">Scōp — Orange Spritz</div>
+          <div class="sticky-bar__price" id="stickyPrice">£39/month — Subscribe & Save</div>
+        </div>
+      </div>
+      <div class="sticky-bar__cta">
+        <button class="btn btn--primary btn--sm" onclick="window.location.href = currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL">
+          Order Now
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo" aria-label="Scōp — home">
+        <svg width="80" height="22" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M28 18c-9 0-15 3.5-15 9s5.5 8 15 10c9.5 2 15 4.5 15 10s-6 9-15 9" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M82 28c-11 0-18 7.5-18 18s7 18 18 18c8 0 13-4 15-10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <circle cx="130" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+          <line x1="118" y1="18" x2="142" y2="18" stroke="var(--color-accent)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="183" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+          <line x1="166" y1="28" x2="166" y2="64" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="index.html#formulation" class="header__link">Formulation</a>
+        <a href="index.html#ingredients" class="header__link">Ingredients</a>
+        <a href="index.html#science" class="header__link">Science</a>
+        <a href="account-login.html" class="header__link">My Account</a>
+      </nav>
+      <div class="header__actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== PRODUCT HERO ========== -->
+    <section class="product-hero">
+      <div class="product-hero__inner">
+
+        <!-- LEFT: Product image -->
+        <div class="product-image" data-animate>
+          <img src="./assets/scop-product.png" alt="Scōp Orange Spritz supplement pouch" width="520" height="520" loading="eager">
+          <div class="product-image__badges">
+            <span class="badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+              GMP Certified
+            </span>
+            <span class="badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              UK Manufactured
+            </span>
+            <span class="badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Full Transparency
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Details + purchase -->
+        <div class="product-details" data-animate>
+          <div>
+            <p class="product-details__tag">Orange Spritz · 30 Servings · 330g</p>
+            <h1 class="product-details__name">Scōp.<br><span>One scoop.<br>Everything.</span></h1>
+          </div>
+
+          <p class="product-details__tagline">14 clinical-grade compounds. ~13,000 mg per serving. Replace your entire supplement shelf with a single daily scoop.</p>
+
+          <div class="quick-benefits">
+            <div class="quick-benefit">
+              <span class="quick-benefit__dot"></span>
+              5,000 mg Creatine — muscle performance & cognitive support
+            </div>
+            <div class="quick-benefit">
+              <span class="quick-benefit__dot"></span>
+              1,500 mg Reduced Glutathione — master antioxidant
+            </div>
+            <div class="quick-benefit">
+              <span class="quick-benefit__dot"></span>
+              4,000 IU Vitamin D3 + 100µg K2 — bone & cardiovascular health
+            </div>
+            <div class="quick-benefit">
+              <span class="quick-benefit__dot"></span>
+              Full methylated B-vitamin complex — energy & cellular repair
+            </div>
+          </div>
+
+          <!-- Purchase options -->
+          <div class="purchase-options">
+            <p class="purchase-options__label">Choose your option</p>
+
+            <!-- Subscription (pre-selected, best value) -->
+            <div class="option-card option-card--featured selected" id="optionSub" onclick="selectOption('sub')">
+              <span class="option-card__featured-label">Most Popular</span>
+              <div class="option-card__radio"></div>
+              <div class="option-card__content">
+                <div class="option-card__title">Subscribe &amp; Save</div>
+                <div class="option-card__desc">Delivered every 30 days · Cancel anytime · No lock-in</div>
+              </div>
+              <div class="option-card__price">
+                <span class="option-card__amount">£39</span>
+                <span class="option-card__per">/month</span>
+                <div><span class="option-card__saving">Save £10</span></div>
+              </div>
+            </div>
+
+            <!-- One-time -->
+            <div class="option-card" id="optionOne" onclick="selectOption('one')">
+              <div class="option-card__radio"></div>
+              <div class="option-card__content">
+                <div class="option-card__title">One-Time Purchase</div>
+                <div class="option-card__desc">No commitment · Order whenever you need</div>
+              </div>
+              <div class="option-card__price">
+                <span class="option-card__amount">£49</span>
+                <span class="option-card__per">/pouch</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="cta-block">
+            <button class="cta-block__btn cta-block__btn--primary" id="ctaBtn" onclick="window.location.href = currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL">
+              Subscribe — £39/month
+            </button>
+
+            <div class="trust-signals">
+              <span class="trust-signal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                Cancel anytime
+              </span>
+              <span class="trust-signal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                Free UK delivery
+              </span>
+              <span class="trust-signal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                GMP certified
+              </span>
+              <span class="trust-signal">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+                UK manufactured
+              </span>
+            </div>
+
+            <p style="font-size: var(--text-xs); color: var(--color-text-faint); line-height: 1.5;">
+              Food supplements should not replace a varied diet. Keep out of reach of children. Not suitable for persons under 18. Consult a healthcare professional if pregnant or taking medication.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COMPARISON TABLE ========== -->
+    <section class="order-section">
+      <div class="order-section__inner">
+        <div class="order-section__header" data-animate>
+          <h2 class="order-section__title">One-time vs. Subscribe &amp; Save</h2>
+          <p class="order-section__sub">Both options give you the same clinical-grade formula. Subscribing locks in a lower price and ensures you never run out.</p>
+        </div>
+        <div data-animate>
+          <table class="compare-table" role="table">
+            <thead>
+              <tr>
+                <th style="width:40%"></th>
+                <th>One-Time</th>
+                <th class="col-sub">Subscribe &amp; Save</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Price per pouch</td>
+                <td>£49</td>
+                <td class="col-sub">£39</td>
+              </tr>
+              <tr>
+                <td>Annual saving</td>
+                <td>—</td>
+                <td class="col-sub">£120/year</td>
+              </tr>
+              <tr>
+                <td>Automatic delivery</td>
+                <td class="cross">✕</td>
+                <td class="col-sub check">✓</td>
+              </tr>
+              <tr>
+                <td>Cancel anytime</td>
+                <td class="cross">—</td>
+                <td class="col-sub check">✓</td>
+              </tr>
+              <tr>
+                <td>Priority customer support</td>
+                <td class="cross">✕</td>
+                <td class="col-sub check">✓</td>
+              </tr>
+              <tr>
+                <td>Full clinical formulation</td>
+                <td class="check">✓</td>
+                <td class="col-sub check">✓</td>
+              </tr>
+              <tr>
+                <td>Free UK delivery</td>
+                <td class="check">✓</td>
+                <td class="col-sub check">✓</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== INGREDIENT HIGHLIGHTS ========== -->
+    <section class="order-section" style="border-top: none; padding-top: 0;">
+      <div class="order-section__inner">
+        <div class="order-section__header" data-animate>
+          <h2 class="order-section__title">What's inside every scoop</h2>
+          <p class="order-section__sub">14 clinical-grade compounds. Every ingredient at its evidence-based dose. No proprietary blends, no fillers.</p>
+        </div>
+        <div class="ingredient-highlights" data-animate>
+          <div class="ing-highlight">
+            <div class="ing-highlight__dose">5,000 mg</div>
+            <div class="ing-highlight__name">Creatine Monohydrate</div>
+            <div class="ing-highlight__desc">Muscle performance, cognitive support, ATP energy production and neuroprotection</div>
+          </div>
+          <div class="ing-highlight">
+            <div class="ing-highlight__dose">1,500 mg</div>
+            <div class="ing-highlight__name">Glutathione (Reduced)</div>
+            <div class="ing-highlight__desc">Master antioxidant for cellular detoxification, oxidative stress reduction and immunity</div>
+          </div>
+          <div class="ing-highlight">
+            <div class="ing-highlight__dose">500 mg</div>
+            <div class="ing-highlight__name">Moringa Leaf Extract</div>
+            <div class="ing-highlight__desc">Blood pressure regulation, antioxidant support, polyphenols and minerals</div>
+          </div>
+          <div class="ing-highlight">
+            <div class="ing-highlight__dose">400 mg</div>
+            <div class="ing-highlight__name">Magnesium Glycinate</div>
+            <div class="ing-highlight__desc">Cardiovascular health, nervous system function, superior bioavailability glycinate form</div>
+          </div>
+          <div class="ing-highlight">
+            <div class="ing-highlight__dose">4,000 IU</div>
+            <div class="ing-highlight__name">Vitamin D3</div>
+            <div class="ing-highlight__desc">Immune modulation, bone health — essential in the UK where sunlight deficiency is common</div>
+          </div>
+          <div class="ing-highlight">
+            <div class="ing-highlight__dose">100 µg</div>
+            <div class="ing-highlight__name">Vitamin K2 (MK-7)</div>
+            <div class="ing-highlight__desc">Works synergistically with D3 for optimal bone mineralisation and cardiovascular health</div>
+          </div>
+          <div class="ing-highlight" style="grid-column: 1 / -1; background: var(--color-surface-dark);">
+            <div class="ing-highlight__dose" style="font-size: var(--text-base);">+8 more</div>
+            <div class="ing-highlight__name">Full Methylated B-Complex</div>
+            <div class="ing-highlight__desc">B1 (20mg) · B2 (14mg) · B3 (48mg) · B5 (36mg) · B6 (10mg) · B7 (300µg) · B9 L-Methylfolate (400µg) · B12 Methylcobalamin (900µg) — methylated forms for optimal bioavailability across all genotypes</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section class="order-section">
+      <div class="order-section__inner">
+        <div class="order-section__header" data-animate>
+          <h2 class="order-section__title">Common questions</h2>
+        </div>
+        <div class="faq-list" data-animate>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What's the difference between one-time and subscription?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">Both options give you the same full 330g pouch of Scōp with 30 servings. A subscription locks in the lower price of £39/month and automatically ships a new pouch every 30 days so you never run out. You can cancel, pause, or skip at any time — no commitment, no penalty.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How long does one pouch last?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">Each 330g pouch contains 30 servings (11g per scoop). One pouch = one month's supply when taken daily as directed.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              When should I take Scōp?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">Mix one level scoop (10g) with 300–400ml of cold water and consume once daily, preferably in the morning. The formulation is designed to support energy, cognition, and performance throughout the day.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Is Scōp suitable for me?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">Scōp is designed for healthy adults aged 18 and over. It is not suitable for persons under 18 or for use during pregnancy or breastfeeding. If you are taking medication or have a medical condition, consult a healthcare professional before use. Food supplements should not replace a varied and balanced diet.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Where is Scōp manufactured?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">Scōp is manufactured in the United Kingdom in a GMP and GFSI-certified facility. All ingredients are sourced to pharmaceutical standards with full traceability and third-party testing. The formulation complies with UK Food Supplement Regulations 2003 and EU Directive 2002/46/EC.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How can I cancel my subscription?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">You can cancel your subscription at any time before your next billing date with no fees or penalties. Simply contact us at info@scopsupplement.uk and we'll handle it immediately.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              Does Scōp contain any allergens?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">Scōp contains no major allergens listed under UK Food Information Regulations. However, it is manufactured in a facility that also handles Milk, Soy, and Gluten. If you have a severe allergy, please consult your healthcare professional before use.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BOTTOM CTA ========== -->
+    <section class="order-cta-band">
+      <div class="order-cta-band__inner" data-animate>
+        <h2 class="order-cta-band__title">Start with one scoop.</h2>
+        <p class="order-cta-band__sub">Join the growing number of people replacing a shelf full of supplements with a single daily scoop of Scōp.</p>
+        <div style="display:flex; flex-direction:column; gap: var(--space-3); width: 100%; max-width: 360px;">
+          <button class="cta-block__btn cta-block__btn--primary" onclick="window.location.href = STRIPE_SUB_URL">
+            Subscribe — £39/month
+          </button>
+          <button onclick="window.location.href = STRIPE_ONE_URL" style="background:none;border:1px solid var(--color-border);color:var(--color-text-muted);padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);cursor:pointer;font-size:var(--text-sm);transition:all var(--transition-interactive);">
+            Buy once — £49
+          </button>
+        </div>
+        <p style="font-size:var(--text-xs);color:var(--color-text-faint);">Free UK delivery · Cancel subscription anytime · GMP certified</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo" aria-label="Scōp — home">
+          <svg width="80" height="22" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M28 18c-9 0-15 3.5-15 9s5.5 8 15 10c9.5 2 15 4.5 15 10s-6 9-15 9" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M82 28c-11 0-18 7.5-18 18s7 18 18 18c8 0 13-4 15-10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <circle cx="130" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+            <line x1="118" y1="18" x2="142" y2="18" stroke="var(--color-accent)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="183" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+            <line x1="166" y1="28" x2="166" y2="64" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <p class="footer__tagline">Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html#formulation">Formulation</a>
+        <a href="index.html#ingredients">Ingredients</a>
+        <a href="index.html#science">Science</a>
+        <a href="order.html">Order</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Ellesmere Project Group Ltd. All rights reserved.</p>
+        <p style="font-size:0.75rem; color: var(--color-text-faint); margin-top: var(--space-2);">Food supplements are not intended to diagnose, treat, cure or prevent any disease. Not suitable for persons under 18. Consult a healthcare professional before use if pregnant, breastfeeding, or taking medication.</p>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer__attribution">Created with Perplexity Computer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // ── OPTION SELECTION ──────────────────────────────────────────────────
+    let currentOption = 'sub';
+
+    const STRIPE_SUB_URL = 'https://buy.stripe.com/9B6eVe3vA7SvcZ39cy3cc01';
+    const STRIPE_ONE_URL = 'https://buy.stripe.com/fZufZi2rwa0D0ch2Oa3cc00';
+
+    function selectOption(type) {
+      currentOption = type;
+      const subCard = document.getElementById('optionSub');
+      const oneCard = document.getElementById('optionOne');
+      const ctaBtn  = document.getElementById('ctaBtn');
+      const stickyPrice = document.getElementById('stickyPrice');
+
+      if (type === 'sub') {
+        subCard.classList.add('selected');
+        oneCard.classList.remove('selected');
+        ctaBtn.textContent = 'Subscribe — £39/month';
+        stickyPrice.textContent = '£39/month — Subscribe & Save';
+      } else {
+        oneCard.classList.add('selected');
+        subCard.classList.remove('selected');
+        ctaBtn.textContent = 'Buy Once — £49';
+        stickyPrice.textContent = '£49 — One-Time Purchase';
+      }
+    }
+
+    // ── STICKY BAR ────────────────────────────────────────────────────────
+    const stickyBar = document.getElementById('stickyBar');
+    const ctaBtn    = document.getElementById('ctaBtn');
+    let stickyVisible = false;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting && !stickyVisible) {
+        stickyBar.classList.add('visible');
+        stickyBar.removeAttribute('aria-hidden');
+        stickyVisible = true;
+      } else if (entry.isIntersecting && stickyVisible) {
+        stickyBar.classList.remove('visible');
+        stickyBar.setAttribute('aria-hidden', 'true');
+        stickyVisible = false;
+      }
+    }, { threshold: 0 });
+
+    observer.observe(ctaBtn);
+
+    // ── FAQ ACCORDION ─────────────────────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(el => {
+          el.classList.remove('open');
+          el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          item.classList.add('open');
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

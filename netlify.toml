@@ -1,0 +1,9 @@
+[build]
+  publish = "."
+
+# Enable Netlify Identity and Git Gateway for Decap CMS
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+[build.environment]
+  NODE_VERSION = "18"

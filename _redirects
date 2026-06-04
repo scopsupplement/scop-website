@@ -1,0 +1,2 @@
+# Serve _articles markdown files directly
+/_articles/*  /_articles/:splat  200

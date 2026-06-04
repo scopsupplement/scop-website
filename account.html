@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+     ______                            __
+    / ____/___  ____ ___  ____  __  __/ /____  _____
+   / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+  / /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+  \____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                      /_/
+          Created with Perplexity Computer
+          https://www.perplexity.ai/computer
+  -->
+  <meta name="generator" content="Perplexity Computer">
+  <meta name="author" content="Perplexity Computer">
+  <meta property="og:see_also" content="https://www.perplexity.ai/computer">
+  <link rel="author" href="https://www.perplexity.ai/computer">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account — Scōp</title>
+  <meta name="description" content="Manage your Scōp subscription, orders, and profile.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== ACCOUNT DASHBOARD STYLES ===== */
+
+    /* Layout */
+    .account-layout {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      padding: var(--space-10) var(--space-6);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--space-10);
+      min-height: calc(100dvh - 73px - 200px);
+      align-items: start;
+    }
+
+    /* Sidebar */
+    .account-sidebar {
+      position: sticky;
+      top: 90px;
+    }
+
+    .account-sidebar__nav {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+
+    .account-sidebar__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      text-align: left;
+      width: 100%;
+      text-decoration: none;
+      transition: background var(--transition-interactive), color var(--transition-interactive);
+    }
+
+    .account-sidebar__item:hover {
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .account-sidebar__item.is-active {
+      background: var(--color-surface);
+      color: var(--color-text);
+      border-left: 2px solid var(--color-accent);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .account-sidebar__badge {
+      margin-left: auto;
+      background: var(--color-accent);
+      color: var(--color-text-inverse);
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.04em;
+    }
+
+    .account-sidebar__lock {
+      margin-left: auto;
+      color: var(--color-accent);
+      opacity: 0.7;
+    }
+
+    /* Mobile tabs */
+    .account-tabs {
+      display: none;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-4);
+      gap: var(--space-1);
+    }
+
+    .account-tabs::-webkit-scrollbar { display: none; }
+
+    .account-tabs__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-4);
+      white-space: nowrap;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: var(--font-body);
+      margin-bottom: -1px;
+    }
+
+    .account-tabs__item.is-active {
+      color: var(--color-text);
+      border-bottom-color: var(--color-accent);
+    }
+
+    /* Content panels */
+    .account-content {
+      min-width: 0;
+    }
+
+    .account-panel {
+      display: none;
+    }
+
+    .account-panel.is-active {
+      display: block;
+    }
+
+    /* Panel headings */
+    .account-panel__heading {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-6);
+    }
+
+    /* Status / info cards */
+    .account-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+
+    .account-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5) var(--space-6);
+    }
+
+    .account-card--accent {
+      border-color: var(--color-accent);
+      background: color-mix(in srgb, var(--color-accent) 6%, var(--color-surface));
+    }
+
+    .account-card__label {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-2);
+    }
+
+    .account-card__value {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+
+    .account-card__sub {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-top: var(--space-1);
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+    }
+
+    .status-badge--active {
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+    }
+
+    .status-badge--one-time {
+      background: rgba(193, 127, 62, 0.12);
+      color: var(--color-accent);
+    }
+
+    /* Welcome message */
+    .account-welcome {
+      margin-bottom: var(--space-8);
+    }
+
+    .account-welcome__greeting {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-2);
+    }
+
+    .account-welcome__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* Quick actions */
+    .account-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-top: var(--space-4);
+    }
+
+    .account-action {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-5);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      background: none;
+      text-decoration: none;
+      font-family: var(--font-body);
+    }
+
+    .account-action:hover {
+      border-color: var(--color-text-muted);
+      color: var(--color-text);
+    }
+
+    /* Orders table */
+    .orders-table-wrapper {
+      overflow-x: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+
+    .orders-table {
+      width: 100%;
+      min-width: 500px;
+    }
+
+    .orders-table th {
+      text-align: left;
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-muted);
+      padding: var(--space-4) var(--space-5);
+      background: var(--color-surface-dark);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .orders-table td {
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .orders-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .orders-table tr:hover td {
+      background: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    }
+
+    .order-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .order-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .order-status--delivered {
+      background: rgba(74, 222, 128, 0.12);
+      color: #4ade80;
+    }
+    .order-status--delivered::before { background: #4ade80; }
+
+    .order-status--processing {
+      background: rgba(251, 191, 36, 0.12);
+      color: #fbbf24;
+    }
+    .order-status--processing::before { background: #fbbf24; }
+
+    .order-status--shipped {
+      background: rgba(96, 165, 250, 0.12);
+      color: #60a5fa;
+    }
+    .order-status--shipped::before { background: #60a5fa; }
+
+    /* Subscription tab */
+    .subscription-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .subscription-plan-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+
+    .subscription-plan-card__info {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .subscription-plan-card__name {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .subscription-plan-card__price {
+      font-size: var(--text-base);
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .subscription-plan-card__detail {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .subscription-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .btn--outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      line-height: 1;
+      border-radius: var(--radius-full);
+      padding: var(--space-3) var(--space-6);
+      background: transparent;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn--outline:hover {
+      border-color: var(--color-text-muted);
+      color: var(--color-text);
+    }
+
+    .btn--danger-outline {
+      border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
+      color: var(--color-accent);
+    }
+
+    .btn--danger-outline:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent-hover);
+      background: color-mix(in srgb, var(--color-accent) 6%, transparent);
+    }
+
+    .subscription-note {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-style: italic;
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-dark);
+    }
+
+    /* Profile form */
+    .profile-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-8);
+    }
+
+    .profile-group {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+    }
+
+    .profile-group__title {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-5);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .profile-grid--full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      padding: var(--space-3) var(--space-5);
+      font-size: var(--text-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-bg);
+      color: var(--color-text);
+      outline: none;
+      width: 100%;
+      font-family: var(--font-body);
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--color-accent);
+    }
+
+    .form-field--checkbox {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .form-field--checkbox label {
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: var(--color-text-muted);
+      cursor: pointer;
+    }
+
+    .form-field--checkbox input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .profile-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .account-delete-link {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .account-delete-link:hover {
+      color: #f87171;
+    }
+
+    /* Longevity Hub locked state */
+    .hub-locked {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--space-16) var(--space-8);
+      gap: var(--space-6);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+
+    .hub-locked__icon {
+      color: var(--color-accent);
+      opacity: 0.8;
+    }
+
+    .hub-locked__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    .hub-locked__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      max-width: 42ch;
+      line-height: 1.7;
+    }
+
+    .hub-locked__bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      text-align: left;
+    }
+
+    .hub-locked__bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      max-width: 100%;
+    }
+
+    .hub-locked__bullets li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* Hub preview */
+    .hub-preview {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .hub-preview__heading {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+
+    .hub-preview__sub {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-5);
+    }
+
+    .hub-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .hub-article-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .hub-article-card__category {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+    }
+
+    .hub-article-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .hub-article-card__excerpt {
+      font-size: var(--text-xs);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .hub-article-card__meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .hub-article-card__read {
+      font-size: var(--text-xs);
+      color: var(--color-accent);
+      font-weight: 500;
+    }
+
+    .hub-article-card__time {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+
+    .hub-enter-btn {
+      align-self: flex-start;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .account-layout {
+        grid-template-columns: 1fr;
+        padding: 0;
+        gap: 0;
+      }
+
+      .account-sidebar {
+        display: none;
+      }
+
+      .account-tabs {
+        display: flex;
+        position: sticky;
+        top: 73px;
+        z-index: 90;
+        background: var(--color-bg);
+      }
+
+      .account-content {
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .hub-articles-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .subscription-plan-card {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .account-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo" aria-label="Scōp — home">
+        <svg width="80" height="22" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M28 18c-9 0-15 3.5-15 9s5.5 8 15 10c9.5 2 15 4.5 15 10s-6 9-15 9" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M82 28c-11 0-18 7.5-18 18s7 18 18 18c8 0 13-4 15-10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+          <circle cx="130" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+          <line x1="118" y1="18" x2="142" y2="18" stroke="var(--color-accent)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="183" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+          <line x1="166" y1="28" x2="166" y2="64" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </a>
+
+      <nav class="header__nav" aria-label="Primary">
+        <a href="index.html#formulation" class="header__link">Formulation</a>
+        <a href="index.html#ingredients" class="header__link">Ingredients</a>
+        <a href="index.html#science" class="header__link">Science</a>
+        <a href="account.html" class="header__link" style="color: var(--color-text);">My Account</a>
+      </nav>
+
+      <div class="header__actions">
+        <button id="signout-btn" class="btn btn--primary btn--sm">Sign out</button>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Tabs -->
+  <div class="account-tabs" id="account-tabs" role="tablist" aria-label="Account sections">
+    <button class="account-tabs__item is-active" role="tab" aria-selected="true" data-panel="overview">Overview</button>
+    <button class="account-tabs__item" role="tab" aria-selected="false" data-panel="orders">My Orders</button>
+    <button class="account-tabs__item js-sub-only" role="tab" aria-selected="false" data-panel="subscription">
+      Subscription <span class="account-sidebar__badge" style="margin-left:6px">Active</span>
+    </button>
+    <button class="account-tabs__item" role="tab" aria-selected="false" data-panel="profile">Profile & Details</button>
+    <button class="account-tabs__item" role="tab" aria-selected="false" data-panel="hub">
+      Longevity Hub
+      <svg class="account-sidebar__lock js-hub-lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </button>
+  </div>
+
+  <main>
+    <div class="account-layout">
+
+      <!-- Sidebar -->
+      <aside class="account-sidebar" aria-label="Account navigation">
+        <nav class="account-sidebar__nav" role="tablist" aria-label="Account sections">
+          <button class="account-sidebar__item is-active" role="tab" aria-selected="true" data-panel="overview">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+            Overview
+          </button>
+          <button class="account-sidebar__item" role="tab" aria-selected="false" data-panel="orders">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+            My Orders
+          </button>
+          <button class="account-sidebar__item js-sub-only" role="tab" aria-selected="false" data-panel="subscription">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Subscription
+            <span class="account-sidebar__badge">Active</span>
+          </button>
+          <button class="account-sidebar__item" role="tab" aria-selected="false" data-panel="profile">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile & Details
+          </button>
+          <button class="account-sidebar__item" role="tab" aria-selected="false" data-panel="hub">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            Longevity Hub
+            <svg class="account-sidebar__lock js-hub-lock" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </button>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <div class="account-content">
+
+        <!-- ===== OVERVIEW ===== -->
+        <section class="account-panel is-active" id="panel-overview" role="tabpanel">
+          <div class="account-welcome">
+            <h1 class="account-welcome__greeting">Good morning, <span id="user-name">there</span>.</h1>
+            <p class="account-welcome__sub">Here's an overview of your Scōp account.</p>
+          </div>
+
+          <div class="account-cards" id="overview-cards">
+            <div class="account-card">
+              <div class="account-card__label">Status</div>
+              <div class="account-card__value" id="status-card-value">
+                <span class="status-badge status-badge--active">● Active</span>
+              </div>
+            </div>
+            <div class="account-card js-sub-card" id="next-delivery-card">
+              <div class="account-card__label">Next Delivery</div>
+              <div class="account-card__value">12 Jun 2026</div>
+              <div class="account-card__sub">Estimated arrival</div>
+            </div>
+            <div class="account-card js-sub-card" id="next-billing-card">
+              <div class="account-card__label">Next Billing</div>
+              <div class="account-card__value">8 Jun 2026</div>
+              <div class="account-card__sub">£39.00 · Subscribe & Save</div>
+            </div>
+          </div>
+
+          <div class="account-actions">
+            <button class="account-action js-sub-only" data-panel="subscription">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              Manage subscription
+            </button>
+            <button class="account-action" data-panel="profile">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Update details
+            </button>
+            <button class="account-action" data-panel="orders">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              View orders
+            </button>
+          </div>
+        </section>
+
+        <!-- ===== MY ORDERS ===== -->
+        <section class="account-panel" id="panel-orders" role="tabpanel">
+          <h2 class="account-panel__heading">My Orders</h2>
+          <div class="orders-table-wrapper">
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Date</th>
+                  <th>Product</th>
+                  <th>Status</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00312</td>
+                  <td style="color: var(--color-text-muted);">8 May 2026</td>
+                  <td>Scōp AI-1 — Subscribe & Save</td>
+                  <td><span class="order-status order-status--processing">Processing</span></td>
+                  <td style="font-weight: 500;">£39.00</td>
+                </tr>
+                <tr>
+                  <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00278</td>
+                  <td style="color: var(--color-text-muted);">8 Apr 2026</td>
+                  <td>Scōp AI-1 — Subscribe & Save</td>
+                  <td><span class="order-status order-status--shipped">Shipped</span></td>
+                  <td style="font-weight: 500;">£39.00</td>
+                </tr>
+                <tr>
+                  <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00244</td>
+                  <td style="color: var(--color-text-muted);">8 Mar 2026</td>
+                  <td>Scōp AI-1 — Subscribe & Save</td>
+                  <td><span class="order-status order-status--delivered">Delivered</span></td>
+                  <td style="font-weight: 500;">£39.00</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ===== SUBSCRIPTION ===== -->
+        <section class="account-panel" id="panel-subscription" role="tabpanel">
+          <h2 class="account-panel__heading">Subscription</h2>
+          <div class="subscription-section">
+            <div class="subscription-plan-card">
+              <div class="subscription-plan-card__info">
+                <div class="subscription-plan-card__name">Subscribe &amp; Save</div>
+                <div class="subscription-plan-card__price">£39 / month</div>
+                <div class="subscription-plan-card__detail">Next billing date: <strong style="color: var(--color-text);">8 June 2026</strong></div>
+                <div style="margin-top: var(--space-2);">
+                  <span class="status-badge status-badge--active" style="font-size:11px;">● Active</span>
+                </div>
+              </div>
+              <div class="subscription-actions">
+                <button class="btn--outline">Update payment method</button>
+                <button class="btn--outline">Change delivery address</button>
+                <button class="btn--outline">Pause subscription</button>
+                <button class="btn--outline btn--danger-outline">Cancel subscription</button>
+              </div>
+            </div>
+            <div class="subscription-note">
+              Cancellations take effect at the end of the current billing period. You will continue to have access to your subscription benefits until that date.
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== PROFILE ===== -->
+        <section class="account-panel" id="panel-profile" role="tabpanel">
+          <h2 class="account-panel__heading">Profile &amp; Details</h2>
+          <div class="profile-section">
+            <!-- Personal info -->
+            <div class="profile-group">
+              <h3 class="profile-group__title">Personal Information</h3>
+              <div class="profile-grid">
+                <div class="form-field">
+                  <label for="p-first">First name</label>
+                  <input type="text" id="p-first" value="Alex" autocomplete="given-name">
+                </div>
+                <div class="form-field">
+                  <label for="p-last">Last name</label>
+                  <input type="text" id="p-last" value="Harrington" autocomplete="family-name">
+                </div>
+                <div class="form-field">
+                  <label for="p-email">Email address</label>
+                  <input type="email" id="p-email" value="alex@example.com" autocomplete="email">
+                </div>
+                <div class="form-field">
+                  <label for="p-phone">Phone number</label>
+                  <input type="tel" id="p-phone" value="+44 7700 900123" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+
+            <!-- Delivery address -->
+            <div class="profile-group">
+              <h3 class="profile-group__title">Delivery Address</h3>
+              <div class="profile-grid">
+                <div class="form-field" style="grid-column: 1/-1;">
+                  <label for="d-line1">Address line 1</label>
+                  <input type="text" id="d-line1" value="14 Beech Avenue" autocomplete="address-line1">
+                </div>
+                <div class="form-field">
+                  <label for="d-city">City</label>
+                  <input type="text" id="d-city" value="Manchester" autocomplete="address-level2">
+                </div>
+                <div class="form-field">
+                  <label for="d-postcode">Postcode</label>
+                  <input type="text" id="d-postcode" value="M4 1AB" autocomplete="postal-code">
+                </div>
+              </div>
+            </div>
+
+            <!-- Billing address -->
+            <div class="profile-group">
+              <h3 class="profile-group__title">Billing Address</h3>
+              <div class="form-field form-field--checkbox" style="margin-bottom: var(--space-4);">
+                <input type="checkbox" id="billing-same" checked>
+                <label for="billing-same">Same as delivery address</label>
+              </div>
+              <div id="billing-fields" style="display:none;">
+                <div class="profile-grid">
+                  <div class="form-field" style="grid-column: 1/-1;">
+                    <label for="b-line1">Address line 1</label>
+                    <input type="text" id="b-line1" autocomplete="billing address-line1">
+                  </div>
+                  <div class="form-field">
+                    <label for="b-city">City</label>
+                    <input type="text" id="b-city" autocomplete="billing address-level2">
+                  </div>
+                  <div class="form-field">
+                    <label for="b-postcode">Postcode</label>
+                    <input type="text" id="b-postcode" autocomplete="billing postal-code">
+                  </div>
+                </div>
+              </div>
+              <div class="profile-actions" style="border-top:none; padding-top:var(--space-4);">
+                <button class="btn btn--primary btn--sm">Save changes</button>
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="profile-group">
+              <h3 class="profile-group__title">Change Password</h3>
+              <div class="profile-grid">
+                <div class="form-field" style="grid-column: 1/-1;">
+                  <label for="pw-current">Current password</label>
+                  <input type="password" id="pw-current" placeholder="••••••••" autocomplete="current-password">
+                </div>
+                <div class="form-field">
+                  <label for="pw-new">New password</label>
+                  <input type="password" id="pw-new" placeholder="••••••••" autocomplete="new-password">
+                </div>
+                <div class="form-field">
+                  <label for="pw-confirm">Confirm new password</label>
+                  <input type="password" id="pw-confirm" placeholder="••••••••" autocomplete="new-password">
+                </div>
+              </div>
+              <div class="profile-actions">
+                <button class="btn btn--primary btn--sm">Update password</button>
+                <a href="#" class="account-delete-link">Close my account</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== LONGEVITY HUB ===== -->
+        <section class="account-panel" id="panel-hub" role="tabpanel">
+          <h2 class="account-panel__heading">Longevity Hub</h2>
+
+          <!-- Locked state (one-time customers) -->
+          <div class="hub-locked" id="hub-locked" style="display:none;">
+            <svg class="hub-locked__icon" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+            <h3 class="hub-locked__title">Exclusively for Scōp subscribers</h3>
+            <p class="hub-locked__desc">The Longevity Hub is available exclusively to Scōp subscription members. Upgrade to access our full library of evidence-based articles.</p>
+            <ul class="hub-locked__bullets" role="list">
+              <li>Deep-dive articles on nutrition, movement, sleep and stress — written to a scientific standard</li>
+              <li>Compound-level breakdowns showing how each ingredient in Scōp supports your long-term health</li>
+              <li>Practical protocols and evidence summaries updated as new research emerges</li>
+            </ul>
+            <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £39/month</a>
+          </div>
+
+          <!-- Unlocked preview (subscription customers) -->
+          <div class="hub-preview" id="hub-unlocked" style="display:none;">
+            <div>
+              <p class="hub-preview__heading">Featured Articles</p>
+              <p class="hub-preview__sub">Evidence-based reading, curated for Scōp subscribers.</p>
+            </div>
+            <div class="hub-articles-grid">
+              <div class="hub-article-card">
+                <span class="hub-article-card__category">Nutrition</span>
+                <h3 class="hub-article-card__title">Creatine Beyond the Gym</h3>
+                <p class="hub-article-card__excerpt">Emerging research on cognitive function and long-term brain health suggests creatine's benefits extend far beyond athletic performance.</p>
+                <div class="hub-article-card__meta">
+                  <a href="#" class="hub-article-card__read">Read article →</a>
+                  <span class="hub-article-card__time">5 min read</span>
+                </div>
+              </div>
+              <div class="hub-article-card">
+                <span class="hub-article-card__category">Sleep</span>
+                <h3 class="hub-article-card__title">How Sleep Architecture Changes After 35</h3>
+                <p class="hub-article-card__excerpt">And what you can do about it. Deep sleep declines with age — here's the science and practical interventions.</p>
+                <div class="hub-article-card__meta">
+                  <a href="#" class="hub-article-card__read">Read article →</a>
+                  <span class="hub-article-card__time">8 min read</span>
+                </div>
+              </div>
+              <div class="hub-article-card">
+                <span class="hub-article-card__category">Movement</span>
+                <h3 class="hub-article-card__title">Zone 2 Training and Longevity</h3>
+                <p class="hub-article-card__excerpt">The science behind low-intensity exercise and mitochondrial health — why slow running may be the most powerful longevity tool.</p>
+                <div class="hub-article-card__meta">
+                  <a href="#" class="hub-article-card__read">Read article →</a>
+                  <span class="hub-article-card__time">6 min read</span>
+                </div>
+              </div>
+            </div>
+            <a href="longevity-hub.html" class="btn btn--primary hub-enter-btn">Enter the Longevity Hub →</a>
+          </div>
+        </section>
+
+      </div><!-- end account-content -->
+    </div><!-- end account-layout -->
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo" aria-label="Scōp — home">
+          <svg width="80" height="22" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M28 18c-9 0-15 3.5-15 9s5.5 8 15 10c9.5 2 15 4.5 15 10s-6 9-15 9" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M82 28c-11 0-18 7.5-18 18s7 18 18 18c8 0 13-4 15-10" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+            <circle cx="130" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+            <line x1="118" y1="18" x2="142" y2="18" stroke="var(--color-accent)" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="183" cy="46" r="17" stroke="currentColor" stroke-width="5" fill="none"/>
+            <line x1="166" y1="28" x2="166" y2="64" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <p class="footer__tagline">Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html#formulation">Formulation</a>
+        <a href="index.html#ingredients">Ingredients</a>
+        <a href="index.html#science">Science</a>
+        <a href="order.html">Order</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Ellesmere Project Group Ltd. All rights reserved.</p>
+        <p style="font-size: 0.72rem; color: var(--color-text-faint); margin-top: var(--space-2); line-height: 1.5;">Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. Not suitable for persons under 18. Keep out of reach of children. Consult a healthcare professional before use if pregnant, breastfeeding or taking medication.</p>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer__attribution">Created with Perplexity Computer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // ===== ACCESS CONTROL =====
+    const loggedIn = localStorage.getItem('scop_logged_in');
+    if (loggedIn !== 'true') {
+      window.location.href = 'account-login.html';
+    }
+
+    const accountType = localStorage.getItem('scop_account_type') || 'subscription';
+    const isSubscription = accountType === 'subscription';
+
+    // ===== USER NAME =====
+    const storedName = localStorage.getItem('scop_user_name') || 'there';
+    document.getElementById('user-name').textContent = storedName.charAt(0).toUpperCase() + storedName.slice(1);
+
+    // Update greeting based on time of day
+    const hour = new Date().getHours();
+    let greeting = 'Good morning';
+    if (hour >= 12 && hour < 17) greeting = 'Good afternoon';
+    else if (hour >= 17) greeting = 'Good evening';
+    document.querySelector('.account-welcome__greeting').innerHTML =
+      greeting + ', <span id="user-name">' + storedName.charAt(0).toUpperCase() + storedName.slice(1) + '</span>.';
+
+    // ===== ACCOUNT TYPE UI =====
+    const subOnlyItems = document.querySelectorAll('.js-sub-only');
+    const hubLocks = document.querySelectorAll('.js-hub-lock');
+    const statusCard = document.getElementById('status-card-value');
+    const subCards = document.querySelectorAll('.js-sub-card');
+
+    if (!isSubscription) {
+      // Hide subscription-only elements
+      subOnlyItems.forEach(el => el.style.display = 'none');
+      subCards.forEach(el => el.style.display = 'none');
+      // Update status badge
+      statusCard.innerHTML = '<span class="status-badge status-badge--one-time">One-time customer</span>';
+    } else {
+      // Show lock icons for subscription users? No — hub is unlocked
+      hubLocks.forEach(el => el.style.display = 'none');
+    }
+
+    // Longevity Hub state
+    const hubLocked = document.getElementById('hub-locked');
+    const hubUnlocked = document.getElementById('hub-unlocked');
+    if (isSubscription) {
+      hubUnlocked.style.display = 'flex';
+    } else {
+      hubLocked.style.display = 'flex';
+    }
+
+    // ===== TAB SWITCHING =====
+    function switchPanel(panelName, trigger) {
+      // Hide all panels
+      document.querySelectorAll('.account-panel').forEach(p => p.classList.remove('is-active'));
+      // Show target
+      const target = document.getElementById('panel-' + panelName);
+      if (target) target.classList.add('is-active');
+
+      // Update sidebar tabs
+      document.querySelectorAll('.account-sidebar__item').forEach(item => {
+        item.classList.toggle('is-active', item.dataset.panel === panelName);
+        item.setAttribute('aria-selected', item.dataset.panel === panelName ? 'true' : 'false');
+      });
+      // Update mobile tabs
+      document.querySelectorAll('.account-tabs__item').forEach(item => {
+        item.classList.toggle('is-active', item.dataset.panel === panelName);
+        item.setAttribute('aria-selected', item.dataset.panel === panelName ? 'true' : 'false');
+      });
+    }
+
+    // Sidebar + mobile tab clicks
+    document.querySelectorAll('[data-panel]').forEach(el => {
+      el.addEventListener('click', function() {
+        switchPanel(this.dataset.panel, this);
+      });
+    });
+
+    // ===== BILLING SAME AS DELIVERY =====
+    const billingSame = document.getElementById('billing-same');
+    const billingFields = document.getElementById('billing-fields');
+    billingSame.addEventListener('change', function() {
+      billingFields.style.display = this.checked ? 'none' : 'block';
+    });
+
+    // ===== SIGN OUT =====
+    document.getElementById('signout-btn').addEventListener('click', function() {
+      localStorage.removeItem('scop_logged_in');
+      localStorage.removeItem('scop_account_type');
+      localStorage.removeItem('scop_user_name');
+      window.location.href = 'account-login.html';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article — Scōp Longevity Hub</title>
+  <meta name="robots" content="noindex">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Marked.js to render markdown body -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    .article-hero {
+      padding: var(--space-16) 0 var(--space-10);
+      border-bottom: 1px solid var(--color-border-subtle);
+      margin-bottom: var(--space-10);
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .article-category {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .article-read-time {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .article-date {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .article-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--color-text);
+      margin-bottom: var(--space-6);
+    }
+    .article-summary {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      max-width: 640px;
+    }
+    .article-body {
+      max-width: 680px;
+      margin: 0 auto var(--space-16);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--color-text-muted);
+    }
+    .article-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--color-text);
+      margin: var(--space-10) 0 var(--space-4);
+      line-height: 1.25;
+    }
+    .article-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-text);
+      margin: var(--space-8) 0 var(--space-3);
+    }
+    .article-body p { margin-bottom: var(--space-5); }
+    .article-body ul, .article-body ol {
+      padding-left: var(--space-6);
+      margin-bottom: var(--space-5);
+    }
+    .article-body li { margin-bottom: var(--space-2); }
+    .article-body strong { color: var(--color-text); font-weight: 600; }
+    .article-body blockquote {
+      border-left: 3px solid var(--color-accent);
+      padding: var(--space-4) var(--space-6);
+      margin: var(--space-8) 0;
+      background: color-mix(in srgb, var(--color-accent) 5%, var(--color-surface));
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+      color: var(--color-text);
+    }
+    .article-image {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-10);
+    }
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      margin-bottom: var(--space-8);
+      transition: color 0.2s;
+    }
+    .article-back:hover { color: var(--color-accent); }
+    .article-disclaimer {
+      max-width: 680px;
+      margin: 0 auto var(--space-16);
+      padding: var(--space-5) var(--space-6);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--color-text-faint);
+      line-height: 1.6;
+    }
+    .article-locked {
+      max-width: 560px;
+      margin: var(--space-20) auto;
+      text-align: center;
+      padding: var(--space-12);
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border-subtle);
+    }
+    .article-locked svg {
+      color: var(--color-accent);
+      margin-bottom: var(--space-5);
+    }
+    .article-locked h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: var(--space-4);
+    }
+    .article-locked p {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-6);
+    }
+    #article-loading {
+      text-align: center;
+      padding: var(--space-20);
+      color: var(--color-text-muted);
+      font-family: var(--font-sans);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="site-header">
+    <div class="header__inner container">
+      <a href="index.html" class="header__logo" aria-label="Scōp home">
+        <svg class="wordmark" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="24" fill="currentColor">scop</text>
+          <rect x="28" y="1" width="13" height="3" rx="1" fill="#c17f3e"/>
+        </svg>
+      </a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="index.html#formulation" class="header__link">Formulation</a>
+        <a href="index.html#ingredients" class="header__link">Ingredients</a>
+        <a href="index.html#science" class="header__link">Science</a>
+        <a href="longevity-hub.html" class="header__link">Longevity Hub</a>
+      </nav>
+      <div class="header__actions">
+        <a href="account.html" class="btn btn--ghost btn--sm js-account-btn">My Account</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 80px;">
+
+    <div id="article-loading">Loading article…</div>
+    <div id="article-locked" class="article-locked" hidden>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <h2>Exclusively for Scōp subscribers</h2>
+      <p>This article is available to Scōp subscription members. Upgrade to access the full Longevity Hub library.</p>
+      <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £39/month</a>
+    </div>
+    <div id="article-content" hidden>
+      <a href="longevity-hub.html" class="article-back">
+        ← Back to Longevity Hub
+      </a>
+      <div class="article-hero">
+        <div class="article-meta">
+          <span class="article-category" id="art-category"></span>
+          <span class="article-read-time" id="art-read-time"></span>
+          <span class="article-date" id="art-date"></span>
+        </div>
+        <h1 class="article-title" id="art-title"></h1>
+        <p class="article-summary" id="art-summary"></p>
+      </div>
+      <img id="art-image" class="article-image" src="" alt="" hidden>
+      <div class="article-body" id="art-body"></div>
+      <div class="article-disclaimer">
+        This article is for informational purposes only and does not constitute medical advice.
+        Food supplements should not be used as a substitute for a varied diet and healthy lifestyle.
+        Consult a healthcare professional before making changes to your supplement routine.
+        All health claims referenced are authorised by the Great Britain Nutrition and Health Claims Register.
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <svg class="wordmark" viewBox="0 0 80 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <text x="0" y="22" font-family="Georgia, serif" font-size="24" fill="currentColor">scop</text>
+          <rect x="28" y="1" width="13" height="3" rx="1" fill="#c17f3e"/>
+        </svg>
+        <p>Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav">
+        <a href="index.html#formulation">Formulation</a>
+        <a href="index.html#ingredients">Ingredients</a>
+        <a href="index.html#science">Science</a>
+        <a href="order.html">Order</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Ellesmere Project Group Ltd. All rights reserved.</p>
+        <p style="font-size: 0.72rem; color: var(--color-text-faint); margin-top: var(--space-2); line-height: 1.5;">Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. Not suitable for persons under 18. Keep out of reach of children.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // ── Netlify Identity ────────────────────────────────────────────────────
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('init', user => {
+        if (!user) window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+      });
+    }
+
+    // ── Category labels ─────────────────────────────────────────────────────
+    const CATEGORY_LABELS = {
+      nutrition: 'Nutrition & Supplementation',
+      movement:  'Movement & Recovery',
+      sleep:     'Sleep & Restoration',
+      stress:    'Stress & Resilience'
+    };
+
+    // ── Load article from URL param ─────────────────────────────────────────
+    async function loadArticle() {
+      const params  = new URLSearchParams(window.location.search);
+      const slug    = params.get('slug');
+
+      if (!slug) {
+        window.location.href = 'longevity-hub.html';
+        return;
+      }
+
+      // Access check — subscriber only
+      const isLoggedIn   = localStorage.getItem('scop_logged_in') === 'true';
+      const accountType  = localStorage.getItem('scop_account_type');
+
+      document.getElementById('article-loading').hidden = true;
+
+      if (!isLoggedIn || accountType !== 'subscription') {
+        document.getElementById('article-locked').hidden = false;
+        return;
+      }
+
+      // Fetch the markdown file from _articles/
+      try {
+        const res  = await fetch(`/_articles/${slug}.md`);
+        if (!res.ok) throw new Error('Not found');
+        const raw  = await res.text();
+
+        // Parse frontmatter
+        const fm   = parseFrontmatter(raw);
+        const body = raw.replace(/^---[\s\S]*?---\n/, '');
+
+        // Populate
+        document.title = `${fm.title} — Scōp Longevity Hub`;
+        document.getElementById('art-title').textContent    = fm.title    || '';
+        document.getElementById('art-summary').textContent  = fm.summary  || '';
+        document.getElementById('art-category').textContent = CATEGORY_LABELS[fm.category] || fm.category || '';
+        document.getElementById('art-read-time').textContent = fm.read_time ? `${fm.read_time} min read` : '';
+        document.getElementById('art-date').textContent     = fm.date     || '';
+        document.getElementById('art-body').innerHTML       = marked.parse(body);
+
+        if (fm.image) {
+          const img = document.getElementById('art-image');
+          img.src   = fm.image;
+          img.alt   = fm.title;
+          img.hidden = false;
+        }
+
+        document.getElementById('article-content').hidden = false;
+      } catch (e) {
+        document.getElementById('article-loading').textContent = 'Article not found.';
+        document.getElementById('article-loading').hidden = false;
+      }
+    }
+
+    // Simple frontmatter parser (YAML key: value only)
+    function parseFrontmatter(raw) {
+      const match = raw.match(/^---\n([\s\S]*?)\n---/);
+      if (!match) return {};
+      const fm = {};
+      match[1].split('\n').forEach(line => {
+        const [key, ...rest] = line.split(':');
+        if (key && rest.length) fm[key.trim()] = rest.join(':').trim().replace(/^["']|["']$/g, '');
+      });
+      return fm;
+    }
+
+    loadArticle();
+  </script>
+</body>
+</html>
