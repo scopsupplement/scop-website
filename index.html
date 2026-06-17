@@ -24,9 +24,7 @@
   <meta property="og:description" content="14 compounds. One daily scoop from a single resealable pouch. Every ingredient and its quantity clearly declared. Made in the UK.">
   <meta property="og:type" content="website">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="style.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -49,14 +47,14 @@
   <header class="header" id="header">
     <div class="header__inner">
       <a href="#" class="header__logo" aria-label="Scōp — home">
-        <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Accent bar above the o (o spans approx x 19–30) -->
-          <line x1="20" y1="3" x2="30" y2="3" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"/>
-          <text x="0" y="20" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="500" letter-spacing="0.02em" fill="currentColor">scop</text>
+        <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
         </svg>
       </a>
 
       <nav class="header__nav" aria-label="Primary">
+        <a href="#" class="header__link">Home</a>
         <a href="#formulation" class="header__link">Formulation</a>
         <a href="#ingredients" class="header__link">Ingredients</a>
         <a href="#science" class="header__link">Science</a>
@@ -85,7 +83,7 @@
           <a href="account-login.html" class="btn btn--ghost" style="margin-top:var(--space-2);">My Account &rarr;</a>
         </div>
         <div class="hero__image" data-animate>
-          <img src="assets/scop-product.png" alt="Scōp Orange Spritz supplement pouch" width="600" height="600" loading="eager">
+          <img src="./assets/scop-product.png" alt="Scōp Daybreak Orange supplement pouch" width="600" height="600" loading="eager">
         </div>
       </div>
     </section>
@@ -94,7 +92,7 @@
     <section class="stats" aria-label="Key product statistics">
       <div class="stats__inner">
         <div class="stats__item" data-animate>
-          <span class="stats__number">13,000 mg</span>
+          <span class="stats__number">11,000 mg</span>
           <span class="stats__label">Active ingredients per serving</span>
         </div>
         <div class="stats__item" data-animate>
@@ -121,7 +119,7 @@
         </div>
         <div class="powder" data-animate>
           <div class="powder__text">
-            <p>Our formulation delivers approximately 13,000&nbsp;mg of active ingredients per daily serving — far exceeding the 600–650&nbsp;mg capacity of standard capsules. That would mean 20+ capsules every morning.</p>
+            <p>Our formulation delivers approximately 11,000&nbsp;mg of active ingredients per daily serving — far exceeding the 600–650&nbsp;mg capacity of standard capsules. That would mean 20+ capsules every morning.</p>
             <p>The powdered format isn't a choice. It's the only way to deliver clinical doses in a single daily scoop with superior bioavailability.</p>
           </div>
           <div class="powder__comparison">
@@ -131,7 +129,7 @@
               </div>
               <span class="powder__card-label">Scōp</span>
               <strong class="powder__card-value">1 scoop</strong>
-              <span class="powder__card-dose">13,000 mg daily</span>
+              <span class="powder__card-dose">11,000 mg daily</span>
             </div>
             <div class="powder__vs">vs</div>
             <div class="powder__card powder__card--capsules">
@@ -170,7 +168,7 @@
             <div class="ingredient-card">
               <div class="ingredient-card__header">
                 <span class="ingredient-card__name">Glutathione (Reduced)</span>
-                <span class="ingredient-card__dose">1,500 mg</span>
+                <span class="ingredient-card__dose">750 mg</span>
               </div>
               <p class="ingredient-card__desc">A tripeptide composed of cysteine, glycine and glutamine.</p>
             </div>
@@ -257,7 +255,7 @@
 
     <!-- ========== IMAGE BREAK ========== -->
     <section class="image-break" aria-label="Ingredients photography">
-      <img src="assets/ai1-ingredients.png" alt="Scōp supplement ingredients flat-lay showing raw compounds and botanicals" width="1600" height="900" loading="lazy">
+      <img src="./assets/ai1-ingredients.png" alt="Scōp supplement ingredients flat-lay showing raw compounds and botanicals" width="1600" height="900" loading="lazy">
     </section>
 
     <!-- ========== SCIENCE / QUALITY ========== -->
@@ -300,7 +298,7 @@
           <p>Scōp is what I built to supplement my daily diet. One daily scoop. Fourteen compounds. Every ingredient and its quantity clearly outlined on the label. Formulated out of a desire to make supplementing a diet consistent and convenient.</p>
           <div class="founder__sig">
             <span class="founder__name">Grae, Founder</span>
-            <span class="founder__company">Scōp</span>
+            <span class="founder__company">Founder, Scōp</span>
           </div>
         </div>
       </div>
@@ -336,10 +334,10 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <a href="#" class="footer__logo" aria-label="Scōp — home">
-          <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <line x1="20" y1="3" x2="30" y2="3" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"/>
-            <text x="0" y="20" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="500" letter-spacing="0.02em" fill="currentColor">scop</text>
-          </svg>
+          <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
         </a>
         <p class="footer__tagline">Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
       </div>

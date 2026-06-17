@@ -21,9 +21,7 @@
   <title>My Account — Scōp</title>
   <meta name="description" content="Manage your Scōp subscription, orders, and profile.">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;0,8..60,700;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="style.css">
 
@@ -731,13 +729,14 @@
   <header class="header" id="header">
     <div class="header__inner">
       <a href="index.html" class="header__logo" aria-label="Scōp — home">
-        <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <line x1="20" y1="3" x2="30" y2="3" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"/>
-          <text x="0" y="20" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="500" letter-spacing="0.02em" fill="currentColor">scop</text>
+        <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
         </svg>
       </a>
 
       <nav class="header__nav" aria-label="Primary">
+        <a href="index.html" class="header__link">Home</a>
         <a href="index.html#formulation" class="header__link">Formulation</a>
         <a href="index.html#ingredients" class="header__link">Ingredients</a>
         <a href="index.html#science" class="header__link">Science</a>
@@ -823,7 +822,7 @@
             <div class="account-card js-sub-card" id="next-billing-card">
               <div class="account-card__label">Next Billing</div>
               <div class="account-card__value">8 Jun 2026</div>
-              <div class="account-card__sub">£39.00 · Subscribe & Save</div>
+              <div class="account-card__sub">£42.00 · Subscribe & Save</div>
             </div>
           </div>
 
@@ -863,21 +862,21 @@
                   <td style="color: var(--color-text-muted);">8 May 2026</td>
                   <td>Scōp AI-1 — Subscribe & Save</td>
                   <td><span class="order-status order-status--processing">Processing</span></td>
-                  <td style="font-weight: 500;">£39.00</td>
+                  <td style="font-weight: 500;">£42.00</td>
                 </tr>
                 <tr>
                   <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00278</td>
                   <td style="color: var(--color-text-muted);">8 Apr 2026</td>
                   <td>Scōp AI-1 — Subscribe & Save</td>
                   <td><span class="order-status order-status--shipped">Shipped</span></td>
-                  <td style="font-weight: 500;">£39.00</td>
+                  <td style="font-weight: 500;">£42.00</td>
                 </tr>
                 <tr>
                   <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00244</td>
                   <td style="color: var(--color-text-muted);">8 Mar 2026</td>
                   <td>Scōp AI-1 — Subscribe & Save</td>
                   <td><span class="order-status order-status--delivered">Delivered</span></td>
-                  <td style="font-weight: 500;">£39.00</td>
+                  <td style="font-weight: 500;">£42.00</td>
                 </tr>
               </tbody>
             </table>
@@ -891,7 +890,7 @@
             <div class="subscription-plan-card">
               <div class="subscription-plan-card__info">
                 <div class="subscription-plan-card__name">Subscribe &amp; Save</div>
-                <div class="subscription-plan-card__price">£39 / month</div>
+                <div class="subscription-plan-card__price">£42 / month</div>
                 <div class="subscription-plan-card__detail">Next billing date: <strong style="color: var(--color-text);">8 June 2026</strong></div>
                 <div style="margin-top: var(--space-2);">
                   <span class="status-badge status-badge--active" style="font-size:11px;">● Active</span>
@@ -1026,7 +1025,7 @@
               <li>Compound-level breakdowns showing how each ingredient in Scōp supports your long-term health</li>
               <li>Practical protocols and evidence summaries updated as new research emerges</li>
             </ul>
-            <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £39/month</a>
+            <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £42/month</a>
           </div>
 
           <!-- Unlocked preview (subscription customers) -->
@@ -1077,10 +1076,10 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <a href="index.html" class="footer__logo" aria-label="Scōp — home">
-          <svg width="72" height="24" viewBox="0 0 72 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <line x1="20" y1="3" x2="30" y2="3" stroke="var(--color-accent)" stroke-width="2" stroke-linecap="round"/>
-            <text x="0" y="20" font-family="'Source Serif 4', Georgia, serif" font-size="20" font-weight="500" letter-spacing="0.02em" fill="currentColor">scop</text>
-          </svg>
+          <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
         </a>
         <p class="footer__tagline">Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
       </div>
