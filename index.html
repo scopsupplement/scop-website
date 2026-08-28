@@ -76,10 +76,10 @@
     <section class="hero">
       <div class="hero__inner">
         <div class="hero__content" data-animate>
-          <span class="tag">Launching 2026</span>
+          <span class="tag">Available Now</span>
           <h1 class="hero__heading">One scoop.<br>Everything.</h1>
           <p class="hero__subtitle">14 compounds. One daily scoop from a single resealable pouch. Every ingredient and its quantity clearly declared. Made in the UK.</p>
-          <a href="#waitlist" class="btn btn--primary">Join the Waitlist</a>
+          <a href="order.html" class="btn btn--primary">Order Now</a>
           <a href="account-login.html" class="btn btn--ghost" style="margin-top:var(--space-2);">My Account &rarr;</a>
         </div>
         <div class="hero__image" data-animate>
@@ -107,6 +107,74 @@
           <span class="stats__number">1</span>
           <span class="stats__label">Daily scoop. That's it.</span>
         </div>
+      </div>
+    </section>
+
+    <!-- ========== TESTIMONIALS ========== -->
+    <section class="section section--testimonials" id="testimonials" aria-label="Customer testimonials">
+      <div class="section__inner">
+        <div class="section__header" data-animate>
+          <span class="tag">From our customers</span>
+          <h2 class="section__title">What people are saying</h2>
+          <p class="section__intro">Real feedback from people who&rsquo;ve made Scōp part of their morning.</p>
+        </div>
+
+        <div class="carousel-wrap" data-animate>
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="carouselTrack">
+
+              <!-- CARD 1: Written -->
+              <article class="carousel-card carousel-card--written">
+                <div class="carousel-card__stars" aria-label="5 stars">★★★★★</div>
+                <blockquote class="carousel-card__quote">
+                  &ldquo;You&rsquo;ve got a good product here &hellip; tastes natural and mixes better than other products I&rsquo;ve tried in the past.&rdquo;
+                </blockquote>
+                <footer class="carousel-card__footer">
+                  <span class="carousel-card__name">Mark</span>
+                  <span class="carousel-card__ctx">Warrington</span>
+                </footer>
+              </article>
+
+              <!-- CARD 2: Video -->
+              <div class="carousel-card carousel-card--video" role="group" aria-label="Video testimonial">
+                <div class="carousel-card__video-bg" aria-hidden="true"></div>
+                <div class="carousel-card__video-content">
+                  <button class="carousel-card__play" aria-label="Play video testimonial">
+                    <svg viewBox="0 0 24 24" fill="none" width="52" height="52"><circle cx="12" cy="12" r="11.5" fill="rgba(193,127,62,0.92)"/><path d="M10 8l8 4-8 4V8z" fill="white"/></svg>
+                  </button>
+                  <p class="carousel-card__vid-name">Emma, subscriber</p>
+                  <p class="carousel-card__vid-quote">&ldquo;Two months in.&rdquo;</p>
+                </div>
+              </div>
+
+              <!-- CARD 3: Written -->
+              <article class="carousel-card carousel-card--written">
+                <div class="carousel-card__stars" aria-label="5 stars">★★★★★</div>
+                <blockquote class="carousel-card__quote">
+                  &ldquo;Really impressed with Scōp after 3 weeks. I used to take nothing at all, so I have noticed quite a difference. Especially when pushing hard up hills.&rdquo;
+                </blockquote>
+                <footer class="carousel-card__footer">
+                  <span class="carousel-card__name">Charlie</span>
+                  <span class="carousel-card__ctx">Lake District</span>
+                </footer>
+              </article>
+
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <div class="carousel-dots" id="carouselDots"></div>
+            <div class="carousel-nav">
+              <button class="carousel-btn" id="carouselPrev" aria-label="Previous">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="carousel-btn" id="carouselNext" aria-label="Next">
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -356,5 +424,50 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+  (function() {
+    var track = document.getElementById('carouselTrack');
+    var dotsEl = document.getElementById('carouselDots');
+    var prevBtn = document.getElementById('carouselPrev');
+    var nextBtn = document.getElementById('carouselNext');
+    if (!track) return;
+    var cards = track.querySelectorAll('.carousel-card');
+    var total = cards.length;
+    var current = 0;
+
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === 0 ? ' carousel-dot--active' : '');
+      d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+      (function(idx) { d.addEventListener('click', function() { go(idx); }); })(i);
+      dotsEl.appendChild(d);
+    }
+    var dots = dotsEl.querySelectorAll('.carousel-dot');
+
+    function go(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      var card = cards[0];
+      var gap = parseInt(getComputedStyle(track).gap) || 24;
+      var cardW = card.offsetWidth + gap;
+      track.style.transform = 'translateX(-' + (current * cardW) + 'px)';
+      dots.forEach(function(d, i) { d.classList.toggle('carousel-dot--active', i === current); });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    prevBtn.addEventListener('click', function() { go(current - 1); });
+    nextBtn.addEventListener('click', function() { go(current + 1); });
+
+    var startX = 0;
+    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+    track.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
+    }, {passive: true});
+
+    window.addEventListener('resize', function() { go(current); });
+    go(0);
+  })();
+  </script>
 </body>
 </html>

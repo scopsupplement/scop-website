@@ -940,3 +940,206 @@ a:hover {
     font-size: var(--text-xl);
   }
 }
+/* ═══════════════════════════════════════════════════════════════════════
+   TESTIMONIALS CAROUSEL
+═══════════════════════════════════════════════════════════════════════ */
+
+.section--testimonials {
+  background: var(--color-surface-dark);
+}
+
+/* Carousel wrapper */
+.carousel-wrap { position: relative; }
+
+.carousel-viewport {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-6);
+  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Individual card — same width always */
+.carousel-card {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  border-radius: var(--radius-lg);
+  padding: var(--space-8) var(--space-7);
+  border: 1px solid var(--color-border-subtle);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Written card */
+.carousel-card--written {
+  background: var(--color-surface);
+  gap: var(--space-5);
+}
+
+.carousel-card__stars {
+  color: var(--color-accent);
+  font-size: 1rem;
+  letter-spacing: 3px;
+}
+
+.carousel-card__quote {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--color-text);
+  font-style: italic;
+  flex: 1;
+  margin: 0;
+}
+
+.carousel-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border-subtle);
+  margin-top: auto;
+}
+
+.carousel-card__name {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.carousel-card__ctx {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* Video card */
+.carousel-card--video {
+  background: var(--color-surface-dark);
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.carousel-card__video-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--color-surface-dark) 0%, var(--color-surface) 50%, var(--color-surface-dark) 100%);
+  opacity: 0.7;
+}
+
+.carousel-card__video-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.carousel-card__play {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s;
+}
+
+.carousel-card__play:hover {
+  transform: scale(1.08);
+}
+
+.carousel-card__vid-name {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.carousel-card__vid-quote {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Controls */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-6);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-border);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, width 0.25s, border-radius 0.25s;
+}
+
+.carousel-dot--active {
+  background: var(--color-accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.carousel-nav {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.carousel-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.carousel-btn:hover {
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
+}
+
+.carousel-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+@media (min-width: 720px) {
+  .carousel-card {
+    padding: var(--space-10) var(--space-8);
+  }
+  .carousel-card__quote {
+    font-size: var(--text-lg);
+  }
+}
