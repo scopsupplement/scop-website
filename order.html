@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Order Scōp — One scoop. Everything.</title>
-  <meta name="description" content="Order Scōp — 14 clinical-grade compounds per daily scoop. One-time purchase £52 or subscribe and save at £42/month.">
+  <meta name="description" content="Order Scōp — 14 clinical-grade compounds per daily scoop. One-time purchase £49 or subscribe and save at £39/month.">
   <meta property="og:title" content="Order Scōp — One scoop. Everything.">
   <meta property="og:type" content="website">
 
@@ -480,7 +480,7 @@
       <div class="sticky-bar__product">
         <div>
           <div class="sticky-bar__name">Scōp — Daybreak Orange</div>
-          <div class="sticky-bar__price" id="stickyPrice">£42/month — Subscribe & Save</div>
+          <div class="sticky-bar__price" id="stickyPrice">£39/month — Subscribe & Save</div>
         </div>
       </div>
       <div class="sticky-bar__cta">
@@ -581,7 +581,7 @@
                 <div class="option-card__desc">Delivered every 30 days · Cancel anytime · No lock-in</div>
               </div>
               <div class="option-card__price">
-                <span class="option-card__amount">£42</span>
+                <span class="option-card__amount">£39</span>
                 <span class="option-card__per">/month</span>
                 <div><span class="option-card__saving">Save £10</span></div>
               </div>
@@ -595,7 +595,7 @@
                 <div class="option-card__desc">No commitment · Order whenever you need</div>
               </div>
               <div class="option-card__price">
-                <span class="option-card__amount">£52</span>
+                <span class="option-card__amount">£49</span>
                 <span class="option-card__per">/pouch</span>
               </div>
             </div>
@@ -604,7 +604,7 @@
           <!-- CTA -->
           <div class="cta-block">
             <button class="cta-block__btn cta-block__btn--primary" id="ctaBtn" onclick="window.location.href = currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL">
-              Subscribe — £42/month
+              Subscribe — £39/month
             </button>
 
             <div class="trust-signals">
@@ -653,8 +653,8 @@
             <tbody>
               <tr>
                 <td>Price per pouch</td>
-                <td>£52</td>
-                <td class="col-sub">£42</td>
+                <td>£49</td>
+                <td class="col-sub">£39</td>
               </tr>
               <tr>
                 <td>Annual saving</td>
@@ -752,7 +752,7 @@
               What's the difference between one-time and subscription?
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
-            <div class="faq-answer">Both options give you the same full 330g pouch of Scōp with 30 servings. A subscription locks in the lower price of £42/month and automatically ships a new pouch every 30 days so you never run out. You can cancel, pause, or skip at any time — no commitment, no penalty.</div>
+            <div class="faq-answer">Both options give you the same full 330g pouch of Scōp with 30 servings. A subscription locks in the lower price of £39/month and automatically ships a new pouch every 30 days so you never run out. You can cancel, pause, or skip at any time — no commitment, no penalty.</div>
           </div>
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
@@ -807,10 +807,10 @@
         <p class="order-cta-band__sub">Join the growing number of people replacing a shelf full of supplements with a single daily scoop of Scōp.</p>
         <div style="display:flex; flex-direction:column; gap: var(--space-3); width: 100%; max-width: 360px;">
           <button class="cta-block__btn cta-block__btn--primary" onclick="window.location.href = STRIPE_SUB_URL">
-            Subscribe — £42/month
+            Subscribe — £39/month
           </button>
           <button onclick="window.location.href = STRIPE_ONE_URL" style="background:none;border:1px solid var(--color-border);color:var(--color-text-muted);padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);cursor:pointer;font-size:var(--text-sm);transition:all var(--transition-interactive);">
-            Buy once — £52
+            Buy once — £49
           </button>
         </div>
         <p style="font-size:var(--text-xs);color:var(--color-text-faint);">Free UK delivery · Cancel subscription anytime · GMP certified</p>
@@ -863,13 +863,13 @@
       if (type === 'sub') {
         subCard.classList.add('selected');
         oneCard.classList.remove('selected');
-        ctaBtn.textContent = 'Subscribe — £42/month';
-        stickyPrice.textContent = '£42/month — Subscribe & Save';
+        ctaBtn.textContent = 'Subscribe — £39/month';
+        stickyPrice.textContent = '£39/month — Subscribe & Save';
       } else {
         oneCard.classList.add('selected');
         subCard.classList.remove('selected');
-        ctaBtn.textContent = 'Buy Once — £52';
-        stickyPrice.textContent = '£52 — One-Time Purchase';
+        ctaBtn.textContent = 'Buy Once — £49';
+        stickyPrice.textContent = '£49 — One-Time Purchase';
       }
     }
 
