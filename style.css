@@ -311,9 +311,10 @@ a:hover {
 }
 .hero__image img {
   width: 100%;
-  max-width: 520px;
+  max-width: 420px;
   height: auto;
-  border-radius: var(--radius-lg);
+  border-radius: 0;
+  display: block;
 }
 
 
