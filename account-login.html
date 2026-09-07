@@ -273,6 +273,22 @@
 
   <script src="app.js"></script>
   <script>
+    // Handle invite/recovery/email-confirm tokens in the URL hash
+    // Netlify sends customers to the site root with #invite_token=... or #recovery_token=...
+    // We intercept these here and let the Identity widget process them,
+    // then redirect to account.html on success.
+    (function() {
+      var hash = window.location.hash;
+      if (hash && (hash.indexOf('invite_token=') > -1 || hash.indexOf('recovery_token=') > -1 || hash.indexOf('confirmation_token=') > -1)) {
+        // Widget will auto-detect the token and open the password-set modal
+        netlifyIdentity.on('login', function(user) {
+          netlifyIdentity.close();
+          window.location.href = 'account.html';
+        });
+        return;
+      }
+    })();
+
     // Netlify Identity — redirect if already logged in
     netlifyIdentity.on('init', function(user) {
       if (user) window.location.href = 'account.html';
@@ -285,7 +301,6 @@
     });
 
     // Wire the existing form's submit button to open the Identity modal
-    // (keeps the existing form design — just replaces the fake auth)
     document.getElementById('login-form').addEventListener('submit', function(e) {
       e.preventDefault();
       netlifyIdentity.open('login');

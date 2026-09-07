@@ -468,6 +468,15 @@
     window.addEventListener('resize', function() { go(current); });
     go(0);
   })();
+
+  // Netlify Identity — catch invite/recovery tokens that land on the homepage
+  // and redirect to account-login.html where the widget handles them properly
+  (function() {
+    var hash = window.location.hash;
+    if (hash && (hash.indexOf('invite_token=') > -1 || hash.indexOf('recovery_token=') > -1 || hash.indexOf('confirmation_token=') > -1)) {
+      window.location.replace('account-login.html' + hash);
+    }
+  })();
   </script>
 </body>
 </html>
