@@ -920,8 +920,8 @@
       const accountType  = meta.account_type || (roles.includes('subscriber') ? 'subscriber' : 'one-time');
       const isSubscription = accountType === 'subscriber';
 
-      // Display name: use full_name from metadata, fall back to email prefix
-      const rawName  = meta.full_name || user.email.split('@')[0];
+      // Display name: check full_name, name, then fall back to email prefix
+      const rawName  = meta.full_name || meta.name || user.email.split('@')[0];
       const dispName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
 
       // ===== GREETING =====
@@ -979,10 +979,6 @@
       el.addEventListener('click', function() {
         switchPanel(this.dataset.panel, this);
       });
-    });
-
-    // ===== BILLING SAME AS DELIVERY (removed - managed via Stripe portal) =====
-    // const billingSame = document.getElementById('billing-same');
     });
 
     // ===== SIGN OUT =====
