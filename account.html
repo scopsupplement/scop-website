@@ -756,11 +756,6 @@
   <!-- Mobile Tabs -->
   <div class="account-tabs" id="account-tabs" role="tablist" aria-label="Account sections">
     <button class="account-tabs__item is-active" role="tab" aria-selected="true" data-panel="overview">Overview</button>
-    <button class="account-tabs__item" role="tab" aria-selected="false" data-panel="orders">My Orders</button>
-    <button class="account-tabs__item js-sub-only" role="tab" aria-selected="false" data-panel="subscription">
-      Subscription <span class="account-sidebar__badge" style="margin-left:6px">Active</span>
-    </button>
-    <button class="account-tabs__item" role="tab" aria-selected="false" data-panel="profile">Profile & Details</button>
     <button class="account-tabs__item" role="tab" aria-selected="false" data-panel="hub">
       Longevity Hub
       <svg class="account-sidebar__lock js-hub-lock" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-left:6px"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -777,19 +772,6 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
             Overview
           </button>
-          <button class="account-sidebar__item" role="tab" aria-selected="false" data-panel="orders">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
-            My Orders
-          </button>
-          <button class="account-sidebar__item js-sub-only" role="tab" aria-selected="false" data-panel="subscription">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-            Subscription
-            <span class="account-sidebar__badge">Active</span>
-          </button>
-          <button class="account-sidebar__item" role="tab" aria-selected="false" data-panel="profile">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            Profile & Details
-          </button>
           <button class="account-sidebar__item" role="tab" aria-selected="false" data-panel="hub">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
             Longevity Hub
@@ -802,10 +784,11 @@
       <div class="account-content">
 
         <!-- ===== OVERVIEW ===== -->
+        <!-- ===== OVERVIEW ===== -->
         <section class="account-panel is-active" id="panel-overview" role="tabpanel">
           <div class="account-welcome">
             <h1 class="account-welcome__greeting">Good morning, <span id="user-name">there</span>.</h1>
-            <p class="account-welcome__sub">Here's an overview of your Scōp account.</p>
+            <p class="account-welcome__sub">Here&rsquo;s an overview of your Scōp account.</p>
           </div>
 
           <div class="account-cards" id="overview-cards">
@@ -815,197 +798,19 @@
                 <span class="status-badge status-badge--active">● Active</span>
               </div>
             </div>
-            <div class="account-card js-sub-card" id="next-delivery-card">
-              <div class="account-card__label">Next Delivery</div>
-              <div class="account-card__value">12 Jun 2026</div>
-              <div class="account-card__sub">Estimated arrival</div>
-            </div>
-            <div class="account-card js-sub-card" id="next-billing-card">
-              <div class="account-card__label">Next Billing</div>
-              <div class="account-card__value">8 Jun 2026</div>
-              <div class="account-card__sub">£42.00 · Subscribe & Save</div>
-            </div>
           </div>
 
-          <div class="account-actions">
-            <button class="account-action js-sub-only" data-panel="subscription">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-              Manage subscription
+          <div class="portal-cta js-sub-only" style="margin-top:var(--space-8); padding:var(--space-8); background:var(--color-surface); border:1px solid var(--color-border); border-radius:var(--radius-xl);">
+            <h2 style="font-family:var(--font-display); font-size:var(--text-lg); font-weight:600; color:var(--color-heading); margin-bottom:var(--space-2);">Manage your subscription</h2>
+            <p style="color:var(--color-text-muted); font-size:var(--text-sm); margin-bottom:var(--space-6); line-height:1.6;">View invoices, update your payment method, change your delivery address, pause or cancel &mdash; all managed securely through Stripe.</p>
+            <a href="https://billing.stripe.com/p/login/fZufZi2rwa0D0ch2Oa3cc00" target="_blank" rel="noopener noreferrer" class="btn btn--primary">Manage Subscription &rarr;</a>
+          </div>
+
+          <div class="account-actions" style="margin-top:var(--space-6);">
+            <button class="account-action" data-panel="hub">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              Longevity Hub
             </button>
-            <button class="account-action" data-panel="profile">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-              Update details
-            </button>
-            <button class="account-action" data-panel="orders">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              View orders
-            </button>
-          </div>
-        </section>
-
-        <!-- ===== MY ORDERS ===== -->
-        <section class="account-panel" id="panel-orders" role="tabpanel">
-          <h2 class="account-panel__heading">My Orders</h2>
-          <div class="orders-table-wrapper">
-            <table class="orders-table">
-              <thead>
-                <tr>
-                  <th>Order #</th>
-                  <th>Date</th>
-                  <th>Product</th>
-                  <th>Status</th>
-                  <th>Amount</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00312</td>
-                  <td style="color: var(--color-text-muted);">8 May 2026</td>
-                  <td>Scōp AI-1 — Subscribe & Save</td>
-                  <td><span class="order-status order-status--processing">Processing</span></td>
-                  <td style="font-weight: 500;">£42.00</td>
-                </tr>
-                <tr>
-                  <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00278</td>
-                  <td style="color: var(--color-text-muted);">8 Apr 2026</td>
-                  <td>Scōp AI-1 — Subscribe & Save</td>
-                  <td><span class="order-status order-status--shipped">Shipped</span></td>
-                  <td style="font-weight: 500;">£42.00</td>
-                </tr>
-                <tr>
-                  <td style="color: var(--color-text-muted); font-size: var(--text-xs);">#SCO-00244</td>
-                  <td style="color: var(--color-text-muted);">8 Mar 2026</td>
-                  <td>Scōp AI-1 — Subscribe & Save</td>
-                  <td><span class="order-status order-status--delivered">Delivered</span></td>
-                  <td style="font-weight: 500;">£42.00</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <!-- ===== SUBSCRIPTION ===== -->
-        <section class="account-panel" id="panel-subscription" role="tabpanel">
-          <h2 class="account-panel__heading">Subscription</h2>
-          <div class="subscription-section">
-            <div class="subscription-plan-card">
-              <div class="subscription-plan-card__info">
-                <div class="subscription-plan-card__name">Subscribe &amp; Save</div>
-                <div class="subscription-plan-card__price">£42 / month</div>
-                <div class="subscription-plan-card__detail">Next billing date: <strong style="color: var(--color-text);">8 June 2026</strong></div>
-                <div style="margin-top: var(--space-2);">
-                  <span class="status-badge status-badge--active" style="font-size:11px;">● Active</span>
-                </div>
-              </div>
-              <div class="subscription-actions">
-                <button class="btn--outline">Update payment method</button>
-                <button class="btn--outline">Change delivery address</button>
-                <button class="btn--outline">Pause subscription</button>
-                <button class="btn--outline btn--danger-outline">Cancel subscription</button>
-              </div>
-            </div>
-            <div class="subscription-note">
-              Cancellations take effect at the end of the current billing period. You will continue to have access to your subscription benefits until that date.
-            </div>
-          </div>
-        </section>
-
-        <!-- ===== PROFILE ===== -->
-        <section class="account-panel" id="panel-profile" role="tabpanel">
-          <h2 class="account-panel__heading">Profile &amp; Details</h2>
-          <div class="profile-section">
-            <!-- Personal info -->
-            <div class="profile-group">
-              <h3 class="profile-group__title">Personal Information</h3>
-              <div class="profile-grid">
-                <div class="form-field">
-                  <label for="p-first">First name</label>
-                  <input type="text" id="p-first" value="Alex" autocomplete="given-name">
-                </div>
-                <div class="form-field">
-                  <label for="p-last">Last name</label>
-                  <input type="text" id="p-last" value="Harrington" autocomplete="family-name">
-                </div>
-                <div class="form-field">
-                  <label for="p-email">Email address</label>
-                  <input type="email" id="p-email" value="alex@example.com" autocomplete="email">
-                </div>
-                <div class="form-field">
-                  <label for="p-phone">Phone number</label>
-                  <input type="tel" id="p-phone" value="+44 7700 900123" autocomplete="tel">
-                </div>
-              </div>
-            </div>
-
-            <!-- Delivery address -->
-            <div class="profile-group">
-              <h3 class="profile-group__title">Delivery Address</h3>
-              <div class="profile-grid">
-                <div class="form-field" style="grid-column: 1/-1;">
-                  <label for="d-line1">Address line 1</label>
-                  <input type="text" id="d-line1" value="14 Beech Avenue" autocomplete="address-line1">
-                </div>
-                <div class="form-field">
-                  <label for="d-city">City</label>
-                  <input type="text" id="d-city" value="Manchester" autocomplete="address-level2">
-                </div>
-                <div class="form-field">
-                  <label for="d-postcode">Postcode</label>
-                  <input type="text" id="d-postcode" value="M4 1AB" autocomplete="postal-code">
-                </div>
-              </div>
-            </div>
-
-            <!-- Billing address -->
-            <div class="profile-group">
-              <h3 class="profile-group__title">Billing Address</h3>
-              <div class="form-field form-field--checkbox" style="margin-bottom: var(--space-4);">
-                <input type="checkbox" id="billing-same" checked>
-                <label for="billing-same">Same as delivery address</label>
-              </div>
-              <div id="billing-fields" style="display:none;">
-                <div class="profile-grid">
-                  <div class="form-field" style="grid-column: 1/-1;">
-                    <label for="b-line1">Address line 1</label>
-                    <input type="text" id="b-line1" autocomplete="billing address-line1">
-                  </div>
-                  <div class="form-field">
-                    <label for="b-city">City</label>
-                    <input type="text" id="b-city" autocomplete="billing address-level2">
-                  </div>
-                  <div class="form-field">
-                    <label for="b-postcode">Postcode</label>
-                    <input type="text" id="b-postcode" autocomplete="billing postal-code">
-                  </div>
-                </div>
-              </div>
-              <div class="profile-actions" style="border-top:none; padding-top:var(--space-4);">
-                <button class="btn btn--primary btn--sm">Save changes</button>
-              </div>
-            </div>
-
-            <!-- Password -->
-            <div class="profile-group">
-              <h3 class="profile-group__title">Change Password</h3>
-              <div class="profile-grid">
-                <div class="form-field" style="grid-column: 1/-1;">
-                  <label for="pw-current">Current password</label>
-                  <input type="password" id="pw-current" placeholder="••••••••" autocomplete="current-password">
-                </div>
-                <div class="form-field">
-                  <label for="pw-new">New password</label>
-                  <input type="password" id="pw-new" placeholder="••••••••" autocomplete="new-password">
-                </div>
-                <div class="form-field">
-                  <label for="pw-confirm">Confirm new password</label>
-                  <input type="password" id="pw-confirm" placeholder="••••••••" autocomplete="new-password">
-                </div>
-              </div>
-              <div class="profile-actions">
-                <button class="btn btn--primary btn--sm">Update password</button>
-                <a href="#" class="account-delete-link">Close my account</a>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -1026,7 +831,7 @@
               <li>Compound-level breakdowns showing how each ingredient in Scōp supports your long-term health</li>
               <li>Practical protocols and evidence summaries updated as new research emerges</li>
             </ul>
-            <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £42/month</a>
+            <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £39/month</a>
           </div>
 
           <!-- Unlocked preview (subscription customers) -->
@@ -1131,11 +936,9 @@
       const subOnlyItems = document.querySelectorAll('.js-sub-only');
       const hubLocks     = document.querySelectorAll('.js-hub-lock');
       const statusCard   = document.getElementById('status-card-value');
-      const subCards     = document.querySelectorAll('.js-sub-card');
 
       if (!isSubscription) {
         subOnlyItems.forEach(el => el.style.display = 'none');
-        subCards.forEach(el => el.style.display = 'none');
         statusCard.innerHTML = '<span class="status-badge status-badge--one-time">One-time customer</span>';
       } else {
         hubLocks.forEach(el => el.style.display = 'none');
@@ -1178,11 +981,8 @@
       });
     });
 
-    // ===== BILLING SAME AS DELIVERY =====
-    const billingSame = document.getElementById('billing-same');
-    const billingFields = document.getElementById('billing-fields');
-    billingSame.addEventListener('change', function() {
-      billingFields.style.display = this.checked ? 'none' : 'block';
+    // ===== BILLING SAME AS DELIVERY (removed - managed via Stripe portal) =====
+    // const billingSame = document.getElementById('billing-same');
     });
 
     // ===== SIGN OUT =====
