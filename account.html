@@ -722,6 +722,7 @@
       }
     }
   </style>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
 
@@ -1099,52 +1100,56 @@
 
   <script src="app.js"></script>
   <script>
-    // ===== ACCESS CONTROL =====
-    const loggedIn = localStorage.getItem('scop_logged_in');
-    if (loggedIn !== 'true') {
-      window.location.href = 'account-login.html';
-    }
+    // ===== ACCESS CONTROL (Netlify Identity) =====
+    netlifyIdentity.on('init', function(user) {
+      if (!user) {
+        // Not logged in — send to login page
+        window.location.href = 'account-login.html';
+        return;
+      }
 
-    const accountType = localStorage.getItem('scop_account_type') || 'subscription';
-    const isSubscription = accountType === 'subscription';
+      // ===== USER METADATA =====
+      const meta         = user.user_metadata || {};
+      const appMeta      = user.app_metadata  || {};
+      const roles        = appMeta.roles || [];
+      const accountType  = meta.account_type || (roles.includes('subscriber') ? 'subscriber' : 'one-time');
+      const isSubscription = accountType === 'subscriber';
 
-    // ===== USER NAME =====
-    const storedName = localStorage.getItem('scop_user_name') || 'there';
-    document.getElementById('user-name').textContent = storedName.charAt(0).toUpperCase() + storedName.slice(1);
+      // Display name: use full_name from metadata, fall back to email prefix
+      const rawName  = meta.full_name || user.email.split('@')[0];
+      const dispName = rawName.charAt(0).toUpperCase() + rawName.slice(1);
 
-    // Update greeting based on time of day
-    const hour = new Date().getHours();
-    let greeting = 'Good morning';
-    if (hour >= 12 && hour < 17) greeting = 'Good afternoon';
-    else if (hour >= 17) greeting = 'Good evening';
-    document.querySelector('.account-welcome__greeting').innerHTML =
-      greeting + ', <span id="user-name">' + storedName.charAt(0).toUpperCase() + storedName.slice(1) + '</span>.';
+      // ===== GREETING =====
+      const hour = new Date().getHours();
+      let greeting = 'Good morning';
+      if (hour >= 12 && hour < 17) greeting = 'Good afternoon';
+      else if (hour >= 17) greeting = 'Good evening';
+      document.querySelector('.account-welcome__greeting').innerHTML =
+        greeting + ', <span id="user-name">' + dispName + '</span>.';
 
-    // ===== ACCOUNT TYPE UI =====
-    const subOnlyItems = document.querySelectorAll('.js-sub-only');
-    const hubLocks = document.querySelectorAll('.js-hub-lock');
-    const statusCard = document.getElementById('status-card-value');
-    const subCards = document.querySelectorAll('.js-sub-card');
+      // ===== ACCOUNT TYPE UI =====
+      const subOnlyItems = document.querySelectorAll('.js-sub-only');
+      const hubLocks     = document.querySelectorAll('.js-hub-lock');
+      const statusCard   = document.getElementById('status-card-value');
+      const subCards     = document.querySelectorAll('.js-sub-card');
 
-    if (!isSubscription) {
-      // Hide subscription-only elements
-      subOnlyItems.forEach(el => el.style.display = 'none');
-      subCards.forEach(el => el.style.display = 'none');
-      // Update status badge
-      statusCard.innerHTML = '<span class="status-badge status-badge--one-time">One-time customer</span>';
-    } else {
-      // Show lock icons for subscription users? No — hub is unlocked
-      hubLocks.forEach(el => el.style.display = 'none');
-    }
+      if (!isSubscription) {
+        subOnlyItems.forEach(el => el.style.display = 'none');
+        subCards.forEach(el => el.style.display = 'none');
+        statusCard.innerHTML = '<span class="status-badge status-badge--one-time">One-time customer</span>';
+      } else {
+        hubLocks.forEach(el => el.style.display = 'none');
+      }
 
-    // Longevity Hub state
-    const hubLocked = document.getElementById('hub-locked');
-    const hubUnlocked = document.getElementById('hub-unlocked');
-    if (isSubscription) {
-      hubUnlocked.style.display = 'flex';
-    } else {
-      hubLocked.style.display = 'flex';
-    }
+      // Longevity Hub access
+      const hubLocked   = document.getElementById('hub-locked');
+      const hubUnlocked = document.getElementById('hub-unlocked');
+      if (isSubscription) {
+        hubUnlocked.style.display = 'flex';
+      } else {
+        hubLocked.style.display = 'flex';
+      }
+    });
 
     // ===== TAB SWITCHING =====
     function switchPanel(panelName, trigger) {
@@ -1182,9 +1187,10 @@
 
     // ===== SIGN OUT =====
     document.getElementById('signout-btn').addEventListener('click', function() {
-      localStorage.removeItem('scop_logged_in');
-      localStorage.removeItem('scop_account_type');
-      localStorage.removeItem('scop_user_name');
+      netlifyIdentity.logout();
+    });
+
+    netlifyIdentity.on('logout', function() {
       window.location.href = 'account-login.html';
     });
   </script>

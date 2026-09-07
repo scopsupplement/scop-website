@@ -273,34 +273,28 @@
 
   <script src="app.js"></script>
   <script>
-    // If already logged in, redirect to account
-    if (localStorage.getItem('scop_logged_in') === 'true') {
+    // Netlify Identity — redirect if already logged in
+    netlifyIdentity.on('init', function(user) {
+      if (user) window.location.href = 'account.html';
+    });
+
+    // Handle login via Identity widget
+    netlifyIdentity.on('login', function(user) {
+      netlifyIdentity.close();
       window.location.href = 'account.html';
-    }
+    });
 
-    // Test credentials
-    const TEST_ACCOUNTS = {
-      'subscriber@scopsupplement.uk': { password: 'scop2026', type: 'subscription', name: 'Grae' },
-      'customer@scopsupplement.uk':   { password: 'scop2026', type: 'one-time',     name: 'Alex' }
-    };
-
+    // Wire the existing form's submit button to open the Identity modal
+    // (keeps the existing form design — just replaces the fake auth)
     document.getElementById('login-form').addEventListener('submit', function(e) {
       e.preventDefault();
-      const email    = document.getElementById('email').value.trim().toLowerCase();
-      const password = document.getElementById('password').value;
-      const errorEl  = document.getElementById('login-error');
+      netlifyIdentity.open('login');
+    });
 
-      const account = TEST_ACCOUNTS[email];
-      if (account && account.password === password) {
-        errorEl.hidden = true;
-        localStorage.setItem('scop_logged_in',   'true');
-        localStorage.setItem('scop_account_type', account.type);
-        localStorage.setItem('scop_user_name',    account.name);
-        window.location.href = 'account.html';
-      } else {
-        errorEl.hidden = false;
-        errorEl.textContent = 'Email or password not recognised. Please try again.';
-      }
+    // Also open on direct button click
+    document.querySelector('.btn--primary') && document.querySelector('.btn--primary').addEventListener('click', function(e) {
+      e.preventDefault();
+      netlifyIdentity.open('login');
     });
   </script>
 </body>

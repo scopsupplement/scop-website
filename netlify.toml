@@ -1,5 +1,6 @@
 [build]
   publish = "."
+  functions = "netlify/functions"
 
 # Enable Netlify Identity and Git Gateway for Decap CMS
 [[plugins]]
