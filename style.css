@@ -1349,3 +1349,133 @@ a:hover {
     padding: 0 var(--space-4);
   }
 }
+
+/* ===== HERO ENHANCEMENTS (brief update) ===== */
+.hero__purchase-context {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-2);
+}
+
+.hero__cta {
+  display: inline-block;
+}
+
+.hero__trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.hero__trust-bar span[aria-hidden] {
+  color: var(--color-text-faint);
+}
+
+/* ===== FAQ ===== */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-5) 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  list-style: none;
+  gap: var(--space-4);
+}
+
+.faq-item__q::-webkit-details-marker { display: none; }
+
+.faq-item__q::after {
+  content: '+';
+  font-size: var(--text-lg);
+  font-weight: 300;
+  color: var(--color-accent);
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] .faq-item__q::after {
+  transform: rotate(45deg);
+}
+
+.faq-item__a {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  padding-bottom: var(--space-5);
+  margin: 0;
+}
+
+/* ===== FINAL CTA ===== */
+.section--final-cta {
+  background: var(--color-surface-dark);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ===== HERO PRICING CONTEXT ===== */
+.hero__purchase-context {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-2);
+}
+.hero__price-one-off {
+  color: var(--color-text-muted);
+}
+.hero__price-divider {
+  color: var(--color-text-faint);
+}
+.hero__price-sub {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+.hero__price-sub strong {
+  font-weight: 700;
+}
+
+/* ===== FOUNDATIONS COMPARISON LAYOUT ===== */
+.powder__comparison--foundations {
+  width: 100%;
+  justify-content: center;
+  gap: var(--space-6);
+}
+.powder__card--separate {
+  border-color: var(--color-border);
+  opacity: 0.75;
+}
+.powder__vs {
+  font-size: var(--text-2xl);
+  font-weight: 300;
+  color: var(--color-accent);
+  align-self: center;
+}
+.powder__text--sub {
+  margin-top: var(--space-8);
+  max-width: 560px;
+}
