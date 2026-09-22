@@ -1,0 +1,123 @@
+/* ==========================================================================
+   Scōp — cookie consent banner
+   Self-contained: falls back to literal brand values where CSS vars are absent
+   (account pages load a different stylesheet).
+   ========================================================================== */
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: var(--color-surface, #1f2d4d);
+  border-top: 1px solid rgba(193, 127, 62, 0.28);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.32);
+  transform: translateY(110%);
+  transition: transform 320ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  font-family: var(--font-body, 'Satoshi', 'Helvetica Neue', Arial, sans-serif);
+}
+
+.consent-banner.is-visible { transform: translateY(0); }
+
+.consent-banner__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'text actions'
+    'detail detail';
+  align-items: center;
+  gap: 8px 32px;
+}
+
+.consent-banner__text {
+  grid-area: text;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: var(--color-text-muted, #c4b5a8);
+}
+
+.consent-banner__link {
+  color: var(--color-accent, #c17f3e);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.consent-banner__link:hover { opacity: 0.8; }
+
+.consent-banner__detail {
+  grid-area: detail;
+  margin-top: 4px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.75rem;
+  line-height: 1.65;
+  color: var(--color-text-muted, #c4b5a8);
+  opacity: 0.85;
+  max-width: 64ch;
+}
+
+.consent-banner__actions {
+  grid-area: actions;
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.consent-banner__btn {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  padding: 9px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 180ms ease, border-color 180ms ease, opacity 180ms ease;
+}
+
+.consent-banner__btn--primary {
+  background: var(--color-accent, #c17f3e);
+  border: 1px solid var(--color-accent, #c17f3e);
+  color: #14203a;
+}
+
+.consent-banner__btn--primary:hover { opacity: 0.88; }
+
+.consent-banner__btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--color-text, #f9eee7);
+}
+
+.consent-banner__btn--ghost:hover {
+  border-color: rgba(255, 255, 255, 0.42);
+}
+
+.consent-banner__btn:focus-visible {
+  outline: 2px solid var(--color-accent, #c17f3e);
+  outline-offset: 2px;
+}
+
+/* ---- mobile ---- */
+@media (max-width: 720px) {
+  .consent-banner__inner {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'text'
+      'detail'
+      'actions';
+    gap: 14px;
+    padding: 18px 20px 20px;
+  }
+  .consent-banner__actions { width: 100%; }
+  .consent-banner__btn { flex: 1; text-align: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consent-banner { transition: none; }
+}
