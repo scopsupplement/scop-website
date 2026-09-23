@@ -969,7 +969,7 @@ a:hover {
   flex: 0 0 100%;
   box-sizing: border-box;
   border-radius: var(--radius-lg);
-  padding: var(--space-8) var(--space-7);
+  padding: var(--space-8) var(--space-6);
   border: 1px solid var(--color-border-subtle);
   min-height: 260px;
   display: flex;
@@ -1008,14 +1008,14 @@ a:hover {
 }
 
 .carousel-card__name {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-text);
 }
 
 .carousel-card__ctx {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
@@ -1061,7 +1061,7 @@ a:hover {
 }
 
 .carousel-card__vid-name {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-text);
@@ -1478,4 +1478,208 @@ a:hover {
 .powder__text--sub {
   margin-top: var(--space-8);
   max-width: 560px;
+}
+
+/* ==========================================================================
+   TESTIMONIALS — video testimonial + photo review
+   ========================================================================== */
+
+/* Override the old placeholder centring so the real layout can breathe */
+.carousel-card--video {
+  align-items: stretch;
+  justify-content: flex-start;
+  cursor: default;
+  /* padding intentionally inherited from .carousel-card so the video and
+     photo testimonials share identical outer margins */
+}
+
+.video-testimonial {
+  display: grid;
+  grid-template-columns: minmax(0, 215px) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: center;
+  width: 100%;
+}
+
+.video-testimonial__player {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #0f1728;
+  border: 1px solid var(--color-border-subtle);
+}
+
+.video-testimonial__video {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 480 / 854;
+  object-fit: cover;
+  background: #0f1728;
+}
+
+.video-testimonial__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.video-testimonial__intro {
+  font-family: var(--font-display);
+  font-size: var(--text-base);
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.video-testimonial__footer {
+  margin-top: 0;
+}
+
+/* ---- Photo on a written review ---- */
+/* Photo on a written review — shares the video card's split layout so the
+   two media testimonials read consistently. The source photo is portrait, so
+   a full-width banner crop would lose both the mountains and the pouch. */
+.carousel-card__photo {
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-surface-dark);
+}
+
+.carousel-card__photo img {
+  display: block;
+  width: 100%;
+  height: 379px;
+  object-fit: cover;
+  /* favour the lower half so the pouch, shaker and skyline all stay in frame */
+  object-position: center 56%;
+}
+
+/* Shared split layout: media beside copy on desktop, stacked on mobile */
+.testimonial-split {
+  display: grid;
+  grid-template-columns: minmax(0, 215px) minmax(0, 1fr);
+  gap: var(--space-8);
+  align-items: center;
+  width: 100%;
+}
+
+.testimonial-split__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.testimonial-split__body .carousel-card__quote { flex: 0 1 auto; }
+.testimonial-split__body .carousel-card__footer { margin-top: 0; }
+
+/* ---- Responsive ---- */
+@media (max-width: 719px) {
+  .video-testimonial {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    justify-items: center;
+  }
+  .video-testimonial__player {
+    max-width: 260px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .video-testimonial__body {
+    width: 100%;
+  }
+  .testimonial-split {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    justify-items: center;
+  }
+  .testimonial-split__media {
+    max-width: 260px;
+    width: 100%;
+  }
+  .testimonial-split__body { width: 100%; }
+  .carousel-card__photo img {
+    height: 300px;
+  }
+}
+
+@media (min-width: 720px) {
+  .video-testimonial__intro {
+    font-size: var(--text-lg);
+  }
+}
+
+/* ==========================================================================
+   HERO CTA — primary purchase prompt
+   Larger, weightier and with a clear directional cue, while keeping the
+   existing pill shape, copper accent and Satoshi type.
+   ========================================================================== */
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  padding: 1.125rem 2.25rem;
+  box-shadow: 0 10px 28px -8px rgba(193, 127, 62, 0.55);
+  transition: transform 180ms cubic-bezier(0.22, 0.61, 0.36, 1),
+              box-shadow 180ms ease,
+              background-color 180ms ease;
+}
+
+.hero__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px -8px rgba(193, 127, 62, 0.68);
+}
+
+.hero__cta:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 20px -8px rgba(193, 127, 62, 0.5);
+}
+
+.hero__cta-label { line-height: 1; }
+
+.hero__cta-arrow {
+  flex-shrink: 0;
+  transition: transform 180ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.hero__cta:hover .hero__cta-arrow { transform: translateX(3px); }
+
+.hero__cta:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+/* Short reassurance directly beneath the button */
+.hero__cta-reassurance {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+/* The hero trust markers sit below the reassurance line */
+.hero .hero__trust-bar { margin-top: var(--space-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__cta,
+  .hero__cta-arrow { transition: none; }
+  .hero__cta:hover { transform: none; }
+  .hero__cta:hover .hero__cta-arrow { transform: none; }
+}
+
+@media (max-width: 719px) {
+  .hero__cta {
+    font-size: 1rem;
+    padding: 1.0625rem var(--space-6);
+    justify-content: center;
+  }
+  .hero__cta-reassurance { text-align: center; }
 }

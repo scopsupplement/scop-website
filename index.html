@@ -108,7 +108,13 @@
             <span class="hero__price-divider">·</span>
             <span class="hero__price-sub">Subscribe &amp; save: <strong>£1.30 per day</strong></span>
           </div>
-          <a href="order.html" class="btn btn--primary hero__cta">Add Scōp to your routine</a>
+          <a href="order.html" class="btn btn--primary hero__cta">
+            <span class="hero__cta-label">Order Scōp &mdash; from &pound;39</span>
+            <svg class="hero__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <p class="hero__cta-reassurance">Secure checkout &middot; Cancel your subscription anytime</p>
           <div class="hero__trust-bar">
             <span>Made in the UK</span><span aria-hidden="true">&middot;</span>
             <span>Vegetarian</span><span aria-hidden="true">&middot;</span>
@@ -259,7 +265,54 @@
           <div class="carousel-viewport">
             <div class="carousel-track" id="carouselTrack">
 
-              <!-- CARD 1: Written -->
+              <!-- CARD 1: Video — Tim -->
+              <article class="carousel-card carousel-card--video" aria-label="Video testimonial from Tim">
+                <div class="video-testimonial">
+                  <div class="video-testimonial__player">
+                    <video
+                      class="video-testimonial__video"
+                      controls
+                      playsinline
+                      preload="none"
+                      poster="./assets/testimonial-tim-poster.jpg"
+                      width="480" height="854">
+                      <source src="./assets/testimonial-tim.mp4" type="video/mp4">
+                      Your browser does not support embedded video. <a href="./assets/testimonial-tim.mp4">Download the video</a> to watch it.
+                    </video>
+                  </div>
+                  <div class="video-testimonial__body">
+                    <div class="carousel-card__stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="video-testimonial__intro">Tim puts Scōp through a full morning routine &mdash; unboxing, mixing and first taste.</p>
+                    <footer class="carousel-card__footer video-testimonial__footer">
+                      <span class="carousel-card__name">Tim</span>
+                      <span class="carousel-card__ctx">Professional Rugby Player &middot; Widnes</span>
+                    </footer>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CARD 2: Written — Charlie -->
+              <article class="carousel-card carousel-card--written carousel-card--has-photo">
+                <div class="testimonial-split">
+                  <figure class="testimonial-split__media carousel-card__photo">
+                    <img src="./assets/testimonial-charlie.jpg"
+                         alt="Scōp pouch and a shaker of mixed Daybreak Orange on a picnic table, mountains behind"
+                         width="1000" height="1333" loading="lazy" decoding="async">
+                  </figure>
+                  <div class="testimonial-split__body">
+                    <div class="carousel-card__stars" aria-label="5 stars">★★★★★</div>
+                    <blockquote class="carousel-card__quote">
+                      &ldquo;Really impressed with Scōp after 3 weeks. I used to take nothing at all, so I have noticed quite a difference. Especially when pushing hard up hills.&rdquo;
+                    </blockquote>
+                    <footer class="carousel-card__footer">
+                      <span class="carousel-card__name">Charlie</span>
+                      <span class="carousel-card__ctx">Lake District</span>
+                    </footer>
+                  </div>
+                </div>
+              </article>
+
+              <!-- CARD 3: Written — Mark -->
               <article class="carousel-card carousel-card--written">
                 <div class="carousel-card__stars" aria-label="5 stars">★★★★★</div>
                 <blockquote class="carousel-card__quote">
@@ -268,30 +321,6 @@
                 <footer class="carousel-card__footer">
                   <span class="carousel-card__name">Mark</span>
                   <span class="carousel-card__ctx">Warrington</span>
-                </footer>
-              </article>
-
-              <!-- CARD 2: Video -->
-              <div class="carousel-card carousel-card--video" role="group" aria-label="Video testimonial">
-                <div class="carousel-card__video-bg" aria-hidden="true"></div>
-                <div class="carousel-card__video-content">
-                  <button class="carousel-card__play" aria-label="Play video testimonial">
-                    <svg viewBox="0 0 24 24" fill="none" width="52" height="52"><circle cx="12" cy="12" r="11.5" fill="rgba(193,127,62,0.92)"/><path d="M10 8l8 4-8 4V8z" fill="white"/></svg>
-                  </button>
-                  <p class="carousel-card__vid-name">Emma, subscriber</p>
-                  <p class="carousel-card__vid-quote">&ldquo;Two months in.&rdquo;</p>
-                </div>
-              </div>
-
-              <!-- CARD 3: Written -->
-              <article class="carousel-card carousel-card--written">
-                <div class="carousel-card__stars" aria-label="5 stars">★★★★★</div>
-                <blockquote class="carousel-card__quote">
-                  &ldquo;Really impressed with Scōp after 3 weeks. I used to take nothing at all, so I have noticed quite a difference. Especially when pushing hard up hills.&rdquo;
-                </blockquote>
-                <footer class="carousel-card__footer">
-                  <span class="carousel-card__name">Charlie</span>
-                  <span class="carousel-card__ctx">Lake District</span>
                 </footer>
               </article>
 
@@ -652,8 +681,16 @@
     }
     var dots = dotsEl.querySelectorAll('.carousel-dot');
 
+    function pauseAllVideos() {
+      track.querySelectorAll('video').forEach(function (v) {
+        if (!v.paused) v.pause();
+      });
+    }
+
     function go(idx) {
       current = Math.max(0, Math.min(total - 1, idx));
+      // Stop any playing testimonial when the slide changes
+      pauseAllVideos();
       var card = cards[0];
       var gap = parseInt(getComputedStyle(track).gap) || 24;
       var cardW = card.offsetWidth + gap;
@@ -667,8 +704,12 @@
     nextBtn.addEventListener('click', function() { go(current + 1); });
 
     var startX = 0;
-    track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, {passive: true});
+    track.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    }, {passive: true});
     track.addEventListener('touchend', function(e) {
+      // Ignore swipes that start on the video so scrubbing/volume still work
+      if (e.target.closest && e.target.closest('video')) return;
       var dx = e.changedTouches[0].clientX - startX;
       if (Math.abs(dx) > 40) go(current + (dx < 0 ? 1 : -1));
     }, {passive: true});
