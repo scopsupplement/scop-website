@@ -1,2 +1,6 @@
+# Longevity Hub is now the public Education page
+/longevity-hub.html  /education.html  301!
+/longevity-hub       /education.html  301!
+
 # Serve _articles markdown files directly
 /_articles/*  /_articles/:splat  200

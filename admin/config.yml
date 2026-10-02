@@ -7,7 +7,7 @@ public_folder: "/assets/uploads"
 
 collections:
   - name: "articles"
-    label: "Longevity Hub Articles"
+    label: "Education Articles"
     folder: "_articles"
     create: true
     slug: "{{slug}}"
@@ -19,6 +19,7 @@ collections:
       - label: "Publish Date"
         name: "date"
         widget: "datetime"
+        default: "{{now}}"
         format: "YYYY-MM-DD"
         date_format: "DD MMM YYYY"
         time_format: false
@@ -35,6 +36,8 @@ collections:
       - label: "Read Time (minutes)"
         name: "read_time"
         widget: "number"
+        required: false
+        hint: "Leave blank to estimate automatically from the article length."
         default: 5
         value_type: "int"
         min: 1
@@ -53,7 +56,9 @@ collections:
         name: "body"
         widget: "markdown"
 
-      - label: "Subscription Only"
-        name: "subscriber_only"
+      - label: "Draft (hide from the Education page)"
+        name: "draft"
         widget: "boolean"
-        default: true
+        default: false
+        required: false
+        hint: "Keep on while an article is awaiting compliance review. Turn off and publish to list it on the Education page."

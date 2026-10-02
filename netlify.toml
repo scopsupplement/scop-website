@@ -1,4 +1,6 @@
 [build]
+  # Rebuilds articles-index.json from _articles/*.md on every deploy (incl. CMS publishes)
+  command = "node scripts/build-articles-index.js"
   publish = "."
   functions = "netlify/functions"
 

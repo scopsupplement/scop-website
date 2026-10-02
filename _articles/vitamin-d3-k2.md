@@ -4,7 +4,6 @@ date: "2026-06-01"
 category: "nutrition"
 read_time: 6
 summary: "Why the combination matters more than either compound alone — the calcium metabolism pathway that connects bone density, arterial health and immune function."
-subscriber_only: true
 ---
 
 ## Why the pairing matters

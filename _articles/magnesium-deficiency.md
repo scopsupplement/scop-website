@@ -4,7 +4,6 @@ date: "2026-06-01"
 category: "nutrition"
 read_time: 7
 summary: "The overlooked mineral and its role in over 300 biological processes — from ATP synthesis to DNA repair. Most adults are chronically under-repleting it."
-subscriber_only: true
 ---
 
 ## The most underrated compound in your body

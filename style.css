@@ -241,6 +241,14 @@ a:hover {
 .header__link:hover {
   color: var(--color-text);
 }
+.header__mobile-link {
+  display: none;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+.header__mobile-link:hover,
+.header__mobile-link[aria-current="page"] { color: var(--color-text); }
 .header__actions {
   display: flex;
   align-items: center;
@@ -890,6 +898,9 @@ a:hover {
 @media (max-width: 640px) {
   .header__nav {
     display: none;
+  }
+  .header__mobile-link {
+    display: inline-flex;
   }
 
   .hero__image img {

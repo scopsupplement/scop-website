@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Article — Scōp Longevity Hub</title>
-  <meta name="robots" content="noindex">
+  <title>Article — Scōp Education</title>
+  <meta name="description" content="Evidence-based articles from Scōp Education.">
   <link rel="stylesheet" href="base.css">
   <link rel="stylesheet" href="style.css">
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-  <!-- Marked.js to render markdown body -->
+    <!-- Marked.js to render markdown body -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     .article-hero {
@@ -155,6 +154,24 @@
       color: var(--color-text-muted);
       font-family: var(--font-sans);
     }
+    main.container {
+      max-width: calc(680px + (2 * var(--space-6)));
+      margin-left: auto; margin-right: auto;
+      padding-left: var(--space-6); padding-right: var(--space-6);
+    }
+    .article-cta {
+      margin: var(--space-10) 0 var(--space-16);
+      padding: var(--space-10) var(--space-8);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+    .article-cta__eyebrow { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 var(--space-3); }
+    .article-cta__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; color: var(--color-text); margin: 0 0 var(--space-3); }
+    .article-cta__sub { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; margin: 0 0 var(--space-6); max-width: 56ch; }
+    .article-cta__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); }
+    .article-cta__more { font-size: var(--text-sm); color: var(--color-accent); text-decoration: none; }
+    .article-cta__more:hover { text-decoration: underline; }
   </style>
   <!-- TikTok Pixel Code Start -->
   <script>
@@ -197,10 +214,12 @@
         <a href="index.html#formulation" class="header__link">Formulation</a>
         <a href="index.html#ingredients" class="header__link">Ingredients</a>
         <a href="index.html#science" class="header__link">Science</a>
-        <a href="longevity-hub.html" class="header__link">Longevity Hub</a>
+        <a href="education.html" class="header__link" style="color: var(--color-text);">Education</a>
+        <a href="account-login.html" class="header__link">My Account</a>
       </nav>
       <div class="header__actions">
-        <a href="account.html" class="btn btn--ghost btn--sm js-account-btn">My Account</a>
+        <a href="education.html" class="header__mobile-link">Education</a>
+        <a href="order.html" class="btn btn--primary btn--sm">Order Now</a>
         <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -211,15 +230,9 @@
   <main class="container" style="padding-top: 80px;">
 
     <div id="article-loading">Loading article…</div>
-    <div id="article-locked" class="article-locked" hidden>
-      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      <h2>Exclusively for Scōp subscribers</h2>
-      <p>This article is available to Scōp subscription members. Upgrade to access the full Longevity Hub library.</p>
-      <a href="order.html" class="btn btn--primary">Switch to Subscribe &amp; Save — £42/month</a>
-    </div>
     <div id="article-content" hidden>
-      <a href="longevity-hub.html" class="article-back">
-        ← Back to Longevity Hub
+      <a href="education.html" class="article-back">
+        ← Back to Education
       </a>
       <div class="article-hero">
         <div class="article-meta">
@@ -238,6 +251,18 @@
         Consult a healthcare professional before making changes to your supplement routine.
         All health claims referenced are authorised by the Great Britain Nutrition and Health Claims Register.
       </div>
+      <aside class="article-cta" aria-label="Order Scōp">
+        <p class="article-cta__eyebrow">Put it into practice</p>
+        <h2 class="article-cta__title">One scoop. 14 clearly dosed ingredients.</h2>
+        <p class="article-cta__sub">5 g creatine, 400 mg magnesium, vitamin D3 + K2 and methylated B vitamins &mdash; subscribe &amp; save from &pound;1.30 per day.</p>
+        <div class="article-cta__actions">
+          <a href="order.html" class="btn btn--primary hero__cta">
+            <span class="hero__cta-label">Order Scōp &mdash; from &pound;39</span>
+            <svg class="hero__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="education.html" class="article-cta__more">More articles &rarr;</a>
+        </div>
+      </aside>
     </div>
 
   </main>
@@ -256,6 +281,7 @@
         <a href="index.html#formulation">Formulation</a>
         <a href="index.html#ingredients">Ingredients</a>
         <a href="index.html#science">Science</a>
+        <a href="education.html">Education</a>
         <a href="order.html">Order</a>
       </nav>
       <div class="footer__legal">
@@ -265,14 +291,9 @@
     </div>
   </footer>
 
+  <script src="frontmatter.js"></script>
   <script src="app.js"></script>
   <script>
-    // ── Netlify Identity ────────────────────────────────────────────────────
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on('init', user => {
-        if (!user) window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
-      });
-    }
 
     // ── Category labels ─────────────────────────────────────────────────────
     const CATEGORY_LABELS = {
@@ -288,38 +309,44 @@
       const slug    = params.get('slug');
 
       if (!slug) {
-        window.location.href = 'longevity-hub.html';
+        window.location.href = 'education.html';
         return;
       }
-
-      // Access check — subscriber only
-      const isLoggedIn   = localStorage.getItem('scop_logged_in') === 'true';
-      const accountType  = localStorage.getItem('scop_account_type');
 
       document.getElementById('article-loading').hidden = true;
 
-      if (!isLoggedIn || accountType !== 'subscription') {
-        document.getElementById('article-locked').hidden = false;
-        return;
-      }
-
       // Fetch the markdown file from _articles/
       try {
-        const res  = await fetch(`/_articles/${slug}.md`);
+        const res  = await fetch(`_articles/${slug}.md`);
         if (!res.ok) throw new Error('Not found');
         const raw  = await res.text();
 
         // Parse frontmatter
         const fm   = parseFrontmatter(raw);
-        const body = raw.replace(/^---[\s\S]*?---\n/, '');
+        const body = window.ScopFrontmatter.split(raw).body;
+        if (fm.draft === true) throw new Error('Draft');
 
         // Populate
-        document.title = `${fm.title} — Scōp Longevity Hub`;
+        document.title = `${fm.title} — Scōp Education`;
+        const md = document.querySelector('meta[name="description"]'); if (md && fm.summary) md.setAttribute('content', fm.summary);
         document.getElementById('art-title').textContent    = fm.title    || '';
         document.getElementById('art-summary').textContent  = fm.summary  || '';
         document.getElementById('art-category').textContent = CATEGORY_LABELS[fm.category] || fm.category || '';
-        document.getElementById('art-read-time').textContent = fm.read_time ? `${fm.read_time} min read` : '';
-        document.getElementById('art-date').textContent     = fm.date     || '';
+        if (CATEGORY_LABELS[fm.category]) {
+          const back = document.querySelector('.article-back');
+          back.href = `education.html?topic=${fm.category}#articles`;
+          back.textContent = `← More in ${CATEGORY_LABELS[fm.category]}`;
+          const more = document.querySelector('.article-cta__more');
+          if (more) { more.href = back.href; more.innerHTML = `More ${fm.category} articles &rarr;`; }
+        }
+        const mins = Number(fm.read_time) > 0 ? Math.round(fm.read_time)
+          : Math.max(1, Math.round(body.split(/\s+/).filter(Boolean).length / 220));
+        document.getElementById('art-read-time').textContent = `${mins} min read`;
+        const iso = String(fm.date || '').slice(0, 10);
+        const dt  = /^\d{4}-\d{2}-\d{2}$/.test(iso) ? new Date(iso + 'T12:00:00Z') : null;
+        if (dt) fm.date = iso;
+        document.getElementById('art-date').textContent =
+          dt ? dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
         document.getElementById('art-body').innerHTML       = marked.parse(body);
 
         if (fm.image) {
@@ -333,26 +360,19 @@
         injectArticleSchema(fm, slug);
         injectFAQSchema(slug);
       } catch (e) {
-        document.getElementById('article-loading').textContent = 'Article not found.';
+        document.getElementById('article-loading').innerHTML = 'This article isn\u2019t available. <a href="education.html">Browse all articles &rarr;</a>';
         document.getElementById('article-loading').hidden = false;
       }
     }
 
-    // Simple frontmatter parser (YAML key: value only)
+    // Frontmatter parsing is shared with the build step (frontmatter.js)
     function parseFrontmatter(raw) {
-      const match = raw.match(/^---\n([\s\S]*?)\n---/);
-      if (!match) return {};
-      const fm = {};
-      match[1].split('\n').forEach(line => {
-        const [key, ...rest] = line.split(':');
-        if (key && rest.length) fm[key.trim()] = rest.join(':').trim().replace(/^["']|["']$/g, '');
-      });
-      return fm;
+      return window.ScopFrontmatter.parse(raw);
     }
 
 
     // ── FAQPage JSON-LD — injected dynamically per article ──────────────────
-    const ARTICLE_FAQS = {'creatine-beyond-the-gym': [('What does creatine do?', 'Creatine increases physical performance in successive bursts of short-term, high-intensity exercise. It is one of the most extensively researched sports nutrition ingredients and is authorised under the Great Britain Nutrition and Health Claims Register.'), ('How much creatine per day do I need?', 'Research consistently shows that 3–5 g of creatine monohydrate per day is sufficient to saturate muscle creatine stores over time without a loading phase. Scōp contains 5 g of creatine monohydrate per daily serving.'), ('Does creatine help with brain function?', 'Emerging research suggests creatine may support working memory and reduce mental fatigue, particularly under cognitive load or sleep deprivation. The brain uses the same creatine-phosphocreatine energy system as muscle tissue. This evidence is preliminary and does not yet meet the threshold for an authorised health claim.'), ('Is creatine monohydrate the best form of creatine?', 'Creatine monohydrate is the most extensively researched form and the one used in the vast majority of clinical studies. It remains the standard against which other forms are compared. Scōp uses creatine monohydrate.'), ('Do vegetarians benefit more from creatine supplementation?', 'Yes. People who consume little or no meat tend to have lower baseline muscle creatine stores, meaning supplementation produces a larger and more measurable effect on both physical performance and potentially cognitive function.')], 'magnesium-deficiency': [('What are the symptoms of magnesium deficiency?', "Low magnesium often presents as persistent fatigue that doesn't resolve with sleep, increased anxiety or irritability, muscle cramps — particularly at night — poor sleep quality, and difficulty concentrating. These symptoms are often attributed to stress or ageing rather than a nutritional gap."), ('Why is magnesium deficiency so common in the UK?', 'Several factors contribute: soil depletion from intensive agriculture has reduced the magnesium content of crops; refined food diets remove magnesium-rich outer grain layers; alcohol and caffeine increase urinary magnesium excretion; stress elevates cortisol which depletes tissue magnesium stores; and absorption efficiency decreases with age.'), ('What is the best form of magnesium supplement?', 'Magnesium bisglycinate (also called magnesium glycinate) is widely considered one of the most bioavailable and well-tolerated forms. Scōp contains 400 mg of elemental magnesium from magnesium bisglycinate per serving.'), ('Does magnesium help with sleep?', 'Magnesium plays a direct role in GABA regulation and melatonin synthesis — both central to sleep onset and maintenance. Adequate magnesium levels are associated with faster sleep onset and improved slow-wave sleep. Magnesium contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system.'), ('How much magnesium should I take per day?', 'The UK recommended intake for adults is 300 mg per day for men and 270 mg per day for women. Scōp provides 400 mg of elemental magnesium per serving as part of its daily formula.')], 'vitamin-d3-k2': [('Why should I take vitamin D3 and K2 together?', 'Vitamin D3 increases calcium absorption from the gut, which supports bone health. However, without adequate vitamin K2, that additional calcium can accumulate in soft tissue and arterial walls rather than being directed to bone. Vitamin K2 — specifically MK-7, the form with the longest half-life — activates the proteins that direct calcium to bone and away from soft tissue. Both vitamins D and K contribute to the maintenance of normal bones.'), ('How much vitamin D do I need per day?', 'The NHS recommends that adults in the UK consider a vitamin D supplement of 10 micrograms (400 IU) per day, particularly in autumn and winter. Scōp contains 100 micrograms (4,000 IU) of vitamin D3 per daily serving, formulated for adults who may have limited sun exposure year-round.'), ('Am I at risk of vitamin D deficiency in the UK?', 'UK sunlight between October and March is not strong enough to trigger meaningful vitamin D synthesis in skin, regardless of time spent outdoors. The NHS recommends supplementation for everyone during autumn and winter. Year-round deficiency is also common among desk-based professionals who spend limited time outdoors in summer.'), ('What is vitamin K2 MK-7?', 'MK-7 (menaquinone-7) is the form of vitamin K2 derived from fermentation that has the longest half-life in the bloodstream, meaning it remains active for the longest time after a single daily dose. Scōp uses vitamin K2 as MK-7 at 100 micrograms per serving.'), ('Can you take too much vitamin D?', 'Vitamin D toxicity is rare but possible at very high doses (typically above 10,000 IU per day for extended periods). Scōp contains 4,000 IU of vitamin D3 per serving, which is within the established safe upper intake range for healthy adults.')], 'chronic-stress-accelerant': [('How does chronic stress affect the body?', 'Chronic psychological stress produces measurable changes at the cellular level. It elevates cortisol over a sustained period, disrupting sleep architecture, immune regulation, metabolic function, and hippocampal volume. It also depletes magnesium stores and drives low-grade systemic inflammation — a common pathway for cardiovascular disease, cognitive decline and accelerated biological ageing.'), ('Does stress deplete magnesium?', 'Yes. Cortisol — the primary stress hormone — actively mobilises magnesium from tissue stores and increases its urinary excretion. This creates a reinforcing cycle: stress depletes magnesium, and low magnesium increases sensitivity to stress. Magnesium contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system.'), ('Can supplements help with stress?', 'No supplement reverses chronic stress. The interventions with the strongest evidence are behavioural: sleep, exercise, social connection, and where relevant, psychological support. What nutritional supplementation can do is support the physiological systems most depleted by chronic stress — particularly magnesium, B vitamins and vitamin D — ensuring a consistent nutritional foundation regardless of how demanding the day is.'), ('What are telomeres and why do they matter?', 'Telomeres are the protective caps at the end of chromosomes that shorten each time a cell divides. They are one of the most validated biomarkers of biological age. Studies consistently show that chronic psychological stress is associated with shorter telomeres — equivalent in some research populations to roughly a decade of additional biological ageing.')], 'sleep-architecture-after-35': [('Why does sleep quality decline after 35?', 'The proportion of time spent in slow-wave sleep — the most physiologically restorative sleep stage — begins declining in the late 20s and accelerates through the 30s and 40s. This results in reduced growth hormone secretion, less efficient memory consolidation, and decreased glymphatic clearance of metabolic waste. These changes happen gradually and are often attributed to stress or lifestyle rather than age-related sleep architecture shifts.'), ('What is slow-wave sleep?', 'Slow-wave sleep (SWS) is the deepest stage of non-REM sleep. It is when growth hormone is primarily secreted, memory is consolidated, cellular repair occurs, and the brain clears metabolic waste via the glymphatic system. The decline of SWS with age is one of the key mechanisms connecting sleep and biological ageing.'), ('Does magnesium improve sleep?', 'Magnesium plays a direct role in GABA regulation and melatonin synthesis — both central to sleep onset and maintenance. Adequate magnesium levels are associated with improved sleep onset time and deeper slow-wave sleep. Magnesium contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system.'), ('What temperature should I sleep in for best sleep quality?', 'Core body temperature needs to drop 1–2°C for sleep onset to occur. Research consistently shows that cool rooms — around 18°C — support faster sleep onset and better sleep architecture than warmer environments.'), ('How can I improve slow-wave sleep?', 'Evidence-based interventions include: consistent sleep and wake times to stabilise circadian rhythm; a cool bedroom temperature (around 18°C); avoiding alcohol, which suppresses REM sleep and fragments the second half of the night; morning or early afternoon exercise; and ensuring adequate magnesium intake, which supports GABA regulation and melatonin synthesis.')], 'zone2-training-longevity': [('What is Zone 2 training?', 'Zone 2 training is aerobic exercise performed at 60–70% of maximum heart rate — an intensity low enough that you can hold a full conversation. It is characterised by sustained fat oxidation and represents the primary stimulus for mitochondrial biogenesis in muscle cells.'), ('How much Zone 2 training per week is enough?', 'The research consensus points to approximately 150–180 minutes of genuine Zone 2 per week as the threshold for meaningful mitochondrial adaptation. The key is maintaining true low intensity throughout — if breathing becomes laboured, intensity has exceeded Zone 2.'), ('Why does VO2 max matter for longevity?', 'Maximum aerobic capacity — VO2 max — is the single strongest predictor of all-cause mortality in the current literature. It declines at roughly 10% per decade from the mid-30s. Zone 2 training builds the aerobic base that best sustains VO2 max over time.'), ('What supplements support Zone 2 training?', 'B vitamins support the energy-yielding metabolism that Zone 2 training optimises — each B vitamin contributes to normal energy-yielding metabolism. Creatine supports the higher-intensity complementary work — creatine increases physical performance in successive bursts of short-term, high-intensity exercise. Magnesium supports muscle function and recovery throughout training.'), ('What is mitochondrial biogenesis?', 'Mitochondrial biogenesis is the process by which cells produce new mitochondria — the organelles responsible for generating ATP. Zone 2 training is the most effective exercise stimulus for mitochondrial biogenesis. More mitochondria means greater capacity for fat oxidation, sustained energy output, and improved metabolic health.')]};
+    const ARTICLE_FAQS = {"creatine-beyond-the-gym": [["What does creatine do?", "Creatine increases physical performance in successive bursts of short-term, high-intensity exercise. It is one of the most extensively researched sports nutrition ingredients and is authorised under the Great Britain Nutrition and Health Claims Register."], ["How much creatine per day do I need?", "Research consistently shows that 3–5 g of creatine monohydrate per day is sufficient to saturate muscle creatine stores over time without a loading phase. Scōp contains 5 g of creatine monohydrate per daily serving."], ["Does creatine help with brain function?", "Emerging research suggests creatine may support working memory and reduce mental fatigue, particularly under cognitive load or sleep deprivation. The brain uses the same creatine-phosphocreatine energy system as muscle tissue. This evidence is preliminary and does not yet meet the threshold for an authorised health claim."], ["Is creatine monohydrate the best form of creatine?", "Creatine monohydrate is the most extensively researched form and the one used in the vast majority of clinical studies. It remains the standard against which other forms are compared. Scōp uses creatine monohydrate."], ["Do vegetarians benefit more from creatine supplementation?", "Yes. People who consume little or no meat tend to have lower baseline muscle creatine stores, meaning supplementation produces a larger and more measurable effect on both physical performance and potentially cognitive function."]], "magnesium-deficiency": [["What are the symptoms of magnesium deficiency?", "Low magnesium often presents as persistent fatigue that doesn't resolve with sleep, increased anxiety or irritability, muscle cramps — particularly at night — poor sleep quality, and difficulty concentrating. These symptoms are often attributed to stress or ageing rather than a nutritional gap."], ["Why is magnesium deficiency so common in the UK?", "Several factors contribute: soil depletion from intensive agriculture has reduced the magnesium content of crops; refined food diets remove magnesium-rich outer grain layers; alcohol and caffeine increase urinary magnesium excretion; stress elevates cortisol which depletes tissue magnesium stores; and absorption efficiency decreases with age."], ["What is the best form of magnesium supplement?", "Magnesium bisglycinate (also called magnesium glycinate) is widely considered one of the most bioavailable and well-tolerated forms. Scōp contains 400 mg of elemental magnesium from magnesium bisglycinate per serving."], ["Does magnesium help with sleep?", "Magnesium plays a direct role in GABA regulation and melatonin synthesis — both central to sleep onset and maintenance. Adequate magnesium levels are associated with faster sleep onset and improved slow-wave sleep. Magnesium contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system."], ["How much magnesium should I take per day?", "The UK recommended intake for adults is 300 mg per day for men and 270 mg per day for women. Scōp provides 400 mg of elemental magnesium per serving as part of its daily formula."]], "vitamin-d3-k2": [["Why should I take vitamin D3 and K2 together?", "Vitamin D3 increases calcium absorption from the gut, which supports bone health. However, without adequate vitamin K2, that additional calcium can accumulate in soft tissue and arterial walls rather than being directed to bone. Vitamin K2 — specifically MK-7, the form with the longest half-life — activates the proteins that direct calcium to bone and away from soft tissue. Both vitamins D and K contribute to the maintenance of normal bones."], ["How much vitamin D do I need per day?", "The NHS recommends that adults in the UK consider a vitamin D supplement of 10 micrograms (400 IU) per day, particularly in autumn and winter. Scōp contains 100 micrograms (4,000 IU) of vitamin D3 per daily serving, formulated for adults who may have limited sun exposure year-round."], ["Am I at risk of vitamin D deficiency in the UK?", "UK sunlight between October and March is not strong enough to trigger meaningful vitamin D synthesis in skin, regardless of time spent outdoors. The NHS recommends supplementation for everyone during autumn and winter. Year-round deficiency is also common among desk-based professionals who spend limited time outdoors in summer."], ["What is vitamin K2 MK-7?", "MK-7 (menaquinone-7) is the form of vitamin K2 derived from fermentation that has the longest half-life in the bloodstream, meaning it remains active for the longest time after a single daily dose. Scōp uses vitamin K2 as MK-7 at 100 micrograms per serving."], ["Can you take too much vitamin D?", "Vitamin D toxicity is rare but possible at very high doses (typically above 10,000 IU per day for extended periods). Scōp contains 4,000 IU of vitamin D3 per serving, which is within the established safe upper intake range for healthy adults."]], "chronic-stress-accelerant": [["How does chronic stress affect the body?", "Chronic psychological stress produces measurable changes at the cellular level. It elevates cortisol over a sustained period, disrupting sleep architecture, immune regulation, metabolic function, and hippocampal volume. It also depletes magnesium stores and drives low-grade systemic inflammation — a common pathway for cardiovascular disease, cognitive decline and accelerated biological ageing."], ["Does stress deplete magnesium?", "Yes. Cortisol — the primary stress hormone — actively mobilises magnesium from tissue stores and increases its urinary excretion. This creates a reinforcing cycle: stress depletes magnesium, and low magnesium increases sensitivity to stress. Magnesium contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system."], ["Can supplements help with stress?", "No supplement reverses chronic stress. The interventions with the strongest evidence are behavioural: sleep, exercise, social connection, and where relevant, psychological support. What nutritional supplementation can do is support the physiological systems most depleted by chronic stress — particularly magnesium, B vitamins and vitamin D — ensuring a consistent nutritional foundation regardless of how demanding the day is."], ["What are telomeres and why do they matter?", "Telomeres are the protective caps at the end of chromosomes that shorten each time a cell divides. They are one of the most validated biomarkers of biological age. Studies consistently show that chronic psychological stress is associated with shorter telomeres — equivalent in some research populations to roughly a decade of additional biological ageing."]], "sleep-architecture-after-35": [["Why does sleep quality decline after 35?", "The proportion of time spent in slow-wave sleep — the most physiologically restorative sleep stage — begins declining in the late 20s and accelerates through the 30s and 40s. This results in reduced growth hormone secretion, less efficient memory consolidation, and decreased glymphatic clearance of metabolic waste. These changes happen gradually and are often attributed to stress or lifestyle rather than age-related sleep architecture shifts."], ["What is slow-wave sleep?", "Slow-wave sleep (SWS) is the deepest stage of non-REM sleep. It is when growth hormone is primarily secreted, memory is consolidated, cellular repair occurs, and the brain clears metabolic waste via the glymphatic system. The decline of SWS with age is one of the key mechanisms connecting sleep and biological ageing."], ["Does magnesium improve sleep?", "Magnesium plays a direct role in GABA regulation and melatonin synthesis — both central to sleep onset and maintenance. Adequate magnesium levels are associated with improved sleep onset time and deeper slow-wave sleep. Magnesium contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system."], ["What temperature should I sleep in for best sleep quality?", "Core body temperature needs to drop 1–2°C for sleep onset to occur. Research consistently shows that cool rooms — around 18°C — support faster sleep onset and better sleep architecture than warmer environments."], ["How can I improve slow-wave sleep?", "Evidence-based interventions include: consistent sleep and wake times to stabilise circadian rhythm; a cool bedroom temperature (around 18°C); avoiding alcohol, which suppresses REM sleep and fragments the second half of the night; morning or early afternoon exercise; and ensuring adequate magnesium intake, which supports GABA regulation and melatonin synthesis."]], "zone2-training-longevity": [["What is Zone 2 training?", "Zone 2 training is aerobic exercise performed at 60–70% of maximum heart rate — an intensity low enough that you can hold a full conversation. It is characterised by sustained fat oxidation and represents the primary stimulus for mitochondrial biogenesis in muscle cells."], ["How much Zone 2 training per week is enough?", "The research consensus points to approximately 150–180 minutes of genuine Zone 2 per week as the threshold for meaningful mitochondrial adaptation. The key is maintaining true low intensity throughout — if breathing becomes laboured, intensity has exceeded Zone 2."], ["Why does VO2 max matter for longevity?", "Maximum aerobic capacity — VO2 max — is the single strongest predictor of all-cause mortality in the current literature. It declines at roughly 10% per decade from the mid-30s. Zone 2 training builds the aerobic base that best sustains VO2 max over time."], ["What supplements support Zone 2 training?", "B vitamins support the energy-yielding metabolism that Zone 2 training optimises — each B vitamin contributes to normal energy-yielding metabolism. Creatine supports the higher-intensity complementary work — creatine increases physical performance in successive bursts of short-term, high-intensity exercise. Magnesium supports muscle function and recovery throughout training."], ["What is mitochondrial biogenesis?", "Mitochondrial biogenesis is the process by which cells produce new mitochondria — the organelles responsible for generating ATP. Zone 2 training is the most effective exercise stimulus for mitochondrial biogenesis. More mitochondria means greater capacity for fat oxidation, sustained energy output, and improved metabolic health."]]};
 
 
     function injectArticleSchema(fm, slug) {
@@ -379,7 +399,7 @@
         },
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": "https://scopsupplement.uk/article.html?s=" + slug
+          "@id": "https://scopsupplement.uk/article.html?slug=" + slug
         }
       };
       const el = document.createElement('script');

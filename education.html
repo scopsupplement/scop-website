@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+     ______                            __
+    / ____/___  ____ ___  ____  __  __/ /____  _____
+   / /   / __ \/ __ `__ \/ __ \/ / / / __/ _ \/ ___/
+  / /___/ /_/ / / / / / / /_/ / /_/ / /_/  __/ /
+  \____/\____/_/ /_/ /_/ .___/\__,_/\__/\___/_/
+                      /_/
+          Created with Perplexity Computer
+          https://www.perplexity.ai/computer
+  -->
+  <meta name="generator" content="Perplexity Computer">
+  <meta name="author" content="Perplexity Computer">
+  <meta property="og:see_also" content="https://www.perplexity.ai/computer">
+  <link rel="author" href="https://www.perplexity.ai/computer">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Education — Scōp | Evidence-based articles on creatine, magnesium, vitamin D3 + K2</title>
+  <meta name="description" content="Free, evidence-based articles on the ingredients in Scōp — creatine, magnesium, vitamin D3 + K2 and B vitamins — plus sleep, training and stress.">
+  <link rel="canonical" href="https://scopsupplement.uk/education.html">
+
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ===== EDUCATION PAGE STYLES ===== */
+
+    /* Breadcrumb */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      margin-bottom: var(--space-6);
+    }
+
+    .breadcrumb a {
+      color: var(--color-text-faint);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--color-text-muted);
+    }
+
+    .breadcrumb__sep {
+      color: var(--color-border);
+    }
+
+    .breadcrumb__current {
+      color: var(--color-text-muted);
+    }
+
+    /* Hero */
+    .hub-hero {
+      background: var(--color-surface-dark);
+      padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .hub-hero__inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+    }
+
+    .hub-hero__exclusive {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-accent);
+      border: 1px solid color-mix(in srgb, var(--color-accent) 40%, transparent);
+      border-radius: var(--radius-full);
+      padding: var(--space-1) var(--space-4);
+      margin-bottom: var(--space-5);
+    }
+
+    .hub-hero__exclusive::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .hub-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 4vw + 1rem, 4rem);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: var(--space-4);
+    }
+
+    .hub-hero__subtitle {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      max-width: 52ch;
+      line-height: 1.7;
+    }
+
+    /* Content pillars */
+    .hub-pillars {
+      padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+      background: var(--color-bg);
+    }
+
+    .hub-pillars__inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+    }
+
+    .hub-section-label {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-6);
+      display: block;
+    }
+
+    .hub-pillars__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: var(--space-2);
+    }
+
+    .hub-pillars__grid::-webkit-scrollbar { display: none; }
+
+    .hub-pillar-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      min-width: 200px;
+      transition: border-color var(--transition-interactive), transform var(--transition-interactive);
+    }
+
+    a.hub-pillar-card { text-decoration: none; color: inherit; cursor: pointer; }
+    .hub-pillar-card:hover,
+    .hub-pillar-card:focus-visible {
+      border-color: var(--color-accent);
+      transform: translateY(-2px);
+      outline: none;
+    }
+    .hub-pillar-card.is-active {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 1px var(--color-accent) inset;
+    }
+    .hub-pillar-card__count {
+      margin-top: auto;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-accent);
+    }
+
+    .hub-pillar-card__icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--color-accent) 10%, var(--color-bg));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .hub-pillar-card__title {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.3;
+    }
+
+    .hub-pillar-card__desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    /* Articles */
+    .hub-articles {
+      padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+      background: var(--color-surface);
+    }
+
+    .hub-articles__inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+    }
+
+    .hub-articles__header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: var(--space-6);
+      margin-bottom: var(--space-10);
+    }
+
+    .hub-articles__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    .hub-articles__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+    }
+
+    .hub-article-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      transition: border-color var(--transition-interactive), box-shadow var(--transition-interactive);
+    }
+
+    .hub-article-card:hover {
+      border-color: var(--color-accent);
+      box-shadow: 0 4px 20px rgba(193, 127, 62, 0.08);
+    }
+
+    .hub-article-card__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+    }
+
+    .hub-article-card__category {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+    }
+
+    .hub-article-card__time {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      white-space: nowrap;
+    }
+
+    .hub-article-card__title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--color-text);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+
+    .hub-article-card__excerpt {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .hub-article-card__footer {
+      padding-top: var(--space-4);
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .hub-article-card__read {
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    .hub-article-card__read:hover {
+      color: var(--color-accent-hover);
+    }
+
+    /* Scōp connection section */
+    .hub-connection {
+      padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+      background: var(--color-bg);
+    }
+
+    .hub-connection__inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+    }
+
+    .hub-connection__header {
+      margin-bottom: var(--space-10);
+    }
+
+    .hub-connection__title {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-top: var(--space-4);
+    }
+
+    .hub-compound-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+    }
+
+    .hub-compound-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .hub-compound-card__name {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .hub-compound-card__dose {
+      font-size: var(--text-xs);
+      color: var(--color-accent);
+      font-weight: 500;
+      font-family: var(--font-body);
+    }
+
+    .hub-compound-card__claim {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+      max-width: 100%;
+    }
+
+    .hub-connection__legal {
+      margin-top: var(--space-6);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-style: italic;
+      line-height: 1.6;
+      max-width: 72ch;
+    }
+
+    /* Footer extra note */
+    .footer__hub-note {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-style: italic;
+      margin-top: var(--space-3);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hub-pillars__grid {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+      }
+      .hub-compound-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hub-articles__grid {
+        grid-template-columns: 1fr;
+      }
+      .hub-articles__header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hub-compound-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hub-pillars__grid {
+        grid-template-columns: repeat(2, 200px);
+        padding-bottom: var(--space-4);
+      }
+      .hub-compound-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Closing CTA */
+    .edu-cta { padding: var(--space-16) var(--space-6) var(--space-20); }
+    .edu-cta__inner {
+      max-width: 760px; margin: 0 auto; text-align: center;
+      padding: var(--space-12) var(--space-8);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+    .edu-cta__title {
+      font-family: var(--font-display); font-size: var(--text-xl);
+      font-weight: 500; color: var(--color-text); margin: 0 0 var(--space-3);
+    }
+    .edu-cta__sub {
+      font-size: var(--text-sm); color: var(--color-accent);
+      font-weight: 600; margin: 0 0 var(--space-6);
+    }
+    .hub-article-card__title a { color: inherit; text-decoration: none; }
+    .hub-articles { scroll-margin-top: 80px; }
+    .hub-articles__count { margin: var(--space-2) 0 0; font-size: var(--text-sm); color: var(--color-text-muted); }
+    .hub-filter { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .hub-filter__btn {
+      font: inherit; font-size: var(--text-sm);
+      padding: 6px 14px; border-radius: 999px; cursor: pointer;
+      background: transparent; color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      transition: border-color var(--transition-interactive), color var(--transition-interactive), background var(--transition-interactive);
+    }
+    .hub-filter__btn:hover { border-color: var(--color-accent); color: var(--color-text); }
+    .hub-filter__btn[aria-pressed="true"] { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-bg); font-weight: 600; }
+    .hub-empty { grid-column: 1 / -1; padding: var(--space-10); text-align: center; color: var(--color-text-muted); border: 1px dashed var(--color-border); border-radius: var(--radius-xl); }
+    .hub-empty__reset { font: inherit; background: none; border: 0; color: var(--color-accent); cursor: pointer; text-decoration: underline; margin-left: var(--space-2); }
+    @media (max-width: 640px) {
+      .hub-articles__header { flex-direction: column; align-items: flex-start; }
+      .hub-pillars__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; gap: var(--space-3); }
+      .hub-pillar-card { min-width: 0; padding: var(--space-4); gap: var(--space-3); }
+      .hub-pillar-card__title { font-size: var(--text-sm); }
+      .hub-pillar-card__desc { display: none; }
+    }
+  </style>
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+    // UK GDPR / PECR: do not load the TikTok SDK or set any cookies until the
+    // visitor has explicitly accepted. holdConsent() alone is not enough — the
+    // SDK still sets first-party cookies on load — so we defer load() entirely.
+    ttq.holdConsent();
+    w.scopLoadTikTok = function () {
+      if (w.__scopTikTokLoaded) return;
+      w.__scopTikTokLoaded = true;
+      ttq.grantConsent();
+      ttq.load('DAP5083C77U5VV2VC5L0');
+      ttq.page();
+    };
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+  <link rel="stylesheet" href="consent.css">
+  <script src="consent.js" defer></script>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo" aria-label="Scōp — home">
+        <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
+      </a>
+
+      <nav class="header__nav" aria-label="Primary">
+        <a href="index.html" class="header__link">Home</a>
+        <a href="index.html#formulation" class="header__link">Formulation</a>
+        <a href="index.html#ingredients" class="header__link">Ingredients</a>
+        <a href="index.html#science" class="header__link">Science</a>
+        <a href="education.html" class="header__link" style="color: var(--color-text);" aria-current="page">Education</a>
+        <a href="account-login.html" class="header__link">My Account</a>
+      </nav>
+
+      <div class="header__actions">
+        <a href="education.html" class="header__mobile-link" aria-current="page">Education</a>
+        <a href="order.html" class="btn btn--primary btn--sm">Order Now</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ========== HERO ========== -->
+    <section class="hub-hero">
+      <div class="hub-hero__inner">
+        <div class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb__sep" aria-hidden="true">›</span>
+          <span class="breadcrumb__current">Education</span>
+        </div>
+        <div class="hub-hero__exclusive">Free to read &middot; No account needed</div>
+        <h1 class="hub-hero__title">Education</h1>
+        <p class="hub-hero__subtitle">Evidence-based articles on the ingredients in Scōp and the everyday habits behind a longer, healthier life.</p>
+      </div>
+    </section>
+
+    <!-- ========== CONTENT PILLARS ========== -->
+    <section class="hub-pillars" aria-labelledby="pillars-heading">
+      <div class="hub-pillars__inner">
+        <span class="hub-section-label" id="pillars-heading">Knowledge Pillars</span>
+        <div class="hub-pillars__grid" role="list" id="pillars-grid">
+
+          <a href="education.html?topic=nutrition#articles" class="hub-pillar-card" role="listitem" data-topic="nutrition" aria-controls="articles-grid">
+            <div class="hub-pillar-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6v6l4 2"/><path d="M18 2l4 4-4 4"/><path d="M22 2l-4 4"/>
+              </svg>
+            </div>
+            <h2 class="hub-pillar-card__title">Nutrition &amp; Supplementation</h2>
+            <p class="hub-pillar-card__desc">Understanding how nutrients support long-term health — from micronutrient adequacy to evidence-based supplementation.</p>
+            <span class="hub-pillar-card__count" data-count="nutrition">Browse articles &rarr;</span>
+          </a>
+
+          <a href="education.html?topic=movement#articles" class="hub-pillar-card" role="listitem" data-topic="movement" aria-controls="articles-grid">
+            <div class="hub-pillar-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+              </svg>
+            </div>
+            <h2 class="hub-pillar-card__title">Movement &amp; Recovery</h2>
+            <p class="hub-pillar-card__desc">Exercise science for longevity, not just performance — the dose, modality and timing that matter for healthspan.</p>
+            <span class="hub-pillar-card__count" data-count="movement">Browse articles &rarr;</span>
+          </a>
+
+          <a href="education.html?topic=sleep#articles" class="hub-pillar-card" role="listitem" data-topic="sleep" aria-controls="articles-grid">
+            <div class="hub-pillar-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M21 8c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z" opacity=".5"/>
+              </svg>
+            </div>
+            <h2 class="hub-pillar-card__title">Sleep &amp; Restoration</h2>
+            <p class="hub-pillar-card__desc">The foundation of cellular repair and cognitive health — why sleep quality is the most underrated longevity lever.</p>
+            <span class="hub-pillar-card__count" data-count="sleep">Browse articles &rarr;</span>
+          </a>
+
+          <a href="education.html?topic=stress#articles" class="hub-pillar-card" role="listitem" data-topic="stress" aria-controls="articles-grid">
+            <div class="hub-pillar-card__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <h2 class="hub-pillar-card__title">Stress &amp; Resilience</h2>
+            <p class="hub-pillar-card__desc">The biology of chronic stress and how to manage it — from HPA axis dysregulation to practical interventions that work.</p>
+            <span class="hub-pillar-card__count" data-count="stress">Browse articles &rarr;</span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FEATURED ARTICLES ========== -->
+    <section class="hub-articles" id="articles" aria-labelledby="articles-heading">
+      <div class="hub-articles__inner">
+        <div class="hub-articles__header">
+          <div>
+            <h2 class="hub-articles__title" id="articles-heading">All articles</h2>
+            <p class="hub-articles__count" id="articles-count" aria-live="polite"></p>
+          </div>
+          <div class="hub-filter" role="group" aria-label="Filter articles by pillar">
+            <button type="button" class="hub-filter__btn" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="hub-filter__btn" data-filter="nutrition" aria-pressed="false">Nutrition</button>
+            <button type="button" class="hub-filter__btn" data-filter="movement" aria-pressed="false">Movement</button>
+            <button type="button" class="hub-filter__btn" data-filter="sleep" aria-pressed="false">Sleep</button>
+            <button type="button" class="hub-filter__btn" data-filter="stress" aria-pressed="false">Stress</button>
+          </div>
+        </div>
+        <div class="hub-articles__grid" id="articles-grid">
+          <!-- Articles loaded dynamically from articles-index.json -->
+          <div style="grid-column:1/-1;text-align:center;padding:var(--space-8);color:var(--color-text-muted);font-family:var(--font-sans);font-size:0.85rem;">Loading articles…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SCŌP CONNECTION ========== -->
+    <section class="hub-connection" aria-labelledby="connection-heading">
+      <div class="hub-connection__inner">
+        <div class="hub-connection__header">
+          <span class="hub-section-label">Formulation</span>
+          <h2 class="hub-connection__title" id="connection-heading">The key ingredients in every scoop</h2>
+        </div>
+        <div class="hub-compound-grid">
+
+          <div class="hub-compound-card">
+            <div class="hub-compound-card__name">Creatine Monohydrate</div>
+            <div class="hub-compound-card__dose">5,000 mg per serving</div>
+            <p class="hub-compound-card__claim">Creatine increases physical performance in successive bursts of short-term, high intensity exercise.</p>
+          </div>
+
+          <div class="hub-compound-card">
+            <div class="hub-compound-card__name">Magnesium</div>
+            <div class="hub-compound-card__dose">400 mg, from magnesium bisglycinate</div>
+            <p class="hub-compound-card__claim">Magnesium contributes to normal functioning of the nervous system and to the reduction of tiredness and fatigue.</p>
+          </div>
+
+          <div class="hub-compound-card">
+            <div class="hub-compound-card__name">Vitamin D3 + K2 (MK-7)</div>
+            <div class="hub-compound-card__dose">100 µg (4,000 IU) + 100 µg</div>
+            <p class="hub-compound-card__claim">Vitamins D and K contribute to the maintenance of normal bones. Vitamin D contributes to the normal function of the immune system.</p>
+          </div>
+
+          <div class="hub-compound-card">
+            <div class="hub-compound-card__name">Methylated B-Complex</div>
+            <div class="hub-compound-card__dose">8 B-vitamins, methylated forms</div>
+            <p class="hub-compound-card__claim">Individual B vitamins contribute to normal energy-yielding metabolism. Folate is provided as L-methylfolate and B12 as methylcobalamin.</p>
+          </div>
+
+        </div>
+        <p class="hub-connection__legal">All claims are authorised under the Great Britain Nutrition and Health Claims Register.</p>
+      </div>
+    </section>
+
+    <!-- ========== CTA ========== -->
+    <section class="edu-cta" aria-labelledby="edu-cta-heading">
+      <div class="edu-cta__inner">
+        <h2 class="edu-cta__title" id="edu-cta-heading">Everything you&rsquo;ve read about, in one scoop.</h2>
+        <p class="edu-cta__sub">30 servings &middot; Subscribe &amp; save from &pound;1.30 per day</p>
+        <a href="order.html" class="btn btn--primary hero__cta">
+          <span class="hero__cta-label">Order Scōp &mdash; from &pound;39</span>
+          <svg class="hero__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo" aria-label="Scōp — home">
+          <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
+        </a>
+        <p class="footer__tagline">Evidence-Based. Clinically Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html#formulation">Formulation</a>
+        <a href="index.html#ingredients">Ingredients</a>
+        <a href="index.html#science">Science</a>
+        <a href="education.html">Education</a>
+        <a href="order.html">Order</a>
+        <a href="account-login.html">My Account</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Ellesmere Project Group Ltd. All rights reserved.</p>
+        <p class="footer__hub-note">Education content is for informational purposes only and does not constitute medical advice.</p>
+        <p style="font-size: 0.72rem; color: var(--color-text-faint); margin-top: var(--space-2); line-height: 1.5;">Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. Not suitable for persons under 18. Keep out of reach of children. Consult a healthcare professional before use if pregnant, breastfeeding or taking medication.</p>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer__attribution">Created with Perplexity Computer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // ── Article library with pillar filtering ─────────────────────────────
+    const TOPICS = {
+      all:       { title: 'All articles' },
+      nutrition: { title: 'Nutrition & Supplementation' },
+      movement:  { title: 'Movement & Recovery' },
+      sleep:     { title: 'Sleep & Restoration' },
+      stress:    { title: 'Stress & Resilience' }
+    };
+    let ARTICLES = [];
+    const esc = s => String(s ?? '').replace(/[&<>"]/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+    const topicOf = a => String(a.category || '').toLowerCase();
+
+    function render(topic) {
+      const grid = document.getElementById('articles-grid');
+      const list = topic === 'all' ? ARTICLES : ARTICLES.filter(a => topicOf(a) === topic);
+      document.getElementById('articles-heading').textContent = TOPICS[topic].title;
+      document.getElementById('articles-count').textContent =
+        list.length + (list.length === 1 ? ' article' : ' articles') + (topic === 'all' ? ' across four pillars' : ' in this pillar');
+      document.querySelectorAll('.hub-filter__btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === topic)));
+      document.querySelectorAll('.hub-pillar-card').forEach(c => c.classList.toggle('is-active', c.dataset.topic === topic));
+      if (!list.length) {
+        grid.innerHTML = '<div class="hub-empty">New articles for this pillar are on the way. <button type="button" class="hub-empty__reset" data-filter="all">See all articles</button></div>';
+        return;
+      }
+      grid.innerHTML = list.map(a => `
+          <article class="hub-article-card">
+            <div class="hub-article-card__top">
+              <span class="hub-article-card__category">${esc(a.category)}</span>
+              <span class="hub-article-card__time">${esc(a.read_time)} min read</span>
+            </div>
+            <h3 class="hub-article-card__title"><a href="article.html?slug=${encodeURIComponent(a.slug)}">${esc(a.title)}</a></h3>
+            <p class="hub-article-card__excerpt">${esc(a.summary)}</p>
+            <div class="hub-article-card__footer">
+              <a href="article.html?slug=${encodeURIComponent(a.slug)}" class="hub-article-card__read" aria-hidden="true" tabindex="-1">Read article →</a>
+            </div>
+          </article>`).join('');
+    }
+
+    function setTopic(topic, { push = true, scroll = false } = {}) {
+      if (!TOPICS[topic]) topic = 'all';
+      render(topic);
+      if (push) {
+        const url = topic === 'all' ? 'education.html' : `education.html?topic=${topic}`;
+        history.pushState({ topic }, '', url + (scroll ? '#articles' : ''));
+      }
+      if (scroll) document.getElementById('articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    async function loadArticles() {
+      const grid = document.getElementById('articles-grid');
+      try {
+        const res = await fetch('articles-index.json');
+        if (!res.ok) throw new Error('index not found');
+        ARTICLES = await res.json();
+        // pillar counts
+        Object.keys(TOPICS).filter(t => t !== 'all').forEach(t => {
+          const n = ARTICLES.filter(a => topicOf(a) === t).length;
+          const el = document.querySelector(`[data-count="${t}"]`);
+          if (el) el.innerHTML = n ? `${n} ${n === 1 ? 'article' : 'articles'} &rarr;` : 'Coming soon';
+        });
+        const initial = new URLSearchParams(location.search).get('topic') || 'all';
+        setTopic(initial, { push: false });
+      } catch (e) {
+        grid.innerHTML = '<div class="hub-empty">Articles loading — check back shortly.</div>';
+      }
+    }
+
+    document.addEventListener('click', e => {
+      const pillar = e.target.closest('.hub-pillar-card[data-topic]');
+      if (pillar && ARTICLES.length) { e.preventDefault(); setTopic(pillar.dataset.topic, { scroll: true }); return; }
+      const f = e.target.closest('[data-filter]');
+      if (f) setTopic(f.dataset.filter);
+    });
+    window.addEventListener('popstate', () => setTopic(new URLSearchParams(location.search).get('topic') || 'all', { push: false }));
+    loadArticles();
+  </script>
+</body>
+</html>
