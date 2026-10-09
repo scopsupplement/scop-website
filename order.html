@@ -477,6 +477,17 @@
       .compare-table { font-size: 0.8rem; }
       .compare-table th, .compare-table td { padding: var(--space-3); }
     }
+      .promo-note {
+      margin: 0 0 var(--space-4);
+      padding: 12px 16px;
+      border: 1px dashed var(--color-accent);
+      border-radius: var(--radius-md, 10px);
+      background: color-mix(in srgb, var(--color-accent) 8%, transparent);
+      font-size: var(--text-sm);
+      line-height: 1.5;
+      color: var(--color-text-muted);
+    }
+    .promo-note strong { color: var(--color-text); letter-spacing: 0.08em; }
   </style>
 <script type="application/ld+json">
 {
@@ -644,7 +655,7 @@
         </div>
       </div>
       <div class="sticky-bar__cta">
-        <button class="btn btn--primary btn--sm" onclick="window.location.href = currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL">
+        <button class="btn btn--primary btn--sm" onclick="goCheckout(currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL)">
           Order Now
         </button>
       </div>
@@ -733,6 +744,9 @@
           <!-- Purchase options -->
           <div class="purchase-options">
             <p class="purchase-options__label">Choose your option</p>
+            <p class="promo-note" id="promoNote" hidden>
+              <strong data-promo-code>FIRSTDIBS15</strong> will be applied at checkout for 15% off your first order. Subscribing? Your free Scōp bottle comes with your first delivery.
+            </p>
 
             <!-- Subscription (pre-selected, best value) -->
             <div class="option-card option-card--featured selected" id="optionSub" onclick="selectOption('sub')">
@@ -767,7 +781,7 @@
 
           <!-- CTA -->
           <div class="cta-block">
-            <button class="cta-block__btn cta-block__btn--primary" id="ctaBtn" onclick="window.location.href = currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL">
+            <button class="cta-block__btn cta-block__btn--primary" id="ctaBtn" onclick="goCheckout(currentOption === 'sub' ? STRIPE_SUB_URL : STRIPE_ONE_URL)">
               Subscribe — £39/month
             </button>
 
@@ -970,10 +984,10 @@
         <h2 class="order-cta-band__title">Start with one scoop.</h2>
         <p class="order-cta-band__sub">Join the growing number of people replacing a shelf full of supplements with a single daily scoop of Scōp.</p>
         <div style="display:flex; flex-direction:column; gap: var(--space-3); width: 100%; max-width: 360px;">
-          <button class="cta-block__btn cta-block__btn--primary" onclick="window.location.href = STRIPE_SUB_URL">
+          <button class="cta-block__btn cta-block__btn--primary" onclick="goCheckout(STRIPE_SUB_URL)">
             Subscribe — £39/month
           </button>
-          <button onclick="window.location.href = STRIPE_ONE_URL" style="background:none;border:1px solid var(--color-border);color:var(--color-text-muted);padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);cursor:pointer;font-size:var(--text-sm);transition:all var(--transition-interactive);">
+          <button onclick="goCheckout(STRIPE_ONE_URL)" style="background:none;border:1px solid var(--color-border);color:var(--color-text-muted);padding:var(--space-3) var(--space-6);border-radius:var(--radius-full);cursor:pointer;font-size:var(--text-sm);transition:all var(--transition-interactive);">
             Buy once — £49
           </button>
         </div>
@@ -1015,8 +1029,36 @@
     // ── OPTION SELECTION ──────────────────────────────────────────────────
     let currentOption = 'sub';
 
-    const STRIPE_SUB_URL = 'https://buy.stripe.com/9B6eVe3vA7SvcZ39cy3cc01';
-    const STRIPE_ONE_URL = 'https://buy.stripe.com/fZufZi2rwa0D0ch2Oa3cc00';
+    let STRIPE_SUB_URL = 'https://buy.stripe.com/9B6eVe3vA7SvcZ39cy3cc01';
+    let STRIPE_ONE_URL = 'https://buy.stripe.com/fZufZi2rwa0D0ch2Oa3cc00';
+
+    // Stripe Checkout refuses to load inside a frame (e.g. a preview window),
+    // so open it in a new tab there. On the live site it opens in the same tab.
+    function goCheckout(url) {
+      let framed = false;
+      try { framed = window.top !== window.self; } catch (e) { framed = true; }
+      if (framed) window.open(url, '_blank', 'noopener');
+      else window.location.href = url;
+    }
+
+    // ── FIRST-ORDER CODE ──────────────────────────────────────────────────
+    // Arriving from the welcome pop-up (order.html?code=FIRSTDIBS15) pre-fills
+    // the code on Stripe checkout. Remembered for this browser session only.
+    (function () {
+      const ALLOWED = ['FIRSTDIBS15'];
+      let code = (new URLSearchParams(location.search).get('code') || '').toUpperCase();
+      if (!ALLOWED.includes(code)) {
+        const m = document.cookie.match(/(?:^|;\s*)scop_promo=([^;]*)/);
+        code = m && ALLOWED.includes(m[1]) ? m[1] : '';
+      }
+      if (!code) return;
+      try { document.cookie = 'scop_promo=' + code + '; path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : ''); } catch (e) {}
+      const withCode = u => u + (u.includes('?') ? '&' : '?') + 'prefilled_promo_code=' + encodeURIComponent(code);
+      STRIPE_SUB_URL = withCode(STRIPE_SUB_URL);
+      STRIPE_ONE_URL = withCode(STRIPE_ONE_URL);
+      const note = document.getElementById('promoNote');
+      if (note) { note.querySelector('[data-promo-code]').textContent = code; note.hidden = false; }
+    })();
 
     function selectOption(type) {
       currentOption = type;

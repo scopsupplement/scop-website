@@ -1,0 +1,327 @@
+/* ==========================================================================
+   Scōp — first-order welcome offer pop-up
+   Uses the site tokens from style.css (navy surfaces, copper accent, Zodiak
+   display + Satoshi body). The bottle sits on a warm cream panel so the
+   navy bottle reads clearly against the navy dialog.
+   ========================================================================== */
+
+html.offer-open { overflow: hidden; }
+
+.offer[hidden] { display: none; }
+
+.offer {
+  position: fixed;
+  inset: 0;
+  z-index: 1200; /* above header + cookie banner */
+  display: grid;
+  place-items: center;
+  padding: var(--space-6, 1.5rem);
+}
+
+.offer__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 13, 26, 0.68);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.offer__dialog {
+  --offer-cream: #f4e9dc;
+  --offer-cream-deep: #e9d6c0;
+  --offer-navy: #1a2540;
+  position: relative;
+  display: grid;
+  grid-template-columns: 272px minmax(0, 1fr);
+  width: min(780px, 100%);
+  max-height: calc(100dvh - 3rem);
+  overflow: auto;
+  background: var(--color-surface, #1f2d4d);
+  color: var(--color-text, #f9eee7);
+  border: 1px solid var(--color-border, #2a3a5c);
+  border-radius: 20px;
+  box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(193, 127, 62, 0.08);
+  opacity: 0;
+  transform: translateY(14px) scale(0.98);
+  transition: opacity 320ms cubic-bezier(0.16, 1, 0.3, 1), transform 420ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.offer.is-visible .offer__backdrop { opacity: 1; }
+.offer.is-visible .offer__dialog { opacity: 1; transform: none; }
+
+/* ---- close ---- */
+.offer__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--color-border, #2a3a5c);
+  background: color-mix(in srgb, var(--color-bg, #1a2540) 60%, transparent);
+  color: var(--color-text-muted, #c4b5a8);
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+.offer__close:hover { color: var(--color-text, #f9eee7); border-color: var(--color-accent, #c17f3e); }
+
+/* ---- visual panel ---- */
+.offer__visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 40px 24px 28px;
+  background:
+    radial-gradient(120% 70% at 50% 42%, #fbf4ec 0%, var(--offer-cream) 52%, var(--offer-cream-deep) 100%);
+  overflow: hidden;
+}
+
+.offer__bottle {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: auto;
+  height: 300px;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 18px rgba(26, 37, 64, 0.28)) drop-shadow(0 2px 3px rgba(26, 37, 64, 0.25));
+}
+
+.offer__badge {
+  position: absolute;
+  top: 22px;
+  left: 20px;
+  z-index: 2;
+  width: 74px;
+  height: 74px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  border-radius: 999px;
+  background: var(--color-accent, #c17f3e);
+  color: var(--offer-navy);
+  font-family: var(--font-body, sans-serif);
+  font-size: 11px;
+  line-height: 1.15;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: rotate(-10deg);
+  box-shadow: 0 8px 18px -6px rgba(193, 127, 62, 0.7);
+}
+.offer__badge strong { font-size: 14px; letter-spacing: 0.04em; font-weight: 700; }
+
+.offer__strap {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--offer-navy);
+  text-align: center;
+}
+.offer__strap span { color: #a8682c; }
+
+/* ---- content ---- */
+.offer__content {
+  padding: 44px 40px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.offer__eyebrow {
+  margin: 0 0 12px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent, #c17f3e);
+  font-weight: 600;
+}
+
+.offer__title {
+  margin: 0 0 10px;
+  padding-right: 28px;
+  font-family: var(--font-display, Georgia, serif);
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 1.95rem);
+  font-weight: 500;
+  line-height: 1.12;
+  color: var(--color-text, #f9eee7);
+  text-wrap: balance;
+}
+
+.offer__desc {
+  margin: 0 0 22px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-muted, #c4b5a8);
+}
+
+/* the two offers, side by side in plain terms */
+.offer__deals {
+  list-style: none;
+  margin: 0 0 18px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.offer__deal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--color-border, #2a3a5c);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-bg, #1a2540) 55%, transparent);
+}
+.offer__deal--sub {
+  border-color: color-mix(in srgb, var(--color-accent, #c17f3e) 70%, transparent);
+  background: color-mix(in srgb, var(--color-accent, #c17f3e) 9%, transparent);
+}
+.offer__deal-label {
+  font-size: 14px;
+  color: var(--color-text-muted, #c4b5a8);
+}
+.offer__deal-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text, #f9eee7);
+  white-space: nowrap;
+}
+.offer__deal--sub .offer__deal-value { color: var(--color-accent-hover, #d4923f); }
+.offer__deal-value em { font-style: normal; font-weight: 400; opacity: 0.7; margin: 0 2px; }
+
+/* code */
+.offer__code {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin: 0 0 22px;
+}
+.offer__code-label { font-size: 13px; color: var(--color-text-faint, #8a7e74); }
+.offer__code-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 10px 9px 16px;
+  border: 1.5px dashed var(--color-accent, #c17f3e);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--color-text, #f9eee7);
+  font: inherit;
+  cursor: pointer;
+  transition: background 180ms ease;
+}
+.offer__code-btn:hover { background: color-mix(in srgb, var(--color-accent, #c17f3e) 10%, transparent); }
+.offer__code-text {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+.offer__code-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--color-accent, #c17f3e) 18%, transparent);
+  color: var(--color-accent-hover, #d4923f);
+  font-size: 12px;
+  font-weight: 600;
+}
+.offer__code-btn.is-copied .offer__code-action { background: var(--color-accent, #c17f3e); color: var(--offer-navy); }
+
+.offer__sr {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* actions */
+.offer__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 10px 28px -10px rgba(193, 127, 62, 0.75);
+}
+.offer__later {
+  align-self: center;
+  margin-top: 10px;
+  padding: 6px 10px;
+  border: 0;
+  background: none;
+  color: var(--color-text-faint, #8a7e74);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.offer__later:hover { color: var(--color-text-muted, #c4b5a8); }
+
+.offer__terms {
+  margin: 14px 0 0;
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--color-text-faint, #8a7e74);
+  text-align: center;
+}
+
+.offer__close:focus-visible,
+.offer__code-btn:focus-visible,
+.offer__later:focus-visible,
+.offer__cta:focus-visible {
+  outline: 2px solid var(--color-accent-hover, #d4923f);
+  outline-offset: 3px;
+}
+
+/* ---- mobile: bottom sheet, bottle in a compact cream band ---- */
+@media (max-width: 640px) {
+  .offer { padding: 0; place-items: end stretch; }
+  .offer__dialog {
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-height: 92dvh;
+    border-radius: 20px 20px 0 0;
+    border-bottom: 0;
+    transform: translateY(40px);
+  }
+  .offer__visual {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 18px;
+    padding: 18px 64px 18px 26px;
+    min-height: 0;
+  }
+  .offer__bottle { height: 128px; width: auto; }
+  .offer__badge { top: auto; bottom: 14px; left: auto; right: 18px; width: 58px; height: 58px; font-size: 9px; }
+  .offer__badge strong { font-size: 11px; }
+  .offer__strap { font-size: 22px; text-align: left; }
+  .offer__strap span { display: block; }
+  .offer__content { padding: 22px 22px calc(18px + env(safe-area-inset-bottom)); }
+  .offer__title { font-size: 1.45rem; padding-right: 0; }
+  .offer__desc { margin-bottom: 16px; font-size: 14px; }
+  .offer__deal { padding: 10px 14px; }
+  .offer__code { margin-bottom: 16px; }
+  .offer__close { top: 12px; right: 12px; background: rgba(26, 37, 64, 0.85); color: #f9eee7; border-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offer__backdrop, .offer__dialog { transition: none; }
+  .offer__dialog { transform: none; }
+}
