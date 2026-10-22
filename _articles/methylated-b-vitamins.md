@@ -4,7 +4,7 @@ date: "2026-10-22"
 category: "nutrition"
 read_time: 6
 summary: "What “methylated” and “active” mean on a B vitamin label, why the form matters, and exactly which B vitamins are in every scoop of Scōp."
-draft: true
+draft: false
 ---
 
 ## Eight vitamins, one essential job
