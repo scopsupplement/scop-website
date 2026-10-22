@@ -54,7 +54,7 @@
           '<span class="offer__badge">Free<br><strong>bottle</strong></span>' +
           '<picture>' +
             '<source type="image/webp" srcset="assets/scop-free-bottle-240.webp 240w, assets/scop-free-bottle-398.webp 398w" sizes="(max-width: 640px) 96px, 200px">' +
-            '<img class="offer__bottle" src="assets/scop-free-bottle-240.png" width="240" height="562" alt="" decoding="async">' +
+            '<img class="offer__bottle" src="assets/scop-free-bottle-240.png" width="240" height="634" alt="" decoding="async">' +
           '</picture>' +
           '<p class="offer__strap">One scoop. <span>Everything.</span></p>' +
         '</div>' +

@@ -321,7 +321,7 @@ a:hover {
   width: 100%;
   max-width: 420px;
   height: auto;
-  border-radius: 0;
+  border-radius: var(--radius-xl);
   display: block;
 }
 
