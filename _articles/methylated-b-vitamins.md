@@ -66,9 +66,9 @@ Vitamin B12 occurs naturally only in animal foods<sup class="cite"><a href="#ref
 
 NRV = Nutrient Reference Value.
 
-## Formulated within safe limits
+## Understanding the daily amounts
 
-Every B vitamin in Scōp sits within the safe upper limits set by EFSA:
+Scōp declares every B vitamin dose. Where EFSA has set an adult upper intake level, consider the amount in your daily serving alongside the other sources covered by that limit:
 
 - **Vitamin B6:** 10 mg, within EFSA's adult upper limit of 12 mg a day<sup class="cite"><a href="#ref-12">[12]</a></sup>. Because that limit covers all sources, we'd recommend not taking Scōp alongside other supplements that contain vitamin B6.
 - **Folate:** 400 µg, well within the 1,000 µg adult upper limit<sup class="cite"><a href="#ref-11">[11]</a></sup>.
