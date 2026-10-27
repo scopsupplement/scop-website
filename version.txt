@@ -1,1 +1,1 @@
-2026-10-27 — v18: article 8 (the-missed-scoop); footer company name Scōp Supplement Ltd
+2026-10-27 — v20: Netlify function submission-created.mjs sends "waitlist" sign-ups to Brevo (needs BREVO_API_KEY and BREVO_LIST_ID). Includes v19 pop-up sign-up and v18 article 8.

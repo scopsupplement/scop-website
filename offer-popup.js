@@ -7,6 +7,8 @@
      `scop_offer_seen`, essential/functional — no tracking).
    - Accessible dialog: focus moves in, Tab is trapped, Esc / backdrop /
      close button all dismiss, focus returns to where it was.
+   - Includes an email sign-up for the weekly email, posted to the existing
+     Netlify "waitlist" form with source=popup.
    Preview tip: add ?offer=1 to the URL to force it to show.
    ========================================================================== */
 (function () {
@@ -91,9 +93,25 @@
             'Claim my offer' +
             '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
           '</a>' +
-          '<button type="button" class="offer__later" data-offer-close>Maybe later</button>' +
-
           '<p class="offer__terms">First orders only. One use per customer. Free bottle included with your first subscription delivery.</p>' +
+
+          '<div class="offer__signup" data-offer-signup>' +
+            '<p class="offer__signup-title" id="offer-signup-title">Not ready yet? Hear more first.</p>' +
+            '<p class="offer__signup-desc" id="offer-signup-desc">Join our weekly email: what\u2019s in the scoop, member offers and the latest from the wellness space. Your 15% code stays valid for your first order.</p>' +
+            '<form class="offer__form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-offer-form aria-labelledby="offer-signup-title">' +
+              '<input type="hidden" name="form-name" value="waitlist">' +
+              '<input type="hidden" name="source" value="popup">' +
+              '<input type="hidden" name="weekly_email_consent" value="yes">' +
+              '<p class="offer__sr" aria-hidden="true"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>' +
+              '<label class="offer__sr" for="offer-email">Email address</label>' +
+              '<input class="offer__input" id="offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Your email address" required aria-describedby="offer-signup-desc offer-form-status">' +
+              '<button type="submit" class="offer__submit">Keep me posted</button>' +
+            '</form>' +
+            '<p class="offer__form-status" id="offer-form-status" role="status" aria-live="polite"></p>' +
+            '<p class="offer__fineprint">Weekly at most. Unsubscribe any time.</p>' +
+          '</div>' +
+
+          '<button type="button" class="offer__later" data-offer-close>Maybe later</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(root);
@@ -104,6 +122,43 @@
       if (e.target.closest('[data-offer-cta]')) { copyCode(true); markSeen(); }
     });
     root.addEventListener('keydown', onKey);
+    root.querySelector('[data-offer-form]').addEventListener('submit', onSignup);
+  }
+
+  // Email sign-up: posts to the existing Netlify "waitlist" form (source=popup)
+  function onSignup(e) {
+    e.preventDefault();
+    var form = e.currentTarget;
+    var input = form.querySelector('input[name="email"]');
+    var btn = form.querySelector('.offer__submit');
+    var status = root.querySelector('#offer-form-status');
+    var email = (input.value || '').trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      input.setAttribute('aria-invalid', 'true');
+      status.textContent = 'Please enter a valid email address.';
+      status.className = 'offer__form-status is-error';
+      input.focus();
+      return;
+    }
+    input.removeAttribute('aria-invalid');
+    btn.disabled = true; btn.textContent = 'Signing you up\u2026';
+    status.textContent = ''; status.className = 'offer__form-status';
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString()
+    }).then(function (res) {
+      if (!res.ok) throw new Error('status ' + res.status);
+      markSeen();
+      root.querySelector('[data-offer-signup]').innerHTML =
+        '<p class="offer__signup-title">You\u2019re on the list.</p>' +
+        '<p class="offer__signup-desc">Look out for our weekly email. When you\u2019re ready, code <strong>' + CODE + '</strong> gives you 15% off your first order.</p>';
+      var t = root.querySelector('.offer__signup-title'); if (t) { t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); }
+    }).catch(function () {
+      btn.disabled = false; btn.textContent = 'Keep me posted';
+      status.textContent = 'Sorry, that didn\u2019t go through. Please try again.';
+      status.className = 'offer__form-status is-error';
+    });
   }
 
   function copyCode(silent) {
@@ -135,7 +190,7 @@
 
   function focusables() {
     return Array.prototype.slice.call(
-      root.querySelectorAll('.offer__dialog a[href], .offer__dialog button:not([disabled])')
+      root.querySelectorAll('.offer__dialog a[href], .offer__dialog button:not([disabled]), .offer__dialog input:not([type="hidden"]):not([tabindex="-1"])')
     );
   }
 
