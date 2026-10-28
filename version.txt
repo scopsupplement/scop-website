@@ -1,1 +1,1 @@
-2026-10-27 — v20: Netlify function submission-created.mjs sends "waitlist" sign-ups to Brevo (needs BREVO_API_KEY and BREVO_LIST_ID). Includes v19 pop-up sign-up and v18 article 8.
+2026-10-28 — v21 (dose wording revised): AI search visibility. Articles pre-rendered to crawlable pages in articles/ at build (scripts/build-static-pages.js), new FAQ page (_pages/faq.md), buyer's guide article, robots.txt, sitemap.xml, llms.txt, homepage structured data, Perplexity author tags removed. Includes v20 Brevo function.

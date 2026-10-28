@@ -4,3 +4,6 @@
 
 # Serve _articles markdown files directly
 /_articles/*  /_articles/:splat  200
+
+# Articles now have their own crawlable pages; send old links there
+/article.html  slug=:slug  /articles/:slug.html  301!

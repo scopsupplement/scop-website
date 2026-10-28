@@ -1,0 +1,27 @@
+# Scōp: search engines and AI assistants are welcome to read the public site.
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /account.html
+Disallow: /account-login.html
+Disallow: /account-login-demo.html
+
+# AI search and assistant crawlers, named explicitly so it is clear they are allowed
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+Allow: /
+Disallow: /admin/
+Disallow: /account.html
+Disallow: /account-login.html
+Disallow: /account-login-demo.html
+
+Sitemap: https://scopsupplement.uk/sitemap.xml

@@ -1,6 +1,7 @@
 [build]
-  # Rebuilds articles-index.json from _articles/*.md on every deploy (incl. CMS publishes)
-  command = "node scripts/build-articles-index.js"
+  # Rebuilds articles-index.json from _articles/*.md on every deploy (incl. CMS publishes),
+  # then writes crawlable HTML for every article, the FAQ page and sitemap.xml
+  command = "node scripts/build-articles-index.js && node scripts/build-static-pages.js"
   publish = "."
   functions = "netlify/functions"
 
@@ -9,4 +10,4 @@
   package = "@netlify/plugin-lighthouse"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
