@@ -4,6 +4,7 @@ date: "2026-06-01"
 category: "movement"
 read_time: 6
 summary: "The science behind low-intensity exercise and mitochondrial health — why training at conversational pace builds the metabolic foundation that protects against age-related decline."
+seo_description: "The science of low intensity training and mitochondrial health, and why training at a conversational pace builds a foundation for healthy ageing."
 ---
 
 ## The most powerful longevity tool hiding in plain sight

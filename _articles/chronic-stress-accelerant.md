@@ -4,6 +4,7 @@ date: "2026-06-01"
 category: "stress"
 read_time: 9
 summary: "The biological mechanisms connecting psychological stress to accelerated cellular ageing — telomere attrition, cortisol dysregulation, and the interventions with the strongest evidence base."
+seo_description: "How chronic stress speeds up cellular ageing through telomere attrition and cortisol, and the interventions with the strongest evidence behind them."
 ---
 
 ## Stress isn't just how you feel

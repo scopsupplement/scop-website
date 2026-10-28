@@ -4,6 +4,7 @@ date: "2026-06-01"
 category: "sleep"
 read_time: 8
 summary: "Slow-wave sleep declines with age — a change that affects memory consolidation, growth hormone secretion, and recovery. Here's the science and what to do about it."
+seo_description: "Slow-wave sleep declines with age, affecting memory, growth hormone and recovery. Here's the science and what you can do about it."
 ---
 
 ## Sleep changes — even when you don't notice

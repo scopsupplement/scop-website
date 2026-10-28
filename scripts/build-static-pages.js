@@ -83,14 +83,21 @@ function faqSchema(faqs) {
  */
 function renderPage(opts) {
   let html = TEMPLATE;
-  const pageTitle = `${opts.title} | Scōp`;
+  // Search engines show about 60 to 70 characters of a title and 160 of a
+  // description. Articles can set shorter seo_title / seo_description in their
+  // frontmatter; the on-page heading and summary are unchanged.
+  const baseTitle = opts.seoTitle || opts.title;
+  const pageTitle = (baseTitle + ' | Scōp').length <= 70 ? `${baseTitle} | Scōp` : baseTitle;
+  const metaDesc = opts.seoDescription || opts.description;
+  if (pageTitle.length > 70) console.warn(`[static-pages] title over 70 characters, add seo_title: ${opts.url}`);
+  if (metaDesc.length > 160) console.warn(`[static-pages] description over 160 characters, add seo_description: ${opts.url}`);
   const head = [
     `<title>${esc(pageTitle)}</title>`,
-    `<meta name="description" content="${esc(opts.description)}">`,
+    `<meta name="description" content="${esc(metaDesc)}">`,
     `<link rel="canonical" href="${opts.url}">`,
     `<meta property="og:type" content="${opts.ogType || 'article'}">`,
     `<meta property="og:title" content="${esc(opts.title)}">`,
-    `<meta property="og:description" content="${esc(opts.description)}">`,
+    `<meta property="og:description" content="${esc(metaDesc)}">`,
     `<meta property="og:url" content="${opts.url}">`,
     `<meta property="og:site_name" content="Scōp">`,
     `<meta property="og:image" content="${SITE}/assets/scop-product-hero-portrait-2.jpg">`,
@@ -173,7 +180,8 @@ for (const a of index) {
   });
 
   write(`articles/${a.slug}.html`, renderPage({
-    url, title: a.title, description: a.summary, eyebrow: catLabel, readTime: a.read_time,
+    url, title: a.title, description: a.summary, eyebrow: catLabel,
+    seoTitle: data.seo_title ? String(data.seo_title) : '', seoDescription: data.seo_description ? String(data.seo_description) : '', readTime: a.read_time,
     dateIso: a.date, dateText: dt ? dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : '',
     bodyHtml, schemas, image: data.image,
     backHref: CATEGORY_LABELS[cat] ? `education.html?topic=${cat}#articles` : 'education.html',

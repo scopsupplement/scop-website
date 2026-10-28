@@ -4,6 +4,8 @@ date: "2026-10-27"
 category: "nutrition"
 read_time: 5
 summary: "Some of the most popular supplement ingredients work by building up over weeks, not hours. Why showing up every day matters more than the perfect stack, and how to make the routine stick."
+seo_title: "The Missed Scoop: Why Consistency Beats the Perfect Stack"
+seo_description: "Creatine and vitamin D build up over weeks, not hours. Why showing up every day beats the perfect stack, and how to make the routine stick."
 draft: false
 ---
 

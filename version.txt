@@ -1,1 +1,1 @@
-2026-10-28 — v21 (dose wording revised): AI search visibility. Articles pre-rendered to crawlable pages in articles/ at build (scripts/build-static-pages.js), new FAQ page (_pages/faq.md), buyer's guide article, robots.txt, sitemap.xml, llms.txt, homepage structured data, Perplexity author tags removed. Includes v20 Brevo function.
+2026-10-28 — v22: shorter search titles and descriptions for Bing/Google limits (optional seo_title / seo_description fields in articles and the CMS). Includes v21 AI search visibility work.

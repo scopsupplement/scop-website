@@ -41,6 +41,18 @@ collections:
         default: 5
         value_type: "int"
         min: 1
+
+      - label: "Search title (optional)"
+        name: "seo_title"
+        widget: "string"
+        required: false
+        hint: "Shorter title for Google and Bing, under 60 characters. Leave blank to use the main title."
+
+      - label: "Search description (optional)"
+        name: "seo_description"
+        widget: "text"
+        required: false
+        hint: "Shown under the link in search results, 120 to 155 characters. Leave blank to use the summary."
         max: 30
 
       - label: "Summary"

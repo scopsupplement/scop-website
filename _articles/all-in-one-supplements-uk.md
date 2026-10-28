@@ -4,6 +4,8 @@ date: "2026-10-27"
 category: "nutrition"
 read_time: 6
 summary: "Searching for the best all in one supplement in the UK? Here's how to compare them properly: printed doses, UK guidance levels, creatine, ingredient forms, real cost per day and whether you'll actually take it."
+seo_title: "All in One Supplements UK: 6 Things to Check Before You Buy"
+seo_description: "How to compare all in one supplements in the UK: printed doses, NHS guidance levels, creatine, ingredient forms and the real cost per day."
 draft: false
 ---
 
