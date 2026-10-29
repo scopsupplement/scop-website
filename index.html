@@ -14,45 +14,150 @@
   <link rel="canonical" href="https://scopsupplement.uk/">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://scopsupplement.uk/#organization",
-        "name": "Scōp Supplement Ltd",
-        "alternateName": ["Scōp", "Scop"],
-        "url": "https://scopsupplement.uk/",
-        "logo": "https://scopsupplement.uk/assets/logo.svg",
-        "description": "UK maker of Scōp, an all in one daily supplement powder combining creatine, magnesium, vitamins D3 and K2 and all eight B vitamins in one scoop.",
-        "founder": { "@type": "Person", "name": "Graeme Kerr" },
-        "foundingDate": "2026-04-17",
-        "address": { "@type": "PostalAddress", "streetAddress": "38 Ellesmere Road, Stockton Heath", "addressLocality": "Warrington", "postalCode": "WA4 6DZ", "addressCountry": "GB" },
-        "areaServed": "GB"
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://scopsupplement.uk/#organization",
+      "name": "Scōp Supplement Ltd",
+      "alternateName": [
+        "Scōp",
+        "Scop"
+      ],
+      "url": "https://scopsupplement.uk/",
+      "logo": "https://scopsupplement.uk/assets/logo.svg",
+      "description": "UK maker of Scōp, an all in one daily supplement powder combining creatine, magnesium, vitamins D3 and K2 and all eight B vitamins in one scoop.",
+      "founder": {
+        "@type": "Person",
+        "name": "Graeme Kerr"
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://scopsupplement.uk/#website",
-        "name": "Scōp",
-        "url": "https://scopsupplement.uk/",
-        "publisher": { "@id": "https://scopsupplement.uk/#organization" }
+      "foundingDate": "2026-04-17",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "38 Ellesmere Road, Stockton Heath",
+        "addressLocality": "Warrington",
+        "postalCode": "WA4 6DZ",
+        "addressCountry": "GB"
       },
-      {
-        "@type": "Product",
-        "@id": "https://scopsupplement.uk/#product",
-        "name": "Scōp Daybreak Orange All in One Daily Supplement",
-        "brand": { "@type": "Brand", "name": "Scōp" },
-        "manufacturer": { "@id": "https://scopsupplement.uk/#organization" },
-        "category": "Food supplement",
-        "description": "All in one daily supplement powder with 14 clearly dosed ingredients: 5,000 mg creatine monohydrate, 400 mg magnesium (as bisglycinate), vitamin D3 100 µg (4,000 IU), vitamin K2 MK-7 100 µg, all eight B vitamins in active forms, 750 mg reduced glutathione and 500 mg moringa leaf extract. Orange flavour, 330 g pouch, 30 servings. Made in the UK, suitable for vegetarians, caffeine free.",
-        "image": "https://scopsupplement.uk/assets/scop-product-hero-portrait-2.jpg",
-        "url": "https://scopsupplement.uk/",
-        "offers": [
-          { "@type": "Offer", "name": "Monthly subscription", "price": "39.00", "priceCurrency": "GBP", "availability": "https://schema.org/InStock", "url": "https://scopsupplement.uk/order.html" },
-          { "@type": "Offer", "name": "One-off pouch", "price": "49.00", "priceCurrency": "GBP", "availability": "https://schema.org/InStock", "url": "https://scopsupplement.uk/order.html" }
-        ]
+      "areaServed": "GB"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://scopsupplement.uk/#website",
+      "name": "Scōp",
+      "url": "https://scopsupplement.uk/",
+      "publisher": {
+        "@id": "https://scopsupplement.uk/#organization"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Product",
+      "@id": "https://scopsupplement.uk/#product",
+      "name": "Scōp Daybreak Orange All in One Daily Supplement",
+      "brand": {
+        "@type": "Brand",
+        "name": "Scōp"
+      },
+      "manufacturer": {
+        "@id": "https://scopsupplement.uk/#organization"
+      },
+      "category": "Food supplement",
+      "description": "All in one daily supplement powder with 14 clearly dosed ingredients: 5,000 mg creatine monohydrate, 400 mg magnesium (as bisglycinate), vitamin D3 100 µg (4,000 IU), vitamin K2 MK-7 100 µg, all eight B vitamins in active forms, 750 mg reduced glutathione and 500 mg moringa leaf extract. Orange flavour, 330 g pouch, 30 servings. Made in the UK, suitable for vegetarians, caffeine free.",
+      "image": "https://scopsupplement.uk/assets/scop-product-hero-portrait-2.jpg",
+      "url": "https://scopsupplement.uk/",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Monthly subscription",
+          "price": "39.00",
+          "priceCurrency": "GBP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://scopsupplement.uk/order.html",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "GBP"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "GB"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 2,
+                "maxValue": 4,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "GB",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 14,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+            "merchantReturnLink": "https://scopsupplement.uk/order.html"
+          }
+        },
+        {
+          "@type": "Offer",
+          "name": "One-off pouch",
+          "price": "49.00",
+          "priceCurrency": "GBP",
+          "availability": "https://schema.org/InStock",
+          "url": "https://scopsupplement.uk/order.html",
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": "0",
+              "currency": "GBP"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "GB"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 2,
+                "maxValue": 4,
+                "unitCode": "DAY"
+              }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "GB",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 14,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+            "merchantReturnLink": "https://scopsupplement.uk/order.html"
+          }
+        }
+      ]
+    }
+  ]
+}
   </script>
 
   <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
@@ -619,7 +724,7 @@
 
           <details class="faq-item">
             <summary class="faq-item__q">What are the delivery and returns terms?</summary>
-            <p class="faq-item__a">We dispatch orders promptly and aim to deliver within 2–5 working days. If you have any issue with your order, please contact us directly and we will do our best to resolve it. For full terms, see our order page.</p>
+            <p class="faq-item__a">UK delivery is free on every order, and we aim to deliver within 2 to 5 working days. Unopened pouches and products can be returned within 14 days of delivery for a full refund, with return postage at your own cost. Email <a href="mailto:grae@scopsupplement.com">grae@scopsupplement.com</a> to arrange a return.</p>
           </details>
 
         </div>

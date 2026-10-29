@@ -87,7 +87,15 @@ A monthly subscription is £39, about £1.30 a day. A one-off pouch is £49. Eac
 
 ### Can I pause or cancel my subscription?
 
-Yes. You can pause or cancel any time, with no minimum term.
+Yes. You can pause or cancel any time before your next billing date, with no minimum term and no fees. Manage it yourself through your [Stripe subscription account](https://billing.stripe.com/p/login/fZufZi2rwa0D0ch2Oa3cc00), or email grae@scopsupplement.com and we'll handle it for you.
+
+### How much is delivery?
+
+UK delivery is free on every order and included in both prices. We aim to deliver within 2 to 5 working days.
+
+### What is your returns policy?
+
+If you change your mind, you can return unopened pouches and products within 14 days of delivery for a full refund. Email grae@scopsupplement.com first so we can arrange it. Return postage is at your own cost, and we'll refund you within 14 days of receiving your return. For hygiene reasons we can't accept opened pouches, unless the product is faulty or damaged, in which case get in touch and we'll put it right at no cost to you.
 
 ### Do subscribers get anything extra?
 

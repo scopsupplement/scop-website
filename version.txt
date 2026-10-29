@@ -1,1 +1,1 @@
-2026-10-28 — v22: shorter search titles and descriptions for Bing/Google limits (optional seo_title / seo_description fields in articles and the CMS). Includes v21 AI search visibility work.
+2026-10-29 — v23: delivery and returns FAQs and returns policy on order page, cancel answer points to Stripe account or grae@scopsupplement.com, shippingDetails and hasMerchantReturnPolicy added to product data for Google. Includes v22.

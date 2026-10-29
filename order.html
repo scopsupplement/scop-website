@@ -539,7 +539,23 @@
       "name": "How can I cancel my Scōp subscription?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You can cancel your subscription at any time before your next billing date with no fees or penalties. Contact us at info@scopsupplement.uk and we will handle it immediately."
+        "text": "You can cancel your subscription at any time before your next billing date with no fees or penalties. Manage or cancel it yourself through your Stripe subscription account, or email grae@scopsupplement.com and we'll handle it for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much is delivery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "UK delivery is free on every order and included in both prices. We aim to deliver within 2 to 5 working days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is your returns policy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you change your mind, you can return unopened pouches and products within 14 days of delivery for a full refund. Email grae@scopsupplement.com first so we can arrange it. Return postage is at your own cost, and we'll refund you within 14 days of receiving your return. For hygiene reasons we can't accept opened pouches, unless the product is faulty or damaged, in which case get in touch and we'll put it right at no cost to you."
       }
     },
     {
@@ -595,7 +611,43 @@
         "billingIncrement": 1
       },
       "availability": "https://schema.org/InStock",
-      "url": "https://scopsupplement.uk/order.html"
+      "url": "https://scopsupplement.uk/order.html",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "GBP"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "GB"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "maxValue": 4,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "GB",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+        "merchantReturnLink": "https://scopsupplement.uk/order.html"
+      }
     },
     {
       "@type": "Offer",
@@ -603,18 +655,86 @@
       "price": "49.00",
       "priceCurrency": "GBP",
       "availability": "https://schema.org/InStock",
-      "url": "https://scopsupplement.uk/order.html"
+      "url": "https://scopsupplement.uk/order.html",
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0",
+          "currency": "GBP"
+        },
+        "shippingDestination": {
+          "@type": "DefinedRegion",
+          "addressCountry": "GB"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 0,
+            "maxValue": 1,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 2,
+            "maxValue": 4,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "GB",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 14,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+        "merchantReturnLink": "https://scopsupplement.uk/order.html"
+      }
     }
   ],
   "additionalProperty": [
-    { "@type": "PropertyValue", "name": "Servings per pouch", "value": "30" },
-    { "@type": "PropertyValue", "name": "Serving size", "value": "11 g" },
-    { "@type": "PropertyValue", "name": "Creatine monohydrate", "value": "5000 mg" },
-    { "@type": "PropertyValue", "name": "Magnesium (from magnesium bisglycinate)", "value": "400 mg elemental" },
-    { "@type": "PropertyValue", "name": "Vitamin D3", "value": "100 mcg (4000 IU)" },
-    { "@type": "PropertyValue", "name": "Vitamin K2 MK-7", "value": "100 mcg" },
-    { "@type": "PropertyValue", "name": "Country of manufacture", "value": "United Kingdom" },
-    { "@type": "PropertyValue", "name": "Suitable for vegetarians", "value": "Yes" }
+    {
+      "@type": "PropertyValue",
+      "name": "Servings per pouch",
+      "value": "30"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Serving size",
+      "value": "11 g"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Creatine monohydrate",
+      "value": "5000 mg"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Magnesium (from magnesium bisglycinate)",
+      "value": "400 mg elemental"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Vitamin D3",
+      "value": "100 mcg (4000 IU)"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Vitamin K2 MK-7",
+      "value": "100 mcg"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Country of manufacture",
+      "value": "United Kingdom"
+    },
+    {
+      "@type": "PropertyValue",
+      "name": "Suitable for vegetarians",
+      "value": "Yes"
+    }
   ]
 }
 </script>
@@ -965,7 +1085,21 @@
               How can I cancel my subscription?
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
-            <div class="faq-answer">You can cancel your subscription at any time before your next billing date with no fees or penalties. Simply contact us at info@scopsupplement.uk and we'll handle it immediately.</div>
+            <div class="faq-answer">You can cancel your subscription at any time before your next billing date with no fees or penalties. Manage or cancel it yourself through your <a href="https://billing.stripe.com/p/login/fZufZi2rwa0D0ch2Oa3cc00" target="_blank" rel="noopener noreferrer" style="color:var(--color-accent);text-decoration:underline;">Stripe subscription account</a>, or email <a href="mailto:grae@scopsupplement.com" style="color:var(--color-accent);text-decoration:underline;">grae@scopsupplement.com</a> and we'll handle it for you.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              How much is delivery?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">UK delivery is free on every order and included in both prices. We aim to deliver within 2 to 5 working days.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+              What is your returns policy?
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="faq-answer">If you change your mind, you can return unopened pouches and products within 14 days of delivery for a full refund. Email <a href="mailto:grae@scopsupplement.com" style="color:var(--color-accent);text-decoration:underline;">grae@scopsupplement.com</a> first so we can arrange it. Return postage is at your own cost, and we'll refund you within 14 days of receiving your return. For hygiene reasons we can't accept opened pouches, unless the product is faulty or damaged, in which case get in touch and we'll put it right at no cost to you.</div>
           </div>
           <div class="faq-item">
             <button class="faq-question" aria-expanded="false">
