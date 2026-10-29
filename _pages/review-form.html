@@ -1,0 +1,87 @@
+<!-- Body of review.html. The build wraps this in the site design.
+     Submissions go to Netlify (Forms > review). Publish approved reviews in the CMS under Customer Reviews. -->
+<style>
+  .rv-form { display:flex; flex-direction:column; gap: 22px; margin-top: 8px; }
+  .rv-form label.rv-label { display:block; font-weight:600; color: var(--color-text); margin-bottom: 8px; font-size: 0.95rem; }
+  .rv-form input[type=text], .rv-form input[type=email], .rv-form textarea {
+    width:100%; box-sizing:border-box; padding: 12px 14px; border-radius: 8px; font: inherit; font-size: 0.95rem;
+    background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+  .rv-form textarea { min-height: 140px; resize: vertical; }
+  .rv-hint { font-size: 0.8rem; color: var(--color-text-faint); margin-top: 6px; }
+  .rv-stars { display:inline-flex; flex-direction: row-reverse; gap: 6px; }
+  .rv-stars input { position:absolute; opacity:0; width:1px; height:1px; }
+  .rv-stars label { font-size: 2.1rem; line-height: 1; cursor: pointer; color: var(--color-border); transition: color .15s; }
+  .rv-stars input:checked ~ label, .rv-stars label:hover, .rv-stars label:hover ~ label { color: var(--color-accent); }
+  .rv-stars input:focus-visible + label { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
+  .rv-consent { display:flex; gap: 10px; align-items:flex-start; font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.5; }
+  .rv-consent input { margin-top: 4px; accent-color: var(--color-accent); }
+  .rv-submit { align-self:flex-start; background: var(--color-accent); color: #1a2540; font-weight: 700; border: 0; border-radius: 999px; padding: 14px 30px; font-size: 1rem; cursor: pointer; }
+  .rv-submit:disabled { opacity: .6; cursor: default; }
+  .rv-thanks { padding: 24px 26px; border-left: 3px solid var(--color-accent); background: var(--color-surface); border-radius: 0 8px 8px 0; }
+  .rv-error { color: #e08a7a; font-size: 0.9rem; }
+  .article-disclaimer { display:none; }
+</style>
+
+<p>Thanks for taking a moment to share your experience. Every genuine review helps other people decide whether Scōp is right for them, and helps us improve.</p>
+
+<form class="rv-form" name="review" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="review-form">
+  <input type="hidden" name="form-name" value="review">
+  <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+
+  <div>
+    <span class="rv-label" style="display:block;font-weight:600;margin-bottom:8px;">Your rating</span>
+    <div class="rv-stars" role="radiogroup" aria-label="Star rating">
+      <input type="radio" id="r5" name="rating" value="5" required><label for="r5" title="5 stars">★</label>
+      <input type="radio" id="r4" name="rating" value="4"><label for="r4" title="4 stars">★</label>
+      <input type="radio" id="r3" name="rating" value="3"><label for="r3" title="3 stars">★</label>
+      <input type="radio" id="r2" name="rating" value="2"><label for="r2" title="2 stars">★</label>
+      <input type="radio" id="r1" name="rating" value="1"><label for="r1" title="1 star">★</label>
+    </div>
+  </div>
+
+  <div>
+    <label class="rv-label" for="rv-text">Your review</label>
+    <textarea id="rv-text" name="review" maxlength="1200" required placeholder="How are you getting on with Scōp? Taste, routine, anything you'd tell a friend."></textarea>
+  </div>
+
+  <div>
+    <label class="rv-label" for="rv-name">First name and initial</label>
+    <input type="text" id="rv-name" name="name" maxlength="40" required placeholder="e.g. Sarah K.">
+    <p class="rv-hint">This is how your name will appear with your review.</p>
+  </div>
+
+  <div>
+    <label class="rv-label" for="rv-email">Email</label>
+    <input type="email" id="rv-email" name="email" required>
+    <p class="rv-hint">Never published. We only use it to match your review to your order.</p>
+  </div>
+
+  <label class="rv-consent"><input type="checkbox" name="publish_consent" value="yes" required> I agree that Scōp can publish my review, star rating and first name and initial on its website.</label>
+
+  <button type="submit" class="rv-submit">Submit review</button>
+  <p class="rv-error" id="rv-error" hidden>Sorry, something went wrong. Please try again, or email your review to grae@scopsupplement.com.</p>
+</form>
+
+<div class="rv-thanks" id="rv-thanks" hidden>
+  <h3 style="margin-top:0;">Thank you!</h3>
+  <p style="margin-bottom:0;">Your review has been sent. We publish every genuine review, usually within a few days.</p>
+</div>
+
+<p class="rv-hint" style="margin-top:28px;">We publish all genuine reviews, positive or negative, and don't offer anything in return for a review. We check each review against our orders before publishing.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('review-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('.rv-submit'); btn.disabled = true;
+    document.getElementById('rv-error').hidden = true;
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString() })
+      .then(function (r) { if (!r.ok) throw new Error(r.status);
+        form.hidden = true; document.getElementById('rv-thanks').hidden = false; })
+      .catch(function () { btn.disabled = false; document.getElementById('rv-error').hidden = false; });
+  });
+})();
+</script>

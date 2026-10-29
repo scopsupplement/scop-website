@@ -227,6 +227,100 @@ const listHtml = index.map(a => `
 const eduOut = edu.replace(/(<!-- STATIC-ARTICLES:START -->)[\s\S]*?(<!-- STATIC-ARTICLES:END -->)/, `$1${listHtml}\n          $2`);
 if (eduOut !== edu) write('education.html', eduOut);
 
+// ── Review page (_pages/review-form.html → review.html) ──────────────────
+if (fs.existsSync(path.join(ROOT, '_pages/review-form.html'))) {
+  write('review.html', renderPage({
+    url: SITE + '/review.html', title: 'Leave a Review', ogType: 'website',
+    description: 'Tried Scōp? Leave a star rating and a short review to help others decide.',
+    eyebrow: 'Customer reviews', bodyHtml: read('_pages/review-form.html'),
+    schemas: [{ '@context': 'https://schema.org', ...ORG }],
+    backHref: 'order.html', backText: '← Back to Scōp', moreHref: 'order.html#reviews', moreText: 'Read reviews &rarr;',
+  }));
+  console.log('[static-pages] review.html written');
+}
+
+// ── Customer reviews on the order page (_reviews/*.md, added in the CMS) ──
+{
+  const dir = path.join(ROOT, '_reviews');
+  const reviews = (fs.existsSync(dir) ? fs.readdirSync(dir) : [])
+    .filter(f => f.endsWith('.md'))
+    .map(f => {
+      const { data, body } = fm.split(fs.readFileSync(path.join(dir, f), 'utf8'));
+      const rating = Math.round(Number(data.rating));
+      const text = String(data.body || body || '').trim();
+      const name = String(data.name || '').trim();
+      const date = String(data.date || '').slice(0, 10);
+      if (!(rating >= 1 && rating <= 5) || !text || !name) {
+        console.warn(`[reviews] skipped ${f}: needs a name, a 1 to 5 rating and review text`);
+        return null;
+      }
+      return { name, rating, text, date };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.date.localeCompare(a.date));
+
+  const starStr = n => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+  let order = read('order.html');
+  let section;
+  if (reviews.length) {
+    const avg = reviews.reduce((t, r) => t + r.rating, 0) / reviews.length;
+    const avgTxt = (Math.round(avg * 10) / 10).toFixed(1);
+    section = `
+    <section class="order-section" id="reviews">
+      <div class="order-section__inner">
+        <div class="order-section__header" data-animate>
+          <h2 class="order-section__title">What customers say</h2>
+          <div class="reviews-summary"><span class="stars" aria-hidden="true">${starStr(Math.round(avg))}</span><span>${avgTxt} out of 5 from ${reviews.length} review${reviews.length === 1 ? '' : 's'}</span></div>
+        </div>
+        <div class="reviews-grid">${reviews.map(r => `
+          <article class="review-card">
+            <div class="stars" aria-label="${r.rating} out of 5 stars">${starStr(r.rating)}</div>
+            <p>${esc(r.text).replace(/\n+/g, '<br>')}</p>
+            <div class="review-card__who">${esc(r.name)}${r.date ? ' · ' + new Date(r.date + 'T12:00:00Z').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }) : ''}</div>
+          </article>`).join('')}
+        </div>
+        <div class="reviews-cta"><a href="review.html">Tried Scōp? Leave a review</a></div>
+      </div>
+    </section>
+    `;
+    // Rating data for Google, only ever built from the published reviews above
+    order = order.replace(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g, (whole, json) => {
+      let d; try { d = JSON.parse(json); } catch (_) { return whole; }
+      if (d['@type'] !== 'Product') return whole;
+      d.aggregateRating = { '@type': 'AggregateRating', ratingValue: avgTxt, reviewCount: reviews.length, bestRating: '5', worstRating: '1' };
+      d.review = reviews.slice(0, 20).map(r => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: r.name },
+        reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5', worstRating: '1' },
+        reviewBody: r.text,
+        ...(r.date ? { datePublished: r.date } : {}),
+      }));
+      return `<script type="application/ld+json">\n${JSON.stringify(d, null, 2)}\n</script>`;
+    });
+  } else {
+    section = `
+    <section class="order-section" id="reviews">
+      <div class="order-section__inner">
+        <div class="order-section__header" data-animate>
+          <h2 class="order-section__title">Customer reviews</h2>
+          <p class="order-section__sub">Already taking Scōp? <a href="review.html" style="color:var(--color-accent);text-decoration:underline;">Be one of the first to leave a review.</a></p>
+        </div>
+      </div>
+    </section>
+    `;
+    // No published reviews: make sure no rating data is left over
+    order = order.replace(/<script type="application\/ld\+json">\s*([\s\S]*?)\s*<\/script>/g, (whole, json) => {
+      let d; try { d = JSON.parse(json); } catch (_) { return whole; }
+      if (d['@type'] !== 'Product' || (!d.aggregateRating && !d.review)) return whole;
+      delete d.aggregateRating; delete d.review;
+      return `<script type="application/ld+json">\n${JSON.stringify(d, null, 2)}\n</script>`;
+    });
+  }
+  const out = order.replace(/(<!-- REVIEWS:START -->)[\s\S]*?(<!-- REVIEWS:END -->)/, `$1${section}$2`);
+  if (out !== read('order.html')) write('order.html', out);
+  console.log(`[reviews] ${reviews.length} published review(s) on order.html`);
+}
+
 // ── Sitemap ───────────────────────────────────────────────────────────────
 const today = new Date().toISOString().slice(0, 10);
 const urls = [

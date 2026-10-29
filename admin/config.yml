@@ -74,3 +74,32 @@ collections:
         default: false
         required: false
         hint: "Keep on while an article is awaiting compliance review. Turn off and publish to list it on the Education page."
+
+  - name: "reviews"
+    label: "Customer Reviews"
+    label_singular: "Review"
+    folder: "_reviews"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{name}}"
+    summary: "{{rating}}★ · {{name}} · {{date}}"
+    fields:
+      - label: "Customer first name"
+        name: "name"
+        widget: "string"
+        hint: "First name and initial only, e.g. Sarah K. Only publish reviews where the customer ticked the box to agree."
+      - label: "Star rating"
+        name: "rating"
+        widget: "select"
+        options: [5, 4, 3, 2, 1]
+        hint: "Publish every genuine review, including lower ratings. UK law does not allow hiding negative reviews."
+      - label: "Review date"
+        name: "date"
+        widget: "datetime"
+        default: "{{now}}"
+        format: "YYYY-MM-DD"
+        date_format: "DD MMM YYYY"
+        time_format: false
+      - label: "Review"
+        name: "body"
+        widget: "text"
+        hint: "Paste the customer's words exactly. You can fix obvious typos but don't change the meaning."

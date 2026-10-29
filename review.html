@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leave a Review | Scōp</title>
+  <meta name="description" content="Tried Scōp? Leave a star rating and a short review to help others decide.">
+  <link rel="canonical" href="https://scopsupplement.uk/review.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Leave a Review">
+  <meta property="og:description" content="Tried Scōp? Leave a star rating and a short review to help others decide.">
+  <meta property="og:url" content="https://scopsupplement.uk/review.html">
+  <meta property="og:site_name" content="Scōp">
+  <meta property="og:image" content="https://scopsupplement.uk/assets/scop-product-hero-portrait-2.jpg">
+  <link rel="stylesheet" href="/base.css">
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    .article-hero {
+      padding: var(--space-16) 0 var(--space-10);
+      border-bottom: 1px solid var(--color-border-subtle);
+      margin-bottom: var(--space-10);
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .article-category {
+      font-family: var(--font-sans);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .article-read-time {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .article-date {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--color-text-muted);
+    }
+    .article-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--color-text);
+      margin-bottom: var(--space-6);
+    }
+    .article-summary {
+      font-family: var(--font-sans);
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--color-text-muted);
+      max-width: 640px;
+    }
+    .article-body {
+      max-width: 680px;
+      margin: 0 auto var(--space-16);
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--color-text-muted);
+    }
+    .article-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--color-text);
+      margin: var(--space-10) 0 var(--space-4);
+      line-height: 1.25;
+    }
+    .article-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-text);
+      margin: var(--space-8) 0 var(--space-3);
+    }
+    .article-body p { margin-bottom: var(--space-5); }
+    .article-body ul, .article-body ol {
+      padding-left: var(--space-6);
+      margin-bottom: var(--space-5);
+    }
+    .article-body li { margin-bottom: var(--space-2); }
+    .article-body a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; word-break: break-word; }
+    .article-body table { width: 100%; border-collapse: collapse; margin: 0 0 var(--space-5); font-size: 0.85rem; display: block; overflow-x: auto; }
+    .article-body th, .article-body td { text-align: left; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border, rgba(0,0,0,0.1)); white-space: nowrap; }
+    .article-body th { color: var(--color-text); font-weight: 600; }
+    @media (max-width: 640px) {
+      .article-body table { display: table; font-size: 0.78rem; }
+      .article-body th, .article-body td { white-space: normal; padding: var(--space-2) var(--space-1); }
+    }
+    .article-body sup.cite { font-size: 0.68em; line-height: 0; margin-left: 1px; }
+    .article-body sup.cite a { text-decoration: none; font-weight: 600; }
+    .article-body .article-sources { font-size: 0.82rem; line-height: 1.6; }
+    .article-body .article-sources li { margin-bottom: var(--space-3); scroll-margin-top: 90px; }
+    .article-body .article-sources li:target { color: var(--color-text); }
+    .article-body hr { border: 0; border-top: 1px solid var(--color-border, rgba(0,0,0,0.1)); margin: var(--space-10) 0; }
+    .article-body strong { color: var(--color-text); font-weight: 600; }
+    .article-body blockquote {
+      border-left: 3px solid var(--color-accent);
+      padding: var(--space-4) var(--space-6);
+      margin: var(--space-8) 0;
+      background: color-mix(in srgb, var(--color-accent) 5%, var(--color-surface));
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+      color: var(--color-text);
+    }
+    .article-image {
+      width: 100%;
+      max-height: 420px;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--space-10);
+    }
+    .article-back {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      margin-bottom: var(--space-8);
+      transition: color 0.2s;
+    }
+    .article-back:hover { color: var(--color-accent); }
+    .article-disclaimer {
+      max-width: 680px;
+      margin: 0 auto var(--space-16);
+      padding: var(--space-5) var(--space-6);
+      border: 1px solid var(--color-border-subtle);
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      color: var(--color-text-faint);
+      line-height: 1.6;
+    }
+    .article-locked {
+      max-width: 560px;
+      margin: var(--space-20) auto;
+      text-align: center;
+      padding: var(--space-12);
+      background: var(--color-surface);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border-subtle);
+    }
+    .article-locked svg {
+      color: var(--color-accent);
+      margin-bottom: var(--space-5);
+    }
+    .article-locked h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin-bottom: var(--space-4);
+    }
+    .article-locked p {
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      margin-bottom: var(--space-6);
+    }
+    #article-loading {
+      text-align: center;
+      padding: var(--space-20);
+      color: var(--color-text-muted);
+      font-family: var(--font-sans);
+    }
+    main.container {
+      max-width: calc(680px + (2 * var(--space-6)));
+      margin-left: auto; margin-right: auto;
+      padding-left: var(--space-6); padding-right: var(--space-6);
+    }
+    .article-cta {
+      margin: var(--space-10) 0 var(--space-16);
+      padding: var(--space-10) var(--space-8);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+    }
+    .article-cta__eyebrow { font-size: var(--text-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); margin: 0 0 var(--space-3); }
+    .article-cta__title { font-family: var(--font-display); font-size: var(--text-xl); font-weight: 500; color: var(--color-text); margin: 0 0 var(--space-3); }
+    .article-cta__sub { font-size: var(--text-sm); color: var(--color-text-muted); line-height: 1.6; margin: 0 0 var(--space-6); max-width: 56ch; }
+    .article-cta__actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-6); }
+    .article-cta__more { font-size: var(--text-sm); color: var(--color-accent); text-decoration: none; }
+    .article-cta__more:hover { text-decoration: underline; }
+  </style>
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+    // UK GDPR / PECR: do not load the TikTok SDK or set any cookies until the
+    // visitor has explicitly accepted. holdConsent() alone is not enough — the
+    // SDK still sets first-party cookies on load — so we defer load() entirely.
+    ttq.holdConsent();
+    w.scopLoadTikTok = function () {
+      if (w.__scopTikTokLoaded) return;
+      w.__scopTikTokLoaded = true;
+      ttq.grantConsent();
+      ttq.load('DAP5083C77U5VV2VC5L0');
+      ttq.page();
+    };
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+  <link rel="stylesheet" href="/consent.css">
+  <script src="/consent.js" defer></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="site-header">
+    <div class="header__inner container">
+      <a href="/index.html" class="header__logo" aria-label="Scōp home">
+        <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
+      </a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="/index.html" class="header__link">Home</a>
+        <a href="/index.html#formulation" class="header__link">Formulation</a>
+        <a href="/index.html#ingredients" class="header__link">Ingredients</a>
+        <a href="/index.html#science" class="header__link">Science</a>
+        <a href="/education.html" class="header__link" style="color: var(--color-text);">Education</a>
+        <a href="/account-login.html" class="header__link">My Account</a>
+      </nav>
+      <div class="header__actions">
+        <a href="/education.html" class="header__mobile-link">Education</a>
+        <a href="/order.html" class="btn btn--primary btn--sm">Order Now</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 80px;">
+
+    
+    <article id="article-content">
+      <a href="/order.html" class="article-back">← Back to Scōp</a>
+      <div class="article-hero">
+        <div class="article-meta">
+          <span class="article-category" id="art-category">Customer reviews</span>
+          
+          
+        </div>
+        <h1 class="article-title" id="art-title">Leave a Review</h1>
+        <p class="article-summary" id="art-summary">Tried Scōp? Leave a star rating and a short review to help others decide.</p>
+      </div>
+      
+      <div class="article-body" id="art-body">
+<!-- Body of review.html. The build wraps this in the site design.
+     Submissions go to Netlify (Forms > review). Publish approved reviews in the CMS under Customer Reviews. -->
+<style>
+  .rv-form { display:flex; flex-direction:column; gap: 22px; margin-top: 8px; }
+  .rv-form label.rv-label { display:block; font-weight:600; color: var(--color-text); margin-bottom: 8px; font-size: 0.95rem; }
+  .rv-form input[type=text], .rv-form input[type=email], .rv-form textarea {
+    width:100%; box-sizing:border-box; padding: 12px 14px; border-radius: 8px; font: inherit; font-size: 0.95rem;
+    background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+  .rv-form textarea { min-height: 140px; resize: vertical; }
+  .rv-hint { font-size: 0.8rem; color: var(--color-text-faint); margin-top: 6px; }
+  .rv-stars { display:inline-flex; flex-direction: row-reverse; gap: 6px; }
+  .rv-stars input { position:absolute; opacity:0; width:1px; height:1px; }
+  .rv-stars label { font-size: 2.1rem; line-height: 1; cursor: pointer; color: var(--color-border); transition: color .15s; }
+  .rv-stars input:checked ~ label, .rv-stars label:hover, .rv-stars label:hover ~ label { color: var(--color-accent); }
+  .rv-stars input:focus-visible + label { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 4px; }
+  .rv-consent { display:flex; gap: 10px; align-items:flex-start; font-size: 0.9rem; color: var(--color-text-muted); line-height: 1.5; }
+  .rv-consent input { margin-top: 4px; accent-color: var(--color-accent); }
+  .rv-submit { align-self:flex-start; background: var(--color-accent); color: #1a2540; font-weight: 700; border: 0; border-radius: 999px; padding: 14px 30px; font-size: 1rem; cursor: pointer; }
+  .rv-submit:disabled { opacity: .6; cursor: default; }
+  .rv-thanks { padding: 24px 26px; border-left: 3px solid var(--color-accent); background: var(--color-surface); border-radius: 0 8px 8px 0; }
+  .rv-error { color: #e08a7a; font-size: 0.9rem; }
+  .article-disclaimer { display:none; }
+</style>
+
+<p>Thanks for taking a moment to share your experience. Every genuine review helps other people decide whether Scōp is right for them, and helps us improve.</p>
+
+<form class="rv-form" name="review" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="review-form">
+  <input type="hidden" name="form-name" value="review">
+  <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+
+  <div>
+    <span class="rv-label" style="display:block;font-weight:600;margin-bottom:8px;">Your rating</span>
+    <div class="rv-stars" role="radiogroup" aria-label="Star rating">
+      <input type="radio" id="r5" name="rating" value="5" required><label for="r5" title="5 stars">★</label>
+      <input type="radio" id="r4" name="rating" value="4"><label for="r4" title="4 stars">★</label>
+      <input type="radio" id="r3" name="rating" value="3"><label for="r3" title="3 stars">★</label>
+      <input type="radio" id="r2" name="rating" value="2"><label for="r2" title="2 stars">★</label>
+      <input type="radio" id="r1" name="rating" value="1"><label for="r1" title="1 star">★</label>
+    </div>
+  </div>
+
+  <div>
+    <label class="rv-label" for="rv-text">Your review</label>
+    <textarea id="rv-text" name="review" maxlength="1200" required placeholder="How are you getting on with Scōp? Taste, routine, anything you'd tell a friend."></textarea>
+  </div>
+
+  <div>
+    <label class="rv-label" for="rv-name">First name and initial</label>
+    <input type="text" id="rv-name" name="name" maxlength="40" required placeholder="e.g. Sarah K.">
+    <p class="rv-hint">This is how your name will appear with your review.</p>
+  </div>
+
+  <div>
+    <label class="rv-label" for="rv-email">Email</label>
+    <input type="email" id="rv-email" name="email" required>
+    <p class="rv-hint">Never published. We only use it to match your review to your order.</p>
+  </div>
+
+  <label class="rv-consent"><input type="checkbox" name="publish_consent" value="yes" required> I agree that Scōp can publish my review, star rating and first name and initial on its website.</label>
+
+  <button type="submit" class="rv-submit">Submit review</button>
+  <p class="rv-error" id="rv-error" hidden>Sorry, something went wrong. Please try again, or email your review to grae@scopsupplement.com.</p>
+</form>
+
+<div class="rv-thanks" id="rv-thanks" hidden>
+  <h3 style="margin-top:0;">Thank you!</h3>
+  <p style="margin-bottom:0;">Your review has been sent. We publish every genuine review, usually within a few days.</p>
+</div>
+
+<p class="rv-hint" style="margin-top:28px;">We publish all genuine reviews, positive or negative, and don't offer anything in return for a review. We check each review against our orders before publishing.</p>
+
+<script>
+(function () {
+  var form = document.getElementById('review-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('.rv-submit'); btn.disabled = true;
+    document.getElementById('rv-error').hidden = true;
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString() })
+      .then(function (r) { if (!r.ok) throw new Error(r.status);
+        form.hidden = true; document.getElementById('rv-thanks').hidden = false; })
+      .catch(function () { btn.disabled = false; document.getElementById('rv-error').hidden = false; });
+  });
+})();
+</script>
+
+</div>
+      <div class="article-disclaimer">
+        This article is for informational purposes only and does not constitute medical advice.
+        Food supplements should not be used as a substitute for a varied diet and healthy lifestyle.
+        Consult a healthcare professional before making changes to your supplement routine.
+        All health claims referenced are authorised by the Great Britain Nutrition and Health Claims Register.
+      </div>
+      <aside class="article-cta" aria-label="Order Scōp">
+        <p class="article-cta__eyebrow">Put it into practice</p>
+        <h2 class="article-cta__title">One scoop. 14 clearly dosed ingredients.</h2>
+        <p class="article-cta__sub">5 g creatine, 400 mg magnesium, vitamin D3 + K2 and all 8 B vitamins &mdash; subscribe &amp; save from &pound;1.30 per day.</p>
+        <div class="article-cta__actions">
+          <a href="/order.html" class="btn btn--primary hero__cta">
+            <span class="hero__cta-label">Order Scōp &mdash; from &pound;39</span>
+            <svg class="hero__cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/order.html#reviews" class="article-cta__more">Read reviews &rarr;</a>
+        </div>
+      </aside>
+    </article>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner container">
+      <div class="footer__brand">
+        <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
+        <p>Clearly Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav">
+        <a href="/index.html#formulation">Formulation</a>
+        <a href="/index.html#ingredients">Ingredients</a>
+        <a href="/index.html#science">Science</a>
+        <a href="/education.html">Education</a>
+        <a href="/order.html">Order</a>
+        <a href="/faq.html">FAQ</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Scōp Supplement Ltd. All rights reserved.</p>
+        <p style="font-size: 0.72rem; color: var(--color-text-faint); margin-top: var(--space-2); line-height: 1.5;">Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. Not suitable for persons under 18. Keep out of reach of children.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/frontmatter.js"></script>
+  <script src="/app.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Scōp Supplement Ltd",
+  "alternateName": "Scōp",
+  "url": "https://scopsupplement.uk",
+  "logo": "https://scopsupplement.uk/assets/logo.svg"
+}
+</script>
+</body>
+</html>

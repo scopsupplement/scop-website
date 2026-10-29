@@ -1,1 +1,1 @@
-2026-10-29 — v23: delivery and returns FAQs and returns policy on order page, cancel answer points to Stripe account or grae@scopsupplement.com, shippingDetails and hasMerchantReturnPolicy added to product data for Google. Includes v22.
+2026-10-29 — v24: customer reviews. review.html (Netlify form 'review'), Customer Reviews collection in the CMS (_reviews), reviews and star rating data shown on order.html automatically once reviews are published. Includes v23.
