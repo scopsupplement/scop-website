@@ -1,1 +1,1 @@
-2026-10-29 — v25: monthly affiliate commission report (netlify/functions/affiliate-report.mjs scheduled 07:00 UTC on the 1st, affiliate-report-run.mjs on demand, logic in netlify/lib/affiliate-report.mjs). Needs STRIPE_REPORT_KEY, AFFILIATE_CODES, BREVO_REPORT_API_KEY, REPORT_EMAIL, REPORT_SECRET. Includes v24.
+2026-10-30 — v26: fixes the star rating dropdown in the CMS Customer Reviews editor. Includes v25.

@@ -90,7 +90,13 @@ collections:
       - label: "Star rating"
         name: "rating"
         widget: "select"
-        options: [5, 4, 3, 2, 1]
+        default: "5"
+        options:
+          - { label: "★★★★★  5 stars", value: "5" }
+          - { label: "★★★★☆  4 stars", value: "4" }
+          - { label: "★★★☆☆  3 stars", value: "3" }
+          - { label: "★★☆☆☆  2 stars", value: "2" }
+          - { label: "★☆☆☆☆  1 star", value: "1" }
         hint: "Publish every genuine review, including lower ratings. UK law does not allow hiding negative reviews."
       - label: "Review date"
         name: "date"
