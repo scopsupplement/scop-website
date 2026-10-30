@@ -1,1 +1,1 @@
-2026-10-30 — v26: fixes the star rating dropdown in the CMS Customer Reviews editor. Includes v25.
+2026-10-30 — v27: new partner commission terms in the monthly report (15% for months 1 to 3, then 5%, 7.5% or 10% ongoing by active subscribers; first payment held until the second clears), new Scōp for gyms page (partners.html) with enquiry form, footer link and sitemap entry. Includes v26.

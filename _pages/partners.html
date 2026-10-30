@@ -1,0 +1,83 @@
+<!-- Body of partners.html (Scōp for gyms). The build wraps this in the site design.
+     Enquiries go to Netlify (Forms > partner). Trade prices live in the wholesale one-pager, not here. -->
+<style>
+  .pt-steps { display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 8px 0 28px; }
+  .pt-step { background: var(--color-surface); border-top: 3px solid var(--color-accent); border-radius: 8px; padding: 18px 18px 16px; }
+  .pt-step .n { font-family: var(--font-display, Georgia, serif); font-size: 1.8rem; color: var(--color-accent); line-height: 1; }
+  .pt-step h3 { margin: 8px 0 6px; font-size: 1.05rem; }
+  .pt-step p { margin: 0; font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.5; }
+  .pt-list { list-style:none; padding:0; margin: 0 0 28px; }
+  .pt-list li { padding: 10px 0 10px 22px; position: relative; border-bottom: 1px solid var(--color-border); }
+  .pt-list li::before { content:""; position:absolute; left:2px; top:18px; width:8px; height:8px; border-radius:50%; background: var(--color-accent); }
+  .pt-form { display:flex; flex-direction:column; gap: 18px; margin-top: 8px; }
+  .pt-form label { display:block; font-weight:600; margin-bottom: 6px; font-size: 0.95rem; }
+  .pt-form input, .pt-form textarea { width:100%; box-sizing:border-box; padding: 12px 14px; border-radius: 8px; font: inherit; font-size: 0.95rem;
+    background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); }
+  .pt-form textarea { min-height: 110px; resize: vertical; }
+  .pt-row { display:grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pt-submit { align-self:flex-start; background: var(--color-accent); color:#1a2540; font-weight:700; border:0; border-radius:999px; padding: 14px 30px; font-size:1rem; cursor:pointer; }
+  .pt-submit:disabled { opacity:.6; cursor:default; }
+  .pt-thanks { padding: 22px 24px; border-left: 3px solid var(--color-accent); background: var(--color-surface); border-radius: 0 8px 8px 0; }
+  .pt-error { color:#e08a7a; font-size:0.9rem; }
+  .article-disclaimer { display:none; }
+  @media (max-width: 680px) { .pt-steps, .pt-row { grid-template-columns: 1fr; } }
+</style>
+
+<p>One simple partner deal. No complicated contracts.</p>
+
+<h2>How it works</h2>
+<div class="pt-steps">
+  <div class="pt-step"><div class="n">1</div><h3>Stock it</h3><p>Order from just 6 pouches at trade price and sell them on your front desk.</p></div>
+  <div class="pt-step"><div class="n">2</div><h3>Members subscribe</h3><p>Every pouch carries your QR code. Members scan it to subscribe online with 10% off.</p></div>
+  <div class="pt-step"><div class="n">3</div><h3>You earn monthly</h3><p>You make money on every pouch you sell and every month your members stay subscribed.</p></div>
+</div>
+
+<h2>What you get</h2>
+<ul class="pt-list">
+  <li><strong>A healthy margin on every pouch,</strong> with a better price on larger orders.</li>
+  <li><strong>Commission on every subscriber</strong> who signs up with your code, paid monthly by bank transfer with a clear report.</li>
+  <li><strong>Your own 10% member discount</strong> and QR code, ready to use.</li>
+  <li><strong>A partner crib sheet</strong> with the product facts, approved health claim wording and ready made social posts.</li>
+  <li><strong>A floor display unit</strong> on free loan with larger orders.</li>
+  <li><strong>Free delivery</strong> on 24 pouches or more (mainland UK).</li>
+</ul>
+
+<h2>Get the trade terms</h2>
+<p>Tell us a little about your gym and Grae will send you the full prices and partner terms, usually within one working day.</p>
+
+<form class="pt-form" name="partner" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="partner-form">
+  <input type="hidden" name="form-name" value="partner">
+  <p hidden><label>Don't fill this out: <input name="bot-field"></label></p>
+  <div class="pt-row">
+    <div><label for="pt-gym">Gym or business name</label><input id="pt-gym" type="text" name="gym" required></div>
+    <div><label for="pt-town">Town</label><input id="pt-town" type="text" name="town"></div>
+  </div>
+  <div class="pt-row">
+    <div><label for="pt-name">Your name</label><input id="pt-name" type="text" name="name" required></div>
+    <div><label for="pt-email">Email</label><input id="pt-email" type="email" name="email" required></div>
+  </div>
+  <div><label for="pt-members">Roughly how many members?</label><input id="pt-members" type="text" name="members" placeholder="e.g. 250"></div>
+  <div><label for="pt-msg">Anything else? (optional)</label><textarea id="pt-msg" name="message"></textarea></div>
+  <button class="pt-submit" type="submit">Send enquiry</button>
+  <p class="pt-error" id="pt-error" hidden>Sorry, that didn't send. Please try again or email grae@scopsupplement.com.</p>
+</form>
+<div class="pt-thanks" id="pt-thanks" hidden><strong>Thanks, that's with us.</strong> Grae will be in touch with the trade terms shortly.</div>
+
+<p style="margin-top:28px;font-size:0.9rem;color:var(--color-text-muted)">Prefer email? <a href="mailto:grae@scopsupplement.com?subject=Sc%C5%8Dp%20for%20gyms" style="color:var(--color-accent)">grae@scopsupplement.com</a></p>
+
+<script>
+(function () {
+  var form = document.getElementById('partner-form');
+  if (!form) return;
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('.pt-submit'); btn.disabled = true;
+    document.getElementById('pt-error').hidden = true;
+    fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(new FormData(form)).toString() })
+      .then(function (r) { if (!r.ok) throw new Error(r.status);
+        form.hidden = true; document.getElementById('pt-thanks').hidden = false; })
+      .catch(function () { btn.disabled = false; document.getElementById('pt-error').hidden = false; });
+  });
+})();
+</script>

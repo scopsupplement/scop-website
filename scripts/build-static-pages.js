@@ -11,6 +11,7 @@
  * What it writes on every Netlify build (after build-articles-index.js)
  *   articles/<slug>.html   one ready-made page per published article
  *   faq.html               the FAQ page, from _pages/faq.md
+ *   partners.html          Scōp for gyms, from _pages/partners.html
  *   sitemap.xml            every public page, for Google, Bing and AI crawlers
  *   education.html         a plain list of article links between the
  *                          STATIC-ARTICLES markers (the live page still uses
@@ -237,6 +238,20 @@ if (fs.existsSync(path.join(ROOT, '_pages/review-form.html'))) {
     backHref: 'order.html', backText: '← Back to Scōp', moreHref: 'order.html#reviews', moreText: 'Read reviews &rarr;',
   }));
   console.log('[static-pages] review.html written');
+}
+
+// ── Partner page (_pages/partners.html → partners.html) ──────────────────
+if (fs.existsSync(path.join(ROOT, '_pages/partners.html'))) {
+  const url = SITE + '/partners.html';
+  write('partners.html', renderPage({
+    url, title: 'Wholesale and Partner Programme for Gyms', ogType: 'website',
+    description: 'Stock Scōp in your gym, earn a margin on every pouch and monthly commission on every member who subscribes. Ask for the trade terms.',
+    eyebrow: 'For gyms and coaches', bodyHtml: read('_pages/partners.html'),
+    schemas: [{ '@context': 'https://schema.org', ...ORG }],
+    backHref: 'index.html', backText: '← Back to home', moreHref: 'order.html', moreText: 'See the product &rarr;',
+  }));
+  pages.push({ loc: url });
+  console.log('[static-pages] partners.html written');
 }
 
 // ── Customer reviews on the order page (_reviews/*.md, added in the CMS) ──
