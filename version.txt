@@ -1,1 +1,1 @@
-2026-10-31 — v28: separate monthly statement for each partner (only their code, customers anonymised), emailed to you only, alongside your full report. Turn off with PARTNER_STATEMENTS=off. Includes v27.
+2026-10-31 — v29: in-gym codes (partner code + GYM, e.g. TF10GYM) count towards that partner automatically and show replacement pouches owed in your report and each partner breakdown. Includes v28 (partner breakdowns to you only) and v27.
