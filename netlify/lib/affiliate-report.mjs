@@ -20,6 +20,9 @@
  * Environment variables (Netlify > Site configuration > Environment variables)
  *   STRIPE_REPORT_KEY      Stripe restricted key, read only (see setup notes)
  *   AFFILIATE_CODES        e.g.  MJW10=MJW Coaching;TF10=TransFit
+ *   PARTNER_STATEMENTS     optional: "on" (default) emails you a separate statement for each
+ *                          partner, ready to forward if you choose; "off" sends none.
+ *                          Statements only ever go to REPORT_EMAIL, never to partners.
  *   AFFILIATE_RATE         optional, default 0.15
  *   AFFILIATE_MONTHS       optional, default 3 (months at the starting rate)
  *   AFFILIATE_TIERS        optional, default 1:0.05;10:0.075;25:0.10
@@ -35,12 +38,15 @@ export function config() {
   const env = process.env;
   const codes = {};
   String(env.AFFILIATE_CODES || '').split(/[;,\n]/).forEach(pair => {
-    const [code, ...name] = pair.split('=');
-    if (code && code.trim()) codes[code.trim().toUpperCase()] = (name.join('=') || code).trim();
+    const [code, ...rest] = pair.split('=');
+    if (!code || !code.trim()) return;
+    const C = code.trim().toUpperCase();
+    codes[C] = (rest.join('=') || code).split('|')[0].trim() || C;
   });
   return {
     stripeKey: env.STRIPE_REPORT_KEY,
     codes,
+    partnerMode: String(env.PARTNER_STATEMENTS || 'on').toLowerCase(),
     rate: Number(env.AFFILIATE_RATE || 0.15),
     months: Math.max(1, parseInt(env.AFFILIATE_MONTHS || '3', 10)),
     tiers: parseTiers(env.AFFILIATE_TIERS || '1:0.05;10:0.075;25:0.10'),
@@ -286,4 +292,88 @@ export async function sendReport(report, fetchImpl = fetch) {
   });
   if (!res.ok) throw new Error(`Brevo ${res.status}: ${await res.text()}`);
   return true;
+}
+
+// ── Partner statements: one per partner, only their code, no customer details ──
+export function partnerStatement(report, code) {
+  const { cfg, win } = report;
+  const C = String(code).toUpperCase();
+  const s = report.summary.find(x => x.code === C);
+  if (!s || !s.affiliate) return null;
+  const ids = new Map();
+  const rows = report.rows.filter(r => r.code === C).map(r => {
+    if (!ids.has(r.customer || r.date.toISOString())) ids.set(r.customer || r.date.toISOString(), ids.size + 1);
+    return { ...r, who: 'Customer ' + ids.get(r.customer || r.date.toISOString()) };
+  });
+  return { cfg, win, code: C, name: s.name, s, rows };
+}
+
+export function partnerHasActivity(st) {
+  return !!st && (st.rows.length > 0 || st.s.commission > 0);
+}
+
+export function partnerCsv(st) {
+  const { win, s, rows, name, code } = st;
+  const lines = [
+    [`Scōp partner statement`, name, code, win.label], [],
+    ['New customers', 'Active subscribers', 'Ongoing rate', 'Payments held', 'To pay (£)'],
+    [s.newUses, s.active, pct(s.ongoingRate), s.held, s.commission.toFixed(2)], [],
+    ['Date', 'Customer', 'Type', 'Amount paid (£)', 'Rate', 'Commission (£)'],
+    ...rows.map(r => [r.date.toISOString().slice(0, 10), r.who, r.type, r.amount.toFixed(2), r.commissionable ? pct(r.rate) : '', (r.commission || 0).toFixed(2)]),
+  ];
+  return lines.map(l => l.map(csvCell).join(',')).join('\n') + '\n';
+}
+
+export function partnerHtml(st) {
+  const { cfg, win, s, rows, name, code } = st;
+  const th = 'style="text-align:left;padding:8px 10px;border-bottom:2px solid #c17f3e;font-size:13px;color:#1a2540;"';
+  const td = 'style="padding:8px 10px;border-bottom:1px solid #e6ddd2;font-size:14px;color:#2b2b2b;"';
+  const tdr = 'style="padding:8px 10px;border-bottom:1px solid #e6ddd2;font-size:14px;color:#2b2b2b;text-align:right;"';
+  const box = (label, val) => `<td style="padding:12px 14px;background:#f6f1ea;border-radius:6px;"><div style="font-size:12px;color:#6b6b6b;">${label}</div><div style="font-family:Georgia,serif;font-size:22px;color:#1a2540;margin-top:2px;">${val}</div></td>`;
+  return `<div style="font-family:Helvetica,Arial,sans-serif;max-width:640px;margin:0 auto;color:#2b2b2b;">
+<p style="font-size:12px;letter-spacing:2px;color:#c17f3e;margin:0 0 6px;">SCŌP PARTNER STATEMENT</p>
+<h2 style="font-family:Georgia,serif;font-weight:normal;color:#1a2540;margin:0 0 4px;">${esc(name)}: ${esc(win.label)}</h2>
+<p style="color:#6b6b6b;margin:0 0 18px;font-size:14px;">Your code: <strong>${esc(code)}</strong></p>
+<table cellpadding="0" cellspacing="6" style="width:100%;border-collapse:separate;"><tr>
+${box('Commission this month', `<strong>${gbp(s.commission)}</strong>`)}${box('Active subscribers', s.active)}${box('Your ongoing rate', pct(s.ongoingRate))}</tr></table>
+<p style="font-size:14px;margin:16px 0 0;">New customers this month: <strong>${s.newUses}</strong>${s.held ? ` · First payments waiting for a second payment: <strong>${s.held}</strong> (paid next month once it clears)` : ''}</p>
+<h3 style="font-family:Georgia,serif;font-weight:normal;color:#1a2540;margin:24px 0 8px;">Payments with your code</h3>
+<table cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;">
+<tr><th ${th}>Date</th><th ${th}>Customer</th><th ${th}>Type</th><th ${th}>Paid</th><th ${th}>You earn</th></tr>
+${rows.map(r => `<tr><td ${td}>${r.date.toISOString().slice(0, 10)}</td><td ${td}>${esc(r.who)}</td><td ${td}>${esc(r.type)}</td><td ${tdr}>${gbp(r.amount)}</td><td ${tdr}>${gbp(r.commission || 0)}</td></tr>`).join('\n') || `<tr><td ${td} colspan="5">No payments used your code this month</td></tr>`}
+</table>
+<p style="font-size:13px;color:#6b6b6b;margin-top:18px;line-height:1.5;">How it works: ${pct(cfg.rate)} of one-off orders and of each subscriber's first ${cfg.months} payments, then ${cfg.tiers.map(t => `${pct(t.rate)} with ${t.from}+ active subscribers`).join(', ')}, for as long as they stay. A subscriber's first payment is paid once their second payment clears. Customers are numbered rather than named to protect their privacy.</p>
+<p style="font-size:14px;margin-top:14px;">Questions? Just reply to this email.<br>Grae, Scōp · scopsupplement.uk</p>
+</div>`;
+}
+
+async function brevoSend(cfg, msg, fetchImpl) {
+  const res = await fetchImpl('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: { 'api-key': cfg.brevoKey, 'content-type': 'application/json', accept: 'application/json' },
+    body: JSON.stringify(msg),
+  });
+  if (!res.ok) throw new Error(`Brevo ${res.status}: ${await res.text()}`);
+}
+
+// Emails each partner's statement. Returns a list of what happened, for the logs.
+export async function sendPartnerStatements(report, fetchImpl = fetch) {
+  const { cfg, win } = report;
+  if (cfg.partnerMode === 'off') return [];
+  if (!cfg.brevoKey || !cfg.to) throw new Error('BREVO_REPORT_API_KEY or REPORT_EMAIL is not set');
+  const done = [];
+  for (const code of Object.keys(cfg.codes)) {
+    const st = partnerStatement(report, code);
+    if (!partnerHasActivity(st)) { done.push(`${code}: no activity, nothing sent`); continue; }
+    const msg = {
+      sender: { name: 'Scōp reports', email: cfg.from },
+      to: [{ email: cfg.to }],          // always you, never the partner
+      subject: `${st.name} statement: ${win.label}`,
+      htmlContent: partnerHtml(st),
+      attachment: [{ name: `scop-statement-${code.toLowerCase()}-${win.key}.csv`, content: Buffer.from('\ufeff' + partnerCsv(st), 'utf8').toString('base64') }],
+    };
+    await brevoSend(cfg, msg, fetchImpl);
+    done.push(`${code}: statement sent to you (${gbp(st.s.commission)})`);
+  }
+  return done;
 }
