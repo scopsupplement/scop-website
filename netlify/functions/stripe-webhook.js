@@ -1,6 +1,10 @@
 // stripe-webhook.js
-// Receives Stripe checkout.session.completed events and creates
-// a Netlify Identity account for the customer automatically.
+// Receives Stripe checkout.session.completed events and:
+//   1. adds the customer to a Brevo list (so Brevo can send the welcome email)
+//      - subscribers  -> BREVO_SUBSCRIBERS_LIST_ID
+//      - one-off buyers -> BREVO_ONEOFF_LIST_ID (optional)
+//      Uses BREVO_API_KEY (the same key the sign-up forms already use).
+//   2. creates a Netlify Identity account for the customer (if set up).
 
 const crypto = require('crypto');
 
@@ -31,6 +35,27 @@ function verifyStripeSignature(payload, header, secret) {
     Buffer.from(expected, 'hex'),
     Buffer.from(signature, 'hex')
   );
+}
+
+// Add or update the customer in Brevo and put them on a list.
+// Brevo automations ("contact added to list") then send the right email.
+async function addToBrevo(session, listId) {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey || !listId) return { skipped: true };
+  const email = (session.customer_details?.email || session.customer_email || '').trim().toLowerCase();
+  const fullName = (session.customer_details?.name || '').trim();
+  const first = fullName.split(/\s+/)[0] || '';
+  const last = fullName.split(/\s+/).slice(1).join(' ');
+  const attributes = {};
+  if (first) attributes.FIRSTNAME = first.charAt(0).toUpperCase() + first.slice(1).toLowerCase();
+  if (last) attributes.LASTNAME = last;
+  const res = await fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { 'api-key': apiKey, 'content-type': 'application/json', accept: 'application/json' },
+    body: JSON.stringify({ email, attributes, listIds: [Number(listId)], updateEnabled: true }),
+  });
+  if (!res.ok) throw new Error(`Brevo ${res.status}: ${await res.text()}`);
+  return { added: email, listId: Number(listId) };
 }
 
 // Invite a user via Netlify Identity Admin API
@@ -78,8 +103,8 @@ exports.handler = async function(event) {
   const identityToken  = process.env.NETLIFY_IDENTITY_TOKEN;
   const siteUrl        = process.env.URL || 'https://scopsupplement.uk';
 
-  if (!webhookSecret || !identityToken) {
-    console.error('Missing environment variables');
+  if (!webhookSecret) {
+    console.error('Missing STRIPE_WEBHOOK_SECRET');
     return { statusCode: 500, body: 'Server misconfiguration' };
   }
 
@@ -117,6 +142,20 @@ exports.handler = async function(event) {
   }
 
   console.log(`Processing ${accountType} purchase for ${email}`);
+
+  // 1. Brevo: put them on the right list so the welcome email goes out
+  try {
+    const listId = mode === 'subscription' ? process.env.BREVO_SUBSCRIBERS_LIST_ID : process.env.BREVO_ONEOFF_LIST_ID;
+    const r = await addToBrevo(session, listId);
+    console.log('Brevo result:', r);
+  } catch (err) {
+    console.error('Failed to add to Brevo:', err.message);   // never blocks the rest
+  }
+
+  // 2. Netlify Identity account (only if the token is set)
+  if (!identityToken) {
+    return { statusCode: 200, body: JSON.stringify({ success: true, email, accountType, identity: 'skipped' }) };
+  }
 
   try {
     const result = await inviteNetlifyUser(email, accountType, siteUrl, identityToken);

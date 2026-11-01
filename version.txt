@@ -1,1 +1,1 @@
-2026-11-01 — v30: commission is now paid on every payment in the month it is made, including a subscriber's first (no more holding until payment 2). Includes v29, v28 and v27.
+2026-11-01 — v31: new customers from Stripe are added to a Brevo list automatically (BREVO_SUBSCRIBERS_LIST_ID, optional BREVO_ONEOFF_LIST_ID) so Brevo can send the welcome email. Includes v30.
