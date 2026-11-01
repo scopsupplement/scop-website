@@ -1,1 +1,1 @@
-2026-10-31 — v29: in-gym codes (partner code + GYM, e.g. TF10GYM) count towards that partner automatically and show replacement pouches owed in your report and each partner breakdown. Includes v28 (partner breakdowns to you only) and v27.
+2026-11-01 — v30: commission is now paid on every payment in the month it is made, including a subscriber's first (no more holding until payment 2). Includes v29, v28 and v27.

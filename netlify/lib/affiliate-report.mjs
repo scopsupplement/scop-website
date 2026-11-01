@@ -9,9 +9,8 @@
  *       payment 4 onwards, for as long as they stay: the ongoing rate, set by
  *       how many active subscribers the partner has that month
  *       (AFFILIATE_TIERS, default 1 to 9: 5%, 10 to 24: 7.5%, 25+: 10%)
- *   - Nothing is paid on a subscriber until their 2nd payment clears. The
- *     commission for payment 1 is held, then released in the month payment 2
- *     is made. If they cancel after one payment, nothing is paid.
+ *   - Every payment is paid in the month it is made, including a subscriber's
+ *     first payment.
  *   - "Active subscribers" = subscriptions on that code with a paid payment in
  *     the month.
  * Commission is worked out on what the customer actually paid (after the
@@ -210,16 +209,11 @@ export async function buildReport({ month, now, fetchImpl } = {}) {
     const code = info.code;
     const base = { date: new Date(inv.created * 1000), code, usedCode: info.usedCode, customer: inv.customer_email || '', isNewUse: n === 1 };
     const amount = inv.amount_paid / 100;
-    if (n === 1) {
-      // Held until the 2nd payment clears. In-gym signups also earn the gym a replacement pouch.
-      rows.push({ ...base, type: info.inGym ? 'Subscription payment 1, in gym: first pouch collected (commission held until payment 2)' : 'Subscription payment 1 (held until payment 2)',
-        amount, rate: 0, commissionable: false, held: true, replacement: !!info.inGym });
-    } else if (n <= cfg.months) {
-      rows.push({ ...base, type: `Subscription payment ${n}`, amount, rate: cfg.rate, commissionable: true });
-      if (n === 2) {
-        rows.push({ ...base, isNewUse: false, type: 'Subscription payment 1 (released now payment 2 has cleared)',
-          amount: info.amounts[0], rate: cfg.rate, commissionable: true });
-      }
+    if (n <= cfg.months) {
+      // In-gym signups also earn the gym a replacement pouch on payment 1
+      const gym = n === 1 && info.inGym;
+      rows.push({ ...base, type: `Subscription payment ${n}${gym ? ' (in gym, first pouch collected)' : ''}`,
+        amount, rate: cfg.rate, commissionable: true, replacement: gym });
     } else {
       const r = ongoingRate(cfg.tiers, active[code] || 0);
       rows.push({ ...base, type: `Subscription payment ${n} (ongoing)`, amount, rate: r, commissionable: r > 0 });
@@ -257,8 +251,8 @@ export function toCsv(report) {
   const lines = [
     [`Scōp partner commission report`, win.label],
     [],
-    ['Partner', 'Code', 'New customers', 'Active subscribers', 'Ongoing rate this month', 'Payments held', 'Replacement pouches owed', 'Commissionable payments', 'Total value (£)', 'To pay (£)'],
-    ...summary.filter(s => s.affiliate).map(s => [s.name, s.code, s.newUses, s.active, pct(s.ongoingRate), s.held, s.replacements, s.payments, s.value.toFixed(2), s.commission.toFixed(2)]),
+    ['Partner', 'Code', 'New customers', 'Active subscribers', 'Ongoing rate this month', 'Replacement pouches owed', 'Commissionable payments', 'Total value (£)', 'To pay (£)'],
+    ...summary.filter(s => s.affiliate).map(s => [s.name, s.code, s.newUses, s.active, pct(s.ongoingRate), s.replacements, s.payments, s.value.toFixed(2), s.commission.toFixed(2)]),
     [],
     ['Date', 'Code', 'Partner', 'Type', 'Customer email', 'Amount paid (£)', 'Rate', 'Commission (£)'],
     ...rows.map(r => [r.date.toISOString().slice(0, 10), r.usedCode || r.code, cfg.codes[r.code] || 'Not a partner', r.type, r.customer, r.amount.toFixed(2), r.commissionable ? pct(r.rate) : '', (r.commission || 0).toFixed(2)]),
@@ -276,10 +270,10 @@ export function toHtml(report) {
   const tdr = 'style="padding:8px 10px;border-bottom:1px solid #e6ddd2;font-size:14px;color:#2b2b2b;text-align:right;"';
   return `<div style="font-family:Helvetica,Arial,sans-serif;max-width:680px;margin:0 auto;">
 <h2 style="font-family:Georgia,serif;font-weight:normal;color:#1a2540;margin:0 0 4px;">Partner commission: ${esc(win.label)}</h2>
-<p style="color:#6b6b6b;margin:0 0 18px;font-size:14px;">${pct(cfg.rate)} on one-off orders and on subscription payments 1 to ${cfg.months}, then the ongoing rate (${cfg.tiers.map(t => `${t.from}+ active: ${pct(t.rate)}`).join(', ')}). A subscriber's first payment is held until their second clears. Total to pay: <strong style="color:#1a2540;">${gbp(total)}</strong></p>
+<p style="color:#6b6b6b;margin:0 0 18px;font-size:14px;">${pct(cfg.rate)} on one-off orders and on subscription payments 1 to ${cfg.months}, then the ongoing rate (${cfg.tiers.map(t => `${t.from}+ active: ${pct(t.rate)}`).join(', ')}). Total to pay: <strong style="color:#1a2540;">${gbp(total)}</strong></p>
 <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;">
-<tr><th ${th}>Partner</th><th ${th}>Code</th><th ${th}>New</th><th ${th}>Active subs</th><th ${th}>Ongoing rate</th><th ${th}>Held</th><th ${th}>Pouches to replace</th><th ${th}>To pay</th></tr>
-${aff.map(s => `<tr><td ${td}>${esc(s.name)}</td><td ${td}>${esc(s.code)}</td><td ${tdr}>${s.newUses}</td><td ${tdr}>${s.active}</td><td ${tdr}>${pct(s.ongoingRate)}</td><td ${tdr}>${s.held}</td><td ${tdr}>${s.replacements ? `<strong style="color:#c17f3e;">${s.replacements}</strong>` : 0}</td><td ${tdr}><strong>${gbp(s.commission)}</strong></td></tr>`).join('\n') || `<tr><td ${td} colspan="8">No partner codes set up</td></tr>`}
+<tr><th ${th}>Partner</th><th ${th}>Code</th><th ${th}>New</th><th ${th}>Active subs</th><th ${th}>Ongoing rate</th><th ${th}>Pouches to replace</th><th ${th}>To pay</th></tr>
+${aff.map(s => `<tr><td ${td}>${esc(s.name)}</td><td ${td}>${esc(s.code)}</td><td ${tdr}>${s.newUses}</td><td ${tdr}>${s.active}</td><td ${tdr}>${pct(s.ongoingRate)}</td><td ${tdr}>${s.replacements ? `<strong style="color:#c17f3e;">${s.replacements}</strong>` : 0}</td><td ${tdr}><strong>${gbp(s.commission)}</strong></td></tr>`).join('\n') || `<tr><td ${td} colspan="7">No partner codes set up</td></tr>`}
 </table>
 ${other.length ? `<p style="font-size:13px;color:#6b6b6b;margin:18px 0 0;">Other codes used this month (no commission): ${other.map(s => `${esc(s.code)} × ${s.newUses}`).join(', ')}</p>` : ''}
 <h3 style="font-family:Georgia,serif;font-weight:normal;color:#1a2540;margin:26px 0 8px;">Every payment</h3>
@@ -332,8 +326,8 @@ export function partnerCsv(st) {
   const { win, s, rows, name, code } = st;
   const lines = [
     [`Scōp partner statement`, name, code, win.label], [],
-    ['New customers', 'Active subscribers', 'Ongoing rate', 'Payments held', 'Replacement pouches owed', 'To pay (£)'],
-    [s.newUses, s.active, pct(s.ongoingRate), s.held, s.replacements, s.commission.toFixed(2)], [],
+    ['New customers', 'Active subscribers', 'Ongoing rate', 'Replacement pouches owed', 'To pay (£)'],
+    [s.newUses, s.active, pct(s.ongoingRate), s.replacements, s.commission.toFixed(2)], [],
     ['Date', 'Customer', 'Type', 'Amount paid (£)', 'Rate', 'Commission (£)'],
     ...rows.map(r => [r.date.toISOString().slice(0, 10), r.who, r.type, r.amount.toFixed(2), r.commissionable ? pct(r.rate) : '', (r.commission || 0).toFixed(2)]),
   ];
@@ -352,14 +346,14 @@ export function partnerHtml(st) {
 <p style="color:#6b6b6b;margin:0 0 18px;font-size:14px;">Your code: <strong>${esc(code)}</strong></p>
 <table cellpadding="0" cellspacing="6" style="width:100%;border-collapse:separate;"><tr>
 ${box('Commission this month', `<strong>${gbp(s.commission)}</strong>`)}${box('Active subscribers', s.active)}${box('Your ongoing rate', pct(s.ongoingRate))}</tr></table>
-<p style="font-size:14px;margin:16px 0 0;">New customers this month: <strong>${s.newUses}</strong>${s.held ? ` · First payments waiting for a second payment: <strong>${s.held}</strong> (paid next month once it clears)` : ''}</p>
+<p style="font-size:14px;margin:16px 0 0;">New customers this month: <strong>${s.newUses}</strong></p>
 ${s.replacements ? `<p style="font-size:15px;margin:12px 0 0;padding:12px 14px;border-left:3px solid #c17f3e;background:#f6f1ea;">Replacement pouches owed: <strong>${s.replacements}</strong> (members who subscribed at the desk and took a pouch). Add these to their next order.</p>` : ''}
 <h3 style="font-family:Georgia,serif;font-weight:normal;color:#1a2540;margin:24px 0 8px;">Payments with your code</h3>
 <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;">
 <tr><th ${th}>Date</th><th ${th}>Customer</th><th ${th}>Type</th><th ${th}>Paid</th><th ${th}>You earn</th></tr>
 ${rows.map(r => `<tr><td ${td}>${r.date.toISOString().slice(0, 10)}</td><td ${td}>${esc(r.who)}</td><td ${td}>${esc(r.type)}</td><td ${tdr}>${gbp(r.amount)}</td><td ${tdr}>${gbp(r.commission || 0)}</td></tr>`).join('\n') || `<tr><td ${td} colspan="5">No payments used your code this month</td></tr>`}
 </table>
-<p style="font-size:13px;color:#6b6b6b;margin-top:18px;line-height:1.5;">How it works: ${pct(cfg.rate)} of one-off orders and of each subscriber's first ${cfg.months} payments, then ${cfg.tiers.map(t => `${pct(t.rate)} with ${t.from}+ active subscribers`).join(', ')}, for as long as they stay. A subscriber's first payment is paid once their second payment clears. Customers are numbered rather than named to protect their privacy.</p>
+<p style="font-size:13px;color:#6b6b6b;margin-top:18px;line-height:1.5;">How it works: ${pct(cfg.rate)} of one-off orders and of each subscriber's first ${cfg.months} payments, then ${cfg.tiers.map(t => `${pct(t.rate)} with ${t.from}+ active subscribers`).join(', ')}, for as long as they stay. Customers are numbered rather than named to protect their privacy.</p>
 <p style="font-size:14px;margin-top:14px;">Questions? Just reply to this email.<br>Grae, Scōp · scopsupplement.uk</p>
 </div>`;
 }
