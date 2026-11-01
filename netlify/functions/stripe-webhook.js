@@ -59,8 +59,8 @@ async function addToBrevo(session, listId) {
 }
 
 // Invite a user via Netlify Identity Admin API
-async function inviteNetlifyUser(email, accountType, siteUrl, identityToken) {
-  const identityUrl = `${siteUrl}/.netlify/identity/admin/users`;
+async function inviteNetlifyUser(email, accountType, identityBase, identityToken) {
+  const identityUrl = `${identityBase}/admin/users`;
 
   const response = await fetch(identityUrl, {
     method: 'POST',
@@ -93,7 +93,7 @@ async function inviteNetlifyUser(email, accountType, siteUrl, identityToken) {
   return response.json();
 }
 
-exports.handler = async function(event) {
+exports.handler = async function(event, context) {
   // Only accept POST
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
@@ -152,17 +152,23 @@ exports.handler = async function(event) {
     console.error('Failed to add to Brevo:', err.message);   // never blocks the rest
   }
 
-  // 2. Netlify Identity account (only if the token is set)
-  if (!identityToken) {
+  // 2. Netlify Identity account. Netlify gives functions a built-in admin token for
+  //    Identity (context.clientContext.identity); a personal access token does not work here.
+  const idCtx = context && context.clientContext && context.clientContext.identity;
+  const idToken = (idCtx && idCtx.token) || identityToken;
+  const idBase = (idCtx && idCtx.url) || `${siteUrl}/.netlify/identity`;
+  if (!idToken) {
     return { statusCode: 200, body: JSON.stringify({ success: true, email, accountType, identity: 'skipped' }) };
   }
 
   try {
-    const result = await inviteNetlifyUser(email, accountType, siteUrl, identityToken);
+    const result = await inviteNetlifyUser(email, accountType, idBase, idToken);
     console.log('Identity result:', result);
     return { statusCode: 200, body: JSON.stringify({ success: true, email, accountType }) };
   } catch (err) {
+    // Log it but still tell Stripe "received", so a login problem never blocks
+    // the Brevo step or makes Stripe retry and fail over and over.
     console.error('Failed to create Identity user:', err.message);
-    return { statusCode: 500, body: 'Failed to create account' };
+    return { statusCode: 200, body: JSON.stringify({ success: true, email, accountType, identity: 'failed' }) };
   }
 };
