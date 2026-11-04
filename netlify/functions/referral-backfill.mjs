@@ -15,8 +15,17 @@ const BATCH = 4;
 
 export default async (req) => {
   const url = new URL(req.url);
-  const secret = process.env.REPORT_SECRET;
-  if (!secret || url.searchParams.get('key') !== secret) return new Response('Not found', { status: 404 });
+  const secret = String(process.env.REPORT_SECRET || '').trim();
+  const given = String(url.searchParams.get('key') || '').trim();
+  if (!secret) return new Response('REPORT_SECRET is not set for functions in Netlify.', { status: 404 });
+  if (given !== secret) {
+    // Says why without revealing the key: lengths and whether the first/last characters match
+    const why = !given ? 'there is no key in the link'
+      : `the key in the link is ${given.length} characters, the saved key is ${secret.length}; ` +
+        `first character ${given[0] === secret[0] ? 'matches' : 'differs'}, last character ${given.at(-1) === secret.at(-1) ? 'matches' : 'differs'}`;
+    console.warn('[referrals] backfill key mismatch:', why);
+    return new Response('Key did not match: ' + why + '.', { status: 404, headers: { 'content-type': 'text/plain; charset=utf-8' } });
+  }
   const dry = !!url.searchParams.get('dry');
   const started = Date.now();
   try {
