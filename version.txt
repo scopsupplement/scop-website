@@ -1,1 +1,2 @@
-2026-11-01 — v31: new customers from Stripe are added to a Brevo list automatically (BREVO_SUBSCRIBERS_LIST_ID, optional BREVO_ONEOFF_LIST_ID) so Brevo can send the welcome email. Includes v30.
+2026-11-04 — v34: customer referrals. Subscribers get a personal code (give £10, get £10), the friend's checkout credits the referrer automatically, and referral-backfill gives existing subscribers their codes. Includes v33 and earlier.
+2026-11-02 — v33: the manual report link now sends the partner breakdowns as well as the full report. Includes v32 and earlier.

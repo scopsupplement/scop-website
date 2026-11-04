@@ -36,7 +36,8 @@ export default async (req) => {
         { headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' } });
     }
     await sendReport(report);
-    return new Response(`Report for ${report.win.label} sent to ${report.cfg.to}`, { status: 200 });
+    const done = await sendPartnerStatements(report);
+    return new Response(`Report for ${report.win.label} sent to ${report.cfg.to}\n` + (done.join('\n') || 'No partner breakdowns'), { status: 200 });
   } catch (e) {
     console.error('[affiliate] manual run failed:', e.message);
     return new Response('Report failed: ' + e.message, { status: 500 });

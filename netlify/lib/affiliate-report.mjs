@@ -128,10 +128,16 @@ export async function buildReport({ month, now, fetchImpl } = {}) {
   const win = monthWindow(month, now);
 
   const promoCache = new Map();
+  const referralCodes = new Set(); // customer referral codes (v34), shown but never paid commission
   async function promoCode(id) {
     if (!id) return null;
     if (!promoCache.has(id)) {
-      try { promoCache.set(id, String((await stripe.get('promotion_codes/' + id)).code || '').toUpperCase()); }
+      try {
+        const pc = await stripe.get('promotion_codes/' + id);
+        const c = String(pc.code || '').toUpperCase();
+        if (pc.metadata && pc.metadata.type === 'referral') referralCodes.add(c);
+        promoCache.set(id, c);
+      }
       catch (_) { promoCache.set(id, null); }
     }
     return promoCache.get(id);
@@ -226,7 +232,7 @@ export async function buildReport({ month, now, fetchImpl } = {}) {
 
   // Summary per code
   const summary = {};
-  const blank = (code) => ({ code, name: cfg.codes[code] || '', affiliate: !!cfg.codes[code], newUses: 0, payments: 0, value: 0, commission: 0, held: 0, replacements: 0, active: active[code] || 0, ongoingRate: ongoingRate(cfg.tiers, active[code] || 0) });
+  const blank = (code) => ({ code, name: cfg.codes[code] || (referralCodes.has(code) ? 'Customer referral' : ''), affiliate: !!cfg.codes[code], newUses: 0, payments: 0, value: 0, commission: 0, held: 0, replacements: 0, active: active[code] || 0, ongoingRate: ongoingRate(cfg.tiers, active[code] || 0) });
   for (const r of rows) {
     const s = summary[r.code] ||= blank(r.code);
     if (r.isNewUse) s.newUses += 1;
