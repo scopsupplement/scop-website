@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Scōp: the bottle and the beanie</title>
+  <meta name="description" content="The Scōp 500ml steel bottle and the Scōp beanie. UK delivery £3.95, free on any order with a pouch.">
+  <meta property="og:title" content="Shop Scōp: the bottle and the beanie">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://scopsupplement.uk/assets/scop-shop-beanie-900.webp">
+  <link rel="canonical" href="https://scopsupplement.uk/shop.html">
+
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@400,500,600,700&f[]=satoshi@300,400,500,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="base.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cart.css">
+  <style>
+    /* ── SHOP PAGE ─────────────────────────────────────────────── */
+    .shop { padding: clamp(var(--space-10), 6vw, var(--space-16)) var(--space-6) var(--space-20); }
+    .shop__inner { max-width: 1040px; margin: 0 auto; }
+    .shop-hero { text-align: center; margin-bottom: clamp(var(--space-8), 5vw, var(--space-12)); }
+    .shop-hero .shop-hero__eyebrow { margin: 0 0 12px; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; font-weight: 600; color: var(--color-accent); }
+    .shop-hero h1 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 500; font-size: var(--text-2xl); line-height: 1.05; color: var(--color-text); }
+    .shop-hero p, .shop-hero small { max-width: none; margin-left: auto; margin-right: auto; }
+    .shop-hero p { margin: 0; font-size: var(--text-base); color: var(--color-text-muted); }
+    .shop-hero small { display: block; margin-top: 14px; font-size: 13px; color: var(--color-text-faint); }
+
+    .shop-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(var(--space-5), 3vw, var(--space-8)); }
+    .product { display: flex; flex-direction: column; border: 1px solid var(--color-border-subtle); border-radius: 20px; overflow: hidden; background: var(--color-surface); }
+    .product__img { aspect-ratio: 1 / 1; background: #e9e7e3; overflow: hidden; }
+    .product__img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 600ms cubic-bezier(.16,1,.3,1); }
+    .product:hover .product__img img { transform: scale(1.03); }
+    .product__body { display: flex; flex-direction: column; flex: 1; padding: 24px 26px 26px; }
+    .product__top { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+    .product__top h2 { margin: 0; font-family: var(--font-display); font-weight: 500; font-size: 1.6rem; color: var(--color-text); }
+    .product__price { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-accent); }
+    .product__desc { margin: 0 0 14px; font-size: 15px; line-height: 1.6; color: var(--color-text-muted); }
+    .product__meta { margin: 0 0 22px; font-size: 13px; color: var(--color-text-faint); letter-spacing: .01em; }
+    .product__foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .product__note { margin: 0; font-size: 12.5px; color: var(--color-text-faint); }
+    .product__note b { color: var(--color-text-muted); font-weight: 600; }
+
+    .shop-band { margin-top: clamp(var(--space-8), 5vw, var(--space-12)); display: flex; align-items: center; gap: 22px; padding: 18px 22px; border: 1px dashed color-mix(in srgb, var(--color-accent) 55%, transparent); border-radius: 18px; }
+    .shop-band img { width: 72px; height: 72px; border-radius: 12px; object-fit: cover; background: #e9e7e3; flex: none; }
+    .shop-band div { flex: 1; }
+    .shop-band h2 { margin: 0 0 4px; font-family: var(--font-display); font-weight: 500; font-size: 1.25rem; color: var(--color-text); }
+    .shop-band p { margin: 0; font-size: 14px; color: var(--color-text-muted); }
+
+    @media (max-width: 720px) {
+      .shop-grid { grid-template-columns: 1fr; }
+      .product__body { padding: 20px 20px 22px; }
+      .shop-band { flex-wrap: wrap; }
+      .shop-band .btn { width: 100%; }
+    }
+  </style>
+  <!-- TikTok Pixel Code Start -->
+  <script>
+  !function (w, d, t) {
+    w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+  var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+  ;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+
+
+    // UK GDPR / PECR: do not load the TikTok SDK or set any cookies until the
+    // visitor has explicitly accepted. holdConsent() alone is not enough — the
+    // SDK still sets first-party cookies on load — so we defer load() entirely.
+    ttq.holdConsent();
+    w.scopLoadTikTok = function () {
+      if (w.__scopTikTokLoaded) return;
+      w.__scopTikTokLoaded = true;
+      ttq.grantConsent();
+      ttq.load('DAP5083C77U5VV2VC5L0');
+      ttq.page();
+    };
+  }(window, document, 'ttq');
+  </script>
+  <!-- TikTok Pixel Code End -->
+  <link rel="stylesheet" href="consent.css">
+  <script src="consent.js" defer></script>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="header__inner">
+      <a href="index.html" class="header__logo" aria-label="Scōp — home">
+        <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
+      </a>
+      <nav class="header__nav" aria-label="Primary">
+        <a href="index.html" class="header__link">Home</a>
+        <a href="index.html#formulation" class="header__link">Formulation</a>
+        <a href="index.html#ingredients" class="header__link">Ingredients</a>
+        <a href="index.html#science" class="header__link">Science</a>
+        <a href="education.html" class="header__link">Education</a>
+        <a href="shop.html" class="header__link" aria-current="page">Shop</a>
+        <a href="account-login.html" class="header__link">My Account</a>
+      </nav>
+      <div class="header__actions">
+        <a href="education.html" class="header__mobile-link">Education</a>
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shop">
+    <div class="shop__inner">
+
+      <p class="basket-thanks" data-basket-thanks hidden>Thanks, your order’s in. Your receipt is on its way.</p>
+
+      <div class="shop-hero">
+        <p class="shop-hero__eyebrow">Shop</p>
+        <h1>The extras.</h1>
+        <p>Two things. We’re not a department store.</p>
+        <small>UK delivery £3.95 · Free on any order with a pouch</small>
+      </div>
+
+      <div class="shop-grid">
+        <article class="product">
+          <div class="product__img"><img src="assets/scop-shop-bottle-900.webp" width="900" height="900" alt="The navy Scōp steel bottle with a clear flip lid" loading="lazy" decoding="async"></div>
+          <div class="product__body">
+            <div class="product__top"><h2>The Scōp bottle</h2><span class="product__price">£15</span></div>
+            <p class="product__desc">The same bottle our subscribers get free with their first pouch, now on its own. It fits one scoop, the recommended 300 to 400ml of water and a decent shake. It also fits in a gym bag, which is more than you can say for a supplement shelf.</p>
+            <p class="product__meta">500ml steel · Navy with the Scōp wordmark · Clear flip lid</p>
+            <div class="product__foot">
+              <button type="button" class="add-btn" data-add="bottle">Add to basket</button>
+              <p class="product__note"><b>Subscribing?</b> It comes free with your first pouch.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="product">
+          <div class="product__img"><img src="assets/scop-shop-beanie-900.webp" width="900" height="900" alt="The navy ribbed Scōp beanie with the wordmark embroidered on the cuff" loading="lazy" decoding="async"></div>
+          <div class="product__body">
+            <div class="product__top"><h2>The Scōp beanie</h2><span class="product__price">£16</span></div>
+            <p class="product__desc">Navy ribbed knit with a deep cuff and our wordmark stitched on the front. Keeps your ears warm on the 6am run. Doesn’t contain creatine, but nobody’s perfect.</p>
+            <p class="product__meta">Navy ribbed knit · Embroidered Scōp wordmark · One size</p>
+            <div class="product__foot">
+              <button type="button" class="add-btn" data-add="beanie">Add to basket</button>
+              <p class="product__note"><b>Subscribing?</b> One arrives free at month three.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <section class="shop-band">
+        <img src="assets/scop-shop-pouch-160.webp" width="72" height="72" alt="">
+        <div>
+          <h2>Or start with the scoop.</h2>
+          <p>Subscribe and the bottle and beanie are on us.</p>
+        </div>
+        <a href="order.html" class="btn btn--primary">Choose your Scōp</a>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="footer__logo" aria-label="Scōp — home">
+          <svg class="wordmark" width="80" height="28" viewBox="0 0 80 28" xmlns="http://www.w3.org/2000/svg" aria-label="Scōp">
+          <text x="0" y="22" font-family="'Zodiak', Georgia, serif" font-size="22" font-weight="500" fill="currentColor" letter-spacing="0.02em">scop</text>
+          <rect x="27" y="1" width="15" height="3" rx="1.5" fill="#c17f3e"/>
+        </svg>
+        </a>
+        <p class="footer__tagline">Clearly Dosed. Transparently Formulated.</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer">
+        <a href="index.html#formulation">Formulation</a>
+        <a href="index.html#ingredients">Ingredients</a>
+        <a href="index.html#science">Science</a>
+        <a href="education.html">Education</a>
+        <a href="order.html">Order</a>
+        <a href="shop.html">Shop</a>
+        <a href="faq.html">FAQ</a>
+        <a href="partners.html">For gyms</a>
+      </nav>
+      <div class="footer__legal">
+        <p>&copy; 2026 Scōp Supplement Ltd. All rights reserved.</p>
+        <p style="font-size:0.75rem; color: var(--color-text-faint); margin-top: var(--space-2);">Food supplements are not intended to diagnose, treat, cure or prevent any disease. Not suitable for persons under 18. Consult a healthcare professional before use if pregnant, breastfeeding, or taking medication.</p>
+        <a href="https://www.perplexity.ai/computer" target="_blank" rel="noopener noreferrer" class="footer__attribution">Created with Perplexity Computer</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+  <script src="cart.js" defer></script>
+</body>
+</html>

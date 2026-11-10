@@ -9,6 +9,8 @@
      close button all dismiss, focus returns to where it was.
    - Includes an email sign-up for the weekly email, posted to the existing
      Netlify "waitlist" form with source=popup.
+   - v38: one navy panel. Free bottle + 8 week training plan with a first
+     subscription, 15% off any first order, one email field.
    Preview tip: add ?offer=1 to the URL to force it to show.
    ========================================================================== */
 (function () {
@@ -47,43 +49,29 @@
     root.setAttribute('hidden', '');
     root.innerHTML =
       '<div class="offer__backdrop" data-offer-close></div>' +
-      '<div class="offer__dialog" role="dialog" aria-modal="true" aria-labelledby="offer-title" aria-describedby="offer-desc">' +
+      '<div class="offer__dialog" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="offer-title" aria-describedby="offer-desc">' +
         '<button type="button" class="offer__close" data-offer-close aria-label="Close offer">' +
           '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>' +
         '</button>' +
 
         '<div class="offer__visual" aria-hidden="true">' +
-          '<span class="offer__badge">Free<br><strong>bottle</strong></span>' +
           '<picture>' +
-            '<source type="image/webp" srcset="assets/scop-free-bottle-240.webp 240w, assets/scop-free-bottle-398.webp 398w" sizes="(max-width: 640px) 96px, 200px">' +
-            '<img class="offer__bottle" src="assets/scop-free-bottle-240.png" width="240" height="634" alt="" decoding="async">' +
+            '<source type="image/webp" srcset="assets/scop-offer-duo.webp">' +
+            '<img class="offer__hero" src="assets/scop-offer-duo.png" width="571" height="459" alt="" decoding="async">' +
           '</picture>' +
-          '<p class="offer__strap">One scoop. <span>Everything.</span></p>' +
         '</div>' +
 
         '<div class="offer__content">' +
           '<p class="offer__eyebrow">Welcome offer</p>' +
-          '<h2 class="offer__title" id="offer-title">A free Scōp bottle with your first subscription.</h2>' +
-          '<p class="offer__desc" id="offer-desc">Plus 15% off your first order, whichever way you buy.</p>' +
+          '<h2 class="offer__title" id="offer-title">Free bottle.<br>Free training plan.</h2>' +
+          '<p class="offer__desc" id="offer-desc">With your first subscription.</p>' +
 
-          '<ul class="offer__deals" role="list">' +
-            '<li class="offer__deal offer__deal--sub">' +
-              '<span class="offer__deal-label">Subscribe &amp; save</span>' +
-              '<span class="offer__deal-value">Free bottle <em>+</em> 15% off</span>' +
-            '</li>' +
-            '<li class="offer__deal">' +
-              '<span class="offer__deal-label">One-off order</span>' +
-              '<span class="offer__deal-value">15% off</span>' +
-            '</li>' +
-          '</ul>' +
-
-          '<div class="offer__code">' +
-            '<span class="offer__code-label">Use code at checkout</span>' +
+          '<div class="offer__ticket">' +
+            '<p class="offer__save"><strong>15% off</strong><span>your first order</span></p>' +
             '<button type="button" class="offer__code-btn" data-offer-copy aria-describedby="offer-copy-status">' +
-              '<span class="offer__code-text">' + CODE + '</span>' +
-              '<span class="offer__code-action" aria-hidden="true">' +
-                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>' +
-                '<span data-offer-copy-label>Copy</span>' +
+              '<span class="offer__code-label" data-offer-copy-label>Your code</span>' +
+              '<span class="offer__code-text">' + CODE +
+                '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>' +
               '</span>' +
             '</button>' +
             '<span class="offer__sr" id="offer-copy-status" role="status" aria-live="polite"></span>' +
@@ -93,25 +81,20 @@
             'Claim my offer' +
             '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M8.5 4.5L12 8l-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
           '</a>' +
-          '<p class="offer__terms">First orders only. One use per customer. Free bottle included with your first subscription delivery.</p>' +
 
           '<div class="offer__signup" data-offer-signup>' +
-            '<p class="offer__signup-title" id="offer-signup-title">Not ready yet? Hear more first.</p>' +
-            '<p class="offer__signup-desc" id="offer-signup-desc">Join our weekly email: what\u2019s in the scoop, member offers and the latest from the wellness space. Your 15% code stays valid for your first order.</p>' +
+            '<p class="offer__signup-title" id="offer-signup-title">Not ready? Get the weekly email.</p>' +
             '<form class="offer__form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate data-offer-form aria-labelledby="offer-signup-title">' +
               '<input type="hidden" name="form-name" value="waitlist">' +
               '<input type="hidden" name="source" value="popup">' +
               '<input type="hidden" name="weekly_email_consent" value="yes">' +
               '<p class="offer__sr" aria-hidden="true"><label>Leave blank <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>' +
               '<label class="offer__sr" for="offer-email">Email address</label>' +
-              '<input class="offer__input" id="offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Your email address" required aria-describedby="offer-signup-desc offer-form-status">' +
-              '<button type="submit" class="offer__submit">Keep me posted</button>' +
+              '<input class="offer__input" id="offer-email" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Your email" required aria-describedby="offer-form-status">' +
+              '<button type="submit" class="offer__submit">Sign up</button>' +
             '</form>' +
             '<p class="offer__form-status" id="offer-form-status" role="status" aria-live="polite"></p>' +
-            '<p class="offer__fineprint">Weekly at most. Unsubscribe any time.</p>' +
           '</div>' +
-
-          '<button type="button" class="offer__later" data-offer-close>Maybe later</button>' +
         '</div>' +
       '</div>';
     document.body.appendChild(root);
@@ -141,7 +124,7 @@
       return;
     }
     input.removeAttribute('aria-invalid');
-    btn.disabled = true; btn.textContent = 'Signing you up\u2026';
+    btn.disabled = true; btn.textContent = 'One sec\u2026';
     status.textContent = ''; status.className = 'offer__form-status';
     fetch('/', {
       method: 'POST',
@@ -152,10 +135,10 @@
       markSeen();
       root.querySelector('[data-offer-signup]').innerHTML =
         '<p class="offer__signup-title">You\u2019re on the list.</p>' +
-        '<p class="offer__signup-desc">Look out for our weekly email. When you\u2019re ready, code <strong>' + CODE + '</strong> gives you 15% off your first order.</p>';
+        '<p class="offer__signup-desc">Your 15% code keeps until you\u2019re ready.</p>';
       var t = root.querySelector('.offer__signup-title'); if (t) { t.setAttribute('tabindex', '-1'); t.focus({ preventScroll: true }); }
     }).catch(function () {
-      btn.disabled = false; btn.textContent = 'Keep me posted';
+      btn.disabled = false; btn.textContent = 'Sign up';
       status.textContent = 'Sorry, that didn\u2019t go through. Please try again.';
       status.className = 'offer__form-status is-error';
     });
@@ -170,7 +153,7 @@
       status.textContent = 'Code ' + CODE + ' copied';
       root.querySelector('.offer__code-btn').classList.add('is-copied');
       setTimeout(function () {
-        label.textContent = 'Copy';
+        label.textContent = 'Your code';
         root.querySelector('.offer__code-btn').classList.remove('is-copied');
       }, 2200);
     };
@@ -199,6 +182,7 @@
     if (e.key !== 'Tab') return;
     var f = focusables(); if (!f.length) return;
     var first = f[0], last = f[f.length - 1];
+    if (document.activeElement === root.querySelector('.offer__dialog')) { e.preventDefault(); (e.shiftKey ? last : first).focus(); return; }
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
@@ -210,8 +194,9 @@
     document.documentElement.classList.add('offer-open');
     requestAnimationFrame(function () {
       root.classList.add('is-visible');
-      var cta = root.querySelector('.offer__cta');
-      if (cta) cta.focus({ preventScroll: true });
+      // focus the dialog itself so no button opens with a focus ring; Tab moves into it
+      var dlg = root.querySelector('.offer__dialog');
+      if (dlg) dlg.focus({ preventScroll: true });
     });
     markSeen();
   }

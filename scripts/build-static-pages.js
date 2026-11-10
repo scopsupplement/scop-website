@@ -341,6 +341,7 @@ const today = new Date().toISOString().slice(0, 10);
 const urls = [
   { loc: SITE + '/', priority: '1.0', lastmod: today },
   { loc: SITE + '/order.html', priority: '0.9', lastmod: today },
+  { loc: SITE + '/shop.html', priority: '0.7', lastmod: today },
   { loc: SITE + '/education.html', priority: '0.8', lastmod: today },
   ...pages.map(p => ({ ...p, priority: '0.7' })),
   ...index.map(a => ({ loc: `${SITE}/articles/${a.slug}.html`, lastmod: a.date, priority: '0.7' })),

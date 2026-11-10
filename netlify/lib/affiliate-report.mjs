@@ -74,6 +74,12 @@ const pct = r => (Math.round(r * 1000) / 10) + '%';
 const money = n => Math.round(n * 100) / 100;
 
 // ── Stripe helpers ─────────────────────────────────────────────────────────
+// Shop accessories (v39): never earn partner commission
+const ACCESSORY_PRICES = new Set([
+  'price_1UaCdcK1mYXWz9EQHDClRdiL', // steel bottle £15
+  'price_1UaCX0K1mYXWz9EQwXVxqPGU', // beanie £16
+]);
+
 function makeStripe(key, fetchImpl = fetch) {
   async function get(path, params = {}) {
     const qs = new URLSearchParams();
@@ -167,9 +173,17 @@ export async function buildReport({ month, now, fetchImpl } = {}) {
       const found = await promoCode(typeof pc === 'string' ? pc : pc?.id);
       if (!found) continue;
       const { code, raw } = norm(found);
+      // v39: basket orders can include the bottle or beanie at full price; commission
+      // is on the pouch only (after its discount), never on accessories or delivery
+      let amount = (s.amount_total || 0) / 100;
+      if (s.metadata?.source === 'basket') {
+        const lines = await stripe.list('checkout/sessions/' + s.id + '/line_items');
+        amount = lines.filter(l => !ACCESSORY_PRICES.has(l.price?.id))
+          .reduce((t, l) => t + (l.amount_total || 0), 0) / 100;
+      }
       rows.push({
         date: new Date(s.created * 1000), code, usedCode: raw, type: 'One-off order',
-        customer: s.customer_details?.email || '', amount: (s.amount_total || 0) / 100,
+        customer: s.customer_details?.email || '', amount,
         isNewUse: true, commissionable: true,
       });
       break;
