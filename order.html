@@ -929,7 +929,7 @@
             <p class="basket-thanks" data-basket-thanks hidden>Thanks, your order’s in. Your receipt is on its way.</p>
             <p class="purchase-options__label">Choose your option</p>
             <p class="promo-note" id="promoNote" hidden>
-              <strong data-promo-code>FIRSTDIBS15</strong> will be applied at checkout for 15% off your first order. Subscribing? Your free Scōp bottle comes with your first delivery.
+              <strong data-promo-code>FIRSTDIBS15</strong> will be applied at checkout <span data-promo-msg>for 15% off your first order</span>. Subscribing? Your free Scōp bottle comes with your first delivery.
             </p>
 
             <!-- Subscription (pre-selected, best value) -->
@@ -1298,7 +1298,8 @@
     // Arriving from the welcome pop-up (order.html?code=FIRSTDIBS15) pre-fills
     // the code on Stripe checkout. Remembered for this browser session only.
     (function () {
-      const ALLOWED = ['FIRSTDIBS15'];
+      const ALLOWED = ['FIRSTDIBS15', 'SCOPBF'];
+      const MSG = { FIRSTDIBS15: 'for 15% off your first order', SCOPBF: 'for 20% off your first 3 months (Black Friday, new subscribers only)' };
       let code = (new URLSearchParams(location.search).get('code') || '').toUpperCase();
       if (!ALLOWED.includes(code)) {
         const m = document.cookie.match(/(?:^|;\s*)scop_promo=([^;]*)/);
@@ -1310,7 +1311,7 @@
       STRIPE_SUB_URL = withCode(STRIPE_SUB_URL);
       STRIPE_ONE_URL = withCode(STRIPE_ONE_URL);
       const note = document.getElementById('promoNote');
-      if (note) { note.querySelector('[data-promo-code]').textContent = code; note.hidden = false; }
+      if (note) { note.querySelector('[data-promo-code]').textContent = code; const msg = note.querySelector('[data-promo-msg]'); if (msg && MSG[code]) msg.textContent = MSG[code]; note.hidden = false; }
     })();
 
     function selectOption(type) {
