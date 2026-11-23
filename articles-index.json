@@ -4,7 +4,7 @@
     "title": "Strength Training After 35: The Pension Nobody Mentions",
     "category": "Movement",
     "read_time": 6,
-    "summary": "Muscle starts slipping away from your 30s, quietly. Why strength training is one of the best things you can do after 35, how little it actually takes and how to recover well enough to keep turning up.",
+    "summary": "Muscle starts slipping away from your 30s. Why strength training matters after 35, how little it takes and how to recover well enough to keep turning up.",
     "date": "2026-11-19"
   },
   {
@@ -12,7 +12,7 @@
     "title": "All in One Supplements in the UK: Six Things to Check Before You Buy",
     "category": "Nutrition",
     "read_time": 6,
-    "summary": "Searching for the best all in one supplement in the UK? Here's how to compare them properly: printed doses, UK guidance levels, creatine, ingredient forms, real cost per day and whether you'll actually take it.",
+    "summary": "How to compare all in one supplements in the UK properly: printed doses, UK guidance levels, creatine, ingredient forms, real cost per day and whether you'll actually take it.",
     "date": "2026-10-27"
   },
   {
@@ -20,7 +20,7 @@
     "title": "The Missed Scoop: Why Consistency Beats the Perfect Supplement Stack",
     "category": "Nutrition",
     "read_time": 5,
-    "summary": "Some of the most popular supplement ingredients work by building up over weeks, not hours. Why showing up every day matters more than the perfect stack, and how to make the routine stick.",
+    "summary": "Some popular supplement ingredients build up over weeks. Why turning up every day matters more than the perfect stack, and how to make the routine stick.",
     "date": "2026-10-27"
   },
   {
@@ -28,7 +28,7 @@
     "title": "Methylated B Vitamins: What the Label Actually Means",
     "category": "Nutrition",
     "read_time": 6,
-    "summary": "What “methylated” and “active” mean on a B vitamin label, why the form matters, and exactly which B vitamins are in every scoop of Scōp.",
+    "summary": "What “methylated” and “active” mean on a B vitamin label, why the form matters and exactly which B vitamins are in every scoop of Scōp.",
     "date": "2026-10-22"
   },
   {
@@ -36,31 +36,31 @@
     "title": "Creatine Beyond the Gym",
     "category": "Nutrition",
     "read_time": 5,
-    "summary": "Emerging research on cognitive function and long-term brain health is repositioning creatine as a nootropic as much as a performance supplement.",
+    "summary": "Creatine is best known as a training supplement. What it is, what it's authorised to claim, where the research is heading and why the form and daily dose matter.",
     "date": "2026-06-01"
   },
   {
     "slug": "magnesium-deficiency",
-    "title": "Why Magnesium Deficiency Is Silently Ageing You",
+    "title": "Magnesium: The Mineral With a Very Long To Do List",
     "category": "Nutrition",
     "read_time": 7,
-    "summary": "The overlooked mineral and its role in over 300 biological processes — from ATP synthesis to DNA repair. Most adults are chronically under-repleting it.",
+    "summary": "Magnesium is involved in more than 300 enzyme systems in the body. What it does, how much adults need, why the form matters and how it fits into one daily scoop.",
     "date": "2026-06-01"
   },
   {
     "slug": "vitamin-d3-k2",
-    "title": "The Case for Vitamin D3 + K2 Together",
+    "title": "The Case for Vitamin D3 and K2 Together",
     "category": "Nutrition",
     "read_time": 6,
-    "summary": "Why the combination matters more than either compound alone — the calcium metabolism pathway that connects bone density, arterial health and immune function.",
+    "summary": "Vitamin D gets most of the attention and vitamin K gets very little. Why the two are often paired, what they're authorised to claim and how much vitamin D UK adults need.",
     "date": "2026-06-01"
   },
   {
     "slug": "sleep-architecture-after-35",
-    "title": "How Sleep Architecture Changes After 35",
+    "title": "How Sleep Changes After 35",
     "category": "Sleep",
     "read_time": 8,
-    "summary": "Slow-wave sleep declines with age — a change that affects memory consolidation, growth hormone secretion, and recovery. Here's the science and what to do about it.",
+    "summary": "Deep sleep declines with age, which affects how restored you feel. What changes in your sleep after 35 and the everyday habits that help.",
     "date": "2026-06-01"
   },
   {
@@ -68,15 +68,15 @@
     "title": "Zone 2 Training and Longevity",
     "category": "Movement",
     "read_time": 6,
-    "summary": "The science behind low-intensity exercise and mitochondrial health — why training at conversational pace builds the metabolic foundation that protects against age-related decline.",
+    "summary": "Why training at a conversational pace is worth your time, what it does to your aerobic fitness, how much you need and how nutrition fits around it.",
     "date": "2026-06-01"
   },
   {
     "slug": "chronic-stress-accelerant",
-    "title": "Chronic Stress Is an Accelerant",
+    "title": "Chronic Stress and the Body",
     "category": "Stress",
     "read_time": 9,
-    "summary": "The biological mechanisms connecting psychological stress to accelerated cellular ageing — telomere attrition, cortisol dysregulation, and the interventions with the strongest evidence base.",
+    "summary": "Long term stress shows up in the body as well as the mind. How it works through cortisol and inflammation, what helps most and where nutrition fits.",
     "date": "2026-06-01"
   }
 ]

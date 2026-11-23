@@ -3,43 +3,48 @@ title: "Creatine Beyond the Gym"
 date: "2026-06-01"
 category: "nutrition"
 read_time: 5
-summary: "Emerging research on cognitive function and long-term brain health is repositioning creatine as a nootropic as much as a performance supplement."
+summary: "Creatine is best known as a training supplement. What it is, what it's authorised to claim, where the research is heading and why the form and daily dose matter."
+seo_description: "What creatine is, what it's authorised to claim, where the research is heading and why the form and daily dose matter."
 ---
 
-## More than a performance supplement
+Most people know creatine as the tub on the shelf at the gym, the thing you take if you lift. That reputation is earned, and the evidence behind it is strong enough to carry an authorised health claim in the UK.
 
-Most people know creatine as the compound you take before training. The authorised claim is clear: creatine **increases physical performance in successive bursts of short-term, high intensity exercise**. That's the reason it's been a staple of every serious training programme for decades.
+## What creatine is known for
 
-But the research picture has quietly expanded — and the implications go well beyond the gym.
+Creatine is a compound your body makes and stores, mostly in muscle, where it helps supply energy for short, hard efforts.
 
-## What the brain research shows
+- ✓ Creatine increases physical performance in successive bursts of short-term, high intensity exercise.
 
-The brain is one of the most metabolically active organs in the body. It consumes roughly 20% of the body's total energy despite representing only 2% of its mass. That energy — almost all of it in the form of ATP — is partially managed by the same creatine-phosphocreatine system that supports explosive muscular output.
+The beneficial effect is obtained with a daily intake of 3g of creatine. This claim is for adults performing high intensity exercise.<sup class="cite"><a href="#ref-1">[1]</a></sup>
 
-Studies in cognitive neuroscience have begun to map creatine's effects on:
+That covers sprints, heavy sets and the last 50 metres of a parkrun when someone is trying to overtake you.
 
-- **Working memory** — particularly under conditions of sleep deprivation or cognitive load
-- **Mental fatigue** — with some evidence of reduced subjective fatigue during sustained cognitive tasks
-- **Neuroprotection** — via mitochondrial support and reduced oxidative stress markers
+## Where the research is heading
 
-The evidence is not yet at the level required for authorised health claims in the UK. What exists is a growing body of mechanistic and preliminary clinical data that warrants serious attention.
+Your brain uses roughly a fifth of your body's energy despite making up around 2% of your body weight, and it relies on the same creatine energy system as muscle. That has made creatine an active area of brain research, with studies looking at areas such as memory and mental fatigue.
 
-## Vegetarians and higher responders
+The work is interesting and it's still early. There are no authorised health claims for creatine and the brain, so we don't make any. If that changes, we'll tell you.
 
-One important nuance: people who consume little or no meat tend to have lower baseline creatine stores. This means the supplementation effect — both physical and potentially cognitive — is often more pronounced in vegetarians and vegans.
+## Vegetarians start with lower stores
 
-If you eat a largely plant-based diet, you are almost certainly operating below your creatine ceiling. Scōp's daily scoop closes that gap without requiring a separate loading protocol.
+Meat and fish are the main dietary sources of creatine. People who eat little or no meat tend to start with lower creatine stores, so a daily supplement has more of a gap to fill for them. Scōp is suitable for vegetarians.
 
-## The dose that matters
+## The dose and the form
 
-Scōp contains creatine monohydrate at a clinically relevant daily dose — the same form studied in the majority of performance and cognitive research. Not creatine HCl. Not creatine ethyl ester. Monohydrate, at the quantity shown to make a measurable difference.
+Scōp contains 5,000mg of creatine monohydrate per scoop. Monohydrate is the most studied form by a distance, and it's the one the research behind the authorised claim is based on. You won't find creatine HCl or creatine ethyl ester in the pouch.
 
-No loading phase. No separate pre-workout purchase. One scoop, every morning.
+There's no loading phase and no separate tub to buy. Creatine works by building up in your muscles over time, so the daily habit matters more than the time of day you take it. There's more on that in [The Missed Scoop](https://scopsupplement.uk/articles/the-missed-scoop).
 
 ## The bottom line
 
-The performance case for creatine is settled science. The cognitive case is promising and growing. In both contexts, consistency matters more than timing — and the easiest way to stay consistent is to remove the decision from your morning entirely.
+The training evidence is settled enough for an authorised claim. The brain research is worth watching, and we'll keep to what the evidence supports in the meantime. One scoop each morning takes care of the daily part.
+
+*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register. This article is general information and is not medical advice. Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. Speak to a healthcare professional before changing your supplement routine. Not suitable for anyone under 18.*
 
 ---
 
-*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register only.*
+## Sources
+
+<ol class="article-sources">
+<li id="ref-1">Department of Health and Social Care. Great Britain Nutrition and Health Claims (NHC) Register. <a href="https://www.gov.uk/government/publications/great-britain-nutrition-and-health-claims-nhc-register" target="_blank" rel="noopener">gov.uk</a></li>
+</ol>

@@ -3,56 +3,60 @@ title: "Zone 2 Training and Longevity"
 date: "2026-06-01"
 category: "movement"
 read_time: 6
-summary: "The science behind low-intensity exercise and mitochondrial health — why training at conversational pace builds the metabolic foundation that protects against age-related decline."
-seo_description: "The science of low intensity training and mitochondrial health, and why training at a conversational pace builds a foundation for healthy ageing."
+summary: "Why training at a conversational pace is worth your time, what it does to your aerobic fitness, how much you need and how nutrition fits around it."
+seo_description: "Why training at a conversational pace is worth your time, what it does to your aerobic fitness, how much you need and how nutrition fits around it."
 ---
 
-## The most powerful longevity tool hiding in plain sight
+Zone 2 training is exercise easy enough that you can hold a conversation. It looks unimpressive and it feels easy, which is probably why so few people do enough of it.
 
-Zone 2 training — exercise performed at low enough intensity that you can hold a conversation, typically 60–70% of maximum heart rate — has emerged from longevity research as one of the most consistently supported interventions for long-term health.
+## What Zone 2 is
 
-It looks unimpressive. It feels easy. The benefits accumulate over years, not weeks. And for those reasons, it remains dramatically underutilised by the very people who would benefit most from it.
+Zone 2 is aerobic exercise at roughly 60 to 70% of your maximum heart rate. In practice that's a pace where you can talk in full sentences. A steady jog, an easy bike ride or a brisk walk up a hill can all count, depending on your fitness.
 
-## What Zone 2 actually does
+If you can only manage a few words at a time, you've drifted into something harder.
 
-The primary adaptation from sustained Zone 2 training is mitochondrial — both in quantity and quality.
+## What it does
 
-**Mitochondrial biogenesis** — Zone 2 training is the most effective stimulus for creating new mitochondria in muscle cells. More mitochondria means greater capacity for fat oxidation, better sustained energy output, and improved metabolic health markers.
+The main adaptation from regular Zone 2 work happens in your mitochondria, the parts of your cells that produce energy. Over time your muscles build more of them, and the ones you have get better at using fat as fuel. That leaves more stored carbohydrate available for harder efforts.
 
-**Mitochondrial efficiency** — existing mitochondria become better at using fat as fuel, which spares glycogen for higher-intensity efforts and stabilises blood glucose throughout the day.
+Your heart adapts too. Steady aerobic work can increase how much blood your heart pumps with each beat, and many people see their resting heart rate come down.
 
-**VO2 max** — maximum aerobic capacity, which declines at roughly 10% per decade from the mid-30s, is the single strongest predictor of all-cause mortality in the literature. Zone 2 training builds the aerobic base that sustains VO2 max over time.
+It also builds your VO2 max, the maximum amount of oxygen your body can use. VO2 max tends to fall by around 10% per decade from your mid thirties, and higher aerobic fitness is consistently linked with living longer.
 
-**Cardiac output** — sustained low-intensity work strengthens the left ventricle, increasing stroke volume and reducing resting heart rate.
+## Why it matters after 35
 
-## Why it matters for people over 35
-
-The mitochondrial decline that begins in the mid-30s — sometimes called mitochondrial dysfunction — is one of the hallmarks of biological ageing. It's associated with:
-
-- Reduced energy levels and increased fatigue
-- Declining metabolic rate and body composition changes
-- Impaired recovery from both training and illness
-- Progressive insulin resistance
-- Accelerated cardiovascular ageing
-
-Zone 2 training directly addresses this mechanism. It's one of the few interventions with strong enough evidence to be described as a genuine longevity intervention rather than a health correlate.
+Aerobic fitness declines with age, and it declines faster if you stop using it. Zone 2 is one of the easiest ways to hold on to it, because it's gentle enough to do often and recover from quickly. It also leaves you fresh for the strength sessions that matter just as much.
 
 ## How much is enough
 
-The research consensus points to roughly **150–180 minutes of Zone 2 per week** as the threshold for meaningful mitochondrial adaptation. This is more than most people do, and the key is that it needs to be genuinely low intensity — not moderate intensity disguised as easy work.
+Most guidance from Zone 2 researchers points to around 150 to 180 minutes a week. You can split that however suits you, such as three 50 to 60 minute sessions or shorter efforts most days.
 
-A useful test: you should be able to speak in full sentences throughout. If you're breathing hard, you're not in Zone 2.
+The part people get wrong is the intensity. Zone 2 has to stay genuinely easy. If your breathing gets laboured, slow down.
 
-## Stacking nutrition with Zone 2
+## Where nutrition fits
 
-The metabolic adaptations from Zone 2 training are amplified by nutritional support:
+Food comes first, but a few nutrients are worth having covered if you train regularly:<sup class="cite"><a href="#ref-1">[1]</a></sup>
 
-- **B vitamins** support the energy-yielding metabolism that Zone 2 training optimises — individual B vitamins contribute to normal energy-yielding metabolism
-- **Creatine** supports the higher-intensity work that complements a Zone 2 base — creatine increases physical performance in successive bursts of short-term, high intensity exercise
-- **Magnesium** supports muscle function and recovery throughout
+- ✓ Thiamine contributes to normal energy-yielding metabolism.
+- ✓ Riboflavin contributes to normal energy-yielding metabolism.
+- ✓ Vitamin B12 contributes to normal energy-yielding metabolism.
+- ✓ Magnesium contributes to normal muscle function.
+- ✓ Creatine increases physical performance in successive bursts of short-term, high intensity exercise.
 
-One daily scoop of Scōp covers all three without requiring a separate supplementation strategy around your training.
+For creatine, the beneficial effect is obtained with a daily intake of 3g of creatine. This claim is for adults performing high intensity exercise, which is the harder work that sits alongside your Zone 2 base.
+
+Scōp contains all eight B vitamins, 400mg of magnesium and 5,000mg of creatine monohydrate in one daily scoop.
+
+## The bottom line
+
+Zone 2 builds the aerobic base that everything else sits on. Keep it easy, aim for around three hours a week and be patient, because the benefits build over months and years.
+
+*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register. This article is general information and is not medical advice. If you have a heart condition or are new to exercise, speak to your GP before starting a new training plan.*
 
 ---
 
-*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register only.*
+## Sources
+
+<ol class="article-sources">
+<li id="ref-1">Department of Health and Social Care. Great Britain Nutrition and Health Claims (NHC) Register. <a href="https://www.gov.uk/government/publications/great-britain-nutrition-and-health-claims-nhc-register" target="_blank" rel="noopener">gov.uk</a></li>
+</ol>

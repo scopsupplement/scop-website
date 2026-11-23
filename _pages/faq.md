@@ -51,7 +51,7 @@ We wanted Scōp to do a proper job, so the key nutrients are generously dosed an
 - **Vitamin B6, 10 mg.** In line with NHS guidance of up to 10 mg a day from supplements. Vitamin B6 contributes to the reduction of tiredness and fatigue.
 - **Magnesium, 400 mg.** In line with NHS guidance on magnesium from supplements, up to 400 mg a day. Magnesium contributes to the reduction of tiredness and fatigue.
 
-Scōp is designed to be your one daily supplement, so you get all of this in a single scoop without needing anything else. If you already take other supplements containing vitamin D, vitamin B6 or magnesium, a quick chat with your pharmacist will help you get the balance right. Source: [NHS vitamins and minerals guidance](https://www.nhs.uk/conditions/vitamins-and-minerals/).
+Scōp is designed to be your one daily supplement, so you get all of this in a single scoop without needing anything else. If you already take other supplements containing vitamin D, vitamin B6 or magnesium, a quick chat with a medical professional will help you get the balance right. Source: [NHS vitamins and minerals guidance](https://www.nhs.uk/conditions/vitamins-and-minerals/).
 
 ## Taking Scōp
 
@@ -77,7 +77,7 @@ Scōp is manufactured in the United Kingdom.
 
 ### Can I take Scōp with other supplements?
 
-Check with your GP, pharmacist or a qualified healthcare professional before combining Scōp with other supplements or medication, particularly products containing vitamin D or vitamin B6. Consult a healthcare professional before use if you are pregnant or breastfeeding.
+Check with your GP, medical professional or a qualified healthcare professional before combining Scōp with other supplements or medication, particularly products containing vitamin D or vitamin B6. Consult a healthcare professional before use if you are pregnant or breastfeeding.
 
 ## Ordering and subscription
 

@@ -3,84 +3,110 @@ title: "Methylated B Vitamins: What the Label Actually Means"
 date: "2026-10-22"
 category: "nutrition"
 read_time: 6
-summary: "What “methylated” and “active” mean on a B vitamin label, why the form matters, and exactly which B vitamins are in every scoop of Scōp."
+summary: "What “methylated” and “active” mean on a B vitamin label, why the form matters and exactly which B vitamins are in every scoop of Scōp."
 draft: false
 ---
 
-## Eight vitamins, one essential job
+There are eight B vitamins: thiamin (B1), riboflavin (B2), niacin (B3), pantothenic acid (B5), vitamin B6, biotin (B7), folate (B9) and vitamin B12. They don't give you energy themselves. They work as coenzymes, the helper molecules your enzymes need to turn food into energy your cells can use.
 
-There are eight B vitamins: thiamin (B1), riboflavin (B2), niacin (B3), pantothenic acid (B5), vitamin B6, biotin (B7), folate (B9) and vitamin B12. Rather than being a source of energy themselves, they act as coenzymes, the helper molecules your cells' enzymes rely on to turn food into usable energy and keep core processes running<sup class="cite"><a href="#ref-1">[1]</a></sup>.
+## Eight vitamins with overlapping jobs
 
-That's why their authorised claims are so closely linked. Thiamin, riboflavin, niacin, pantothenic acid, vitamin B6, biotin and vitamin B12 each **contribute to normal energy-yielding metabolism**. Riboflavin, niacin, pantothenic acid, vitamin B6, folate and vitamin B12 each **contribute to the reduction of tiredness and fatigue**<sup class="cite"><a href="#ref-2">[2]</a></sup>.
+Seven of the eight have the same authorised claim:<sup class="cite"><a href="#ref-2">[2]</a></sup>
 
-The B vitamins also work as a team. Riboflavin is needed to convert vitamin B6 into its active coenzyme form<sup class="cite"><a href="#ref-3">[3]</a></sup>, and folate, vitamin B6 and vitamin B12 work together in the same pathway, each **contributing to normal homocysteine metabolism**<sup class="cite"><a href="#ref-2">[2]</a></sup>. Researchers have argued that adequate levels of all eight matter, rather than focusing on one or two<sup class="cite"><a href="#ref-1">[1]</a></sup>. That's why Scōp includes the full set.
+- ✓ Thiamine contributes to normal energy-yielding metabolism.
+- ✓ Riboflavin contributes to normal energy-yielding metabolism.
+- ✓ Niacin contributes to normal energy-yielding metabolism.
+- ✓ Pantothenic acid contributes to normal energy-yielding metabolism.
+- ✓ Vitamin B6 contributes to normal energy-yielding metabolism.
+- ✓ Biotin contributes to normal energy-yielding metabolism.
+- ✓ Vitamin B12 contributes to normal energy-yielding metabolism.
+
+Six of them also have this one:<sup class="cite"><a href="#ref-2">[2]</a></sup>
+
+- ✓ Riboflavin contributes to the reduction of tiredness and fatigue.
+- ✓ Niacin contributes to the reduction of tiredness and fatigue.
+- ✓ Pantothenic acid contributes to the reduction of tiredness and fatigue.
+- ✓ Vitamin B6 contributes to the reduction of tiredness and fatigue.
+- ✓ Folate contributes to the reduction of tiredness and fatigue.
+- ✓ Vitamin B12 contributes to the reduction of tiredness and fatigue.
+
+They also depend on each other. Riboflavin is needed to turn vitamin B6 into its active form.<sup class="cite"><a href="#ref-3">[3]</a></sup> Folate, vitamin B6 and vitamin B12 work in the same pathway:<sup class="cite"><a href="#ref-2">[2]</a></sup>
+
+- ✓ Folate contributes to normal homocysteine metabolism.
+- ✓ Vitamin B6 contributes to normal homocysteine metabolism.
+- ✓ Vitamin B12 contributes to normal homocysteine metabolism.
+
+A 2016 review made the case for looking at all eight together rather than one or two in isolation.<sup class="cite"><a href="#ref-1">[1]</a></sup>
 
 ## What "methylated" means
 
-A methyl group is a small cluster of one carbon and three hydrogen atoms. Two B vitamins can be supplied in forms that already carry one, which is what "methylated" refers to on a label:
+A methyl group is a small cluster of one carbon atom and three hydrogen atoms. On a label, "methylated" means the vitamin already carries one. In Scōp that applies to two vitamins: folate as L-methylfolate and vitamin B12 as methylcobalamin.
 
-- **Folate as L-methylfolate** (L-5-methyltetrahydrofolate), the main form of folate that circulates in the blood<sup class="cite"><a href="#ref-4">[4]</a></sup>.
-- **Vitamin B12 as methylcobalamin**, one of the two forms of B12 that the body's enzymes use directly<sup class="cite"><a href="#ref-5">[5]</a></sup>.
+Two more come in their active coenzyme forms, the versions your body actually puts to work. Riboflavin is supplied as riboflavin-5′-phosphate (also called FMN). Vitamin B6 is supplied as pyridoxal 5′-phosphate (P-5-P), whereas most supplements use pyridoxine hydrochloride.<sup class="cite"><a href="#ref-6">[6]</a></sup>
 
-Scōp uses both. It also goes a step further with two more B vitamins, supplying them in their **active coenzyme forms**, the forms the body puts to work:
+Thiamin, niacin (as nicotinamide), pantothenic acid and biotin complete the set.
 
-- **Riboflavin as riboflavin-5′-phosphate** (FMN), one of riboflavin's two coenzyme forms<sup class="cite"><a href="#ref-3">[3]</a></sup>.
-- **Vitamin B6 as pyridoxal 5′-phosphate** (P-5-P), the active coenzyme form of B6. Most supplements use pyridoxine hydrochloride instead<sup class="cite"><a href="#ref-6">[6]</a></sup>.
+## Folate and why the form matters
 
-Thiamin, niacin (as nicotinamide), pantothenic acid and biotin complete the complex.
+Folic acid, the form in most supplements and fortified foods, has to be converted by an enzyme called dihydrofolate reductase before your body can use it. Research on human liver found this enzyme works slowly and varies a lot from person to person.<sup class="cite"><a href="#ref-7">[7]</a></sup>
 
-## Folate: why the form matters
+L-methylfolate is already in the form that circulates in your body. EFSA has assessed calcium L-methylfolate, the form used in Scōp, as a bioavailable source of folate.<sup class="cite"><a href="#ref-8">[8]</a></sup>
 
-Folic acid is the synthetic form of folate found in fortified foods and many supplements. Before the body can use it, folic acid has to be converted by an enzyme called dihydrofolate reductase<sup class="cite"><a href="#ref-4">[4]</a></sup>. Research on human liver tissue found that this enzyme works relatively slowly in people, and that its activity varies considerably from one person to the next<sup class="cite"><a href="#ref-7">[7]</a></sup>.
+- ✓ Folate contributes to the reduction of tiredness and fatigue.
+- ✓ Folate contributes to normal psychological function.
 
-L-methylfolate is already in the form that circulates in the body, so no conversion step is needed. The European Food Safety Authority (EFSA) recognises calcium L-methylfolate, the form used in Scōp, as a bioavailable source of folate<sup class="cite"><a href="#ref-8">[8]</a></sup>. Folate **contributes to the reduction of tiredness and fatigue** and **to normal psychological function**<sup class="cite"><a href="#ref-2">[2]</a></sup>.
+If you're pregnant or trying for a baby, the NHS recommends a 400 µg folic acid supplement every day until 12 weeks of pregnancy.<sup class="cite"><a href="#ref-9">[9]</a></sup> Speak to your GP or midwife about what's right for you.
 
-If you're pregnant or trying for a baby, the NHS recommends a dedicated 400 µg folic acid supplement until 12 weeks of pregnancy, so please follow that guidance and speak to your GP or midwife<sup class="cite"><a href="#ref-9">[9]</a></sup>.
+## Vitamin B12 as methylcobalamin
 
-## Vitamin B12: methylcobalamin
+Cyanocobalamin is the most common synthetic form of B12, and your body converts it into methylcobalamin and adenosylcobalamin.<sup class="cite"><a href="#ref-5">[5]</a></sup> Scōp supplies methylcobalamin directly.
 
-Most B12 supplements use cyanocobalamin, a stable synthetic form that the body converts into the two coenzyme forms it uses: methylcobalamin and adenosylcobalamin<sup class="cite"><a href="#ref-5">[5]</a></sup>. Scōp supplies B12 directly as methylcobalamin, a form the body already uses, which works in the same pathway as L-methylfolate.
+- ✓ Vitamin B12 contributes to normal energy-yielding metabolism.
+- ✓ Vitamin B12 contributes to the reduction of tiredness and fatigue.
+- ✓ Vitamin B12 contributes to normal functioning of the nervous system.
 
-Vitamin B12 **contributes to normal energy-yielding metabolism**, **to the reduction of tiredness and fatigue** and **to normal functioning of the nervous system**<sup class="cite"><a href="#ref-2">[2]</a></sup>.
+## Why 900 µg?
 
-### Why 900 µg?
-
-The body absorbs B12 through a carrier protein that can only handle small amounts at a time. Beyond that, a much smaller share of each dose is absorbed<sup class="cite"><a href="#ref-10">[10]</a></sup>. That's why B12 is typically supplied in generous amounts, and why its % NRV figures often look high on supplement labels. No upper safety limit has been set for vitamin B12<sup class="cite"><a href="#ref-11">[11]</a></sup>.
+Your body absorbs B12 mainly through a carrier protein that can only handle small amounts at a time. As the dose goes up, the share you absorb goes down.<sup class="cite"><a href="#ref-10">[10]</a></sup> That's why B12 supplements typically show a high % NRV. No upper safety limit has been set for vitamin B12.<sup class="cite"><a href="#ref-11">[11]</a></sup>
 
 ## Especially relevant for vegetarians
 
-Vitamin B12 occurs naturally only in animal foods<sup class="cite"><a href="#ref-9">[9]</a></sup>. That makes it particularly important for vegetarians and vegans, along with older adults and people taking certain medicines such as metformin or acid-reducing medicines<sup class="cite"><a href="#ref-10">[10]</a></sup>. Scōp is suitable for vegetarians and provides 900 µg of vitamin B12 as methylcobalamin in every serving. If you have any concerns about your B12 levels, your GP can arrange a simple blood test.
+B12 occurs naturally only in animal foods.<sup class="cite"><a href="#ref-10">[10]</a></sup> That makes it particularly relevant for vegetarians and vegans. Older adults and people taking certain medicines, such as metformin or acid reducing medicines, are also more likely to run low.<sup class="cite"><a href="#ref-10">[10]</a></sup>
+
+Scōp is suitable for vegetarians and contains 900 µg of B12 per serving. If you're worried about your levels, your GP can arrange a blood test.
 
 ## What's in every scoop
 
-| B vitamin | Form | Per 11 g serving | % NRV |
+Per 11g serving:
+
+| Vitamin | Form | Amount | % NRV |
 |---|---|---|---|
-| Thiamin (B1) | Thiamin hydrochloride | 20 mg | 1818% |
-| Riboflavin (B2) | Riboflavin-5′-phosphate | 14 mg | 1000% |
-| Niacin (B3) | Nicotinamide | 48 mg | 300% |
-| Pantothenic acid (B5) | Calcium D-pantothenate | 36 mg | 600% |
-| Vitamin B6 | Pyridoxal 5′-phosphate | 10 mg | 714% |
+| Thiamin (B1) | Thiamin hydrochloride | 20mg | 1,818% |
+| Riboflavin (B2) | Riboflavin-5′-phosphate | 14mg | 1,000% |
+| Niacin (B3) | Nicotinamide | 48mg | 300% |
+| Pantothenic acid (B5) | Calcium D-pantothenate | 36mg | 600% |
+| Vitamin B6 | Pyridoxal 5′-phosphate | 10mg | 714% |
 | Biotin (B7) | D-biotin | 300 µg | 600% |
 | Folate (B9) | Calcium L-methylfolate | 400 µg | 200% |
-| Vitamin B12 | Methylcobalamin | 900 µg | 36000% |
+| Vitamin B12 | Methylcobalamin | 900 µg | 36,000% |
 
-NRV = Nutrient Reference Value.
+NRV means Nutrient Reference Value.
 
 ## Understanding the daily amounts
 
-Scōp declares every B vitamin dose. Where EFSA has set an adult upper intake level, consider the amount in your daily serving alongside the other sources covered by that limit:
+Vitamin B6: 10mg per serving, within the EFSA adult upper limit of 12mg a day.<sup class="cite"><a href="#ref-12">[12]</a></sup> Don't combine Scōp with other vitamin B6 supplements.
 
-- **Vitamin B6:** 10 mg, within EFSA's adult upper limit of 12 mg a day<sup class="cite"><a href="#ref-12">[12]</a></sup>. Because that limit covers all sources, we'd recommend not taking Scōp alongside other supplements that contain vitamin B6.
-- **Folate:** 400 µg, well within the 1,000 µg adult upper limit<sup class="cite"><a href="#ref-11">[11]</a></sup>.
-- **Niacin:** 48 mg as nicotinamide, well within the 900 mg adult upper limit<sup class="cite"><a href="#ref-11">[11]</a></sup>. Nicotinamide is a different form from nicotinic acid, the form the NHS links to skin flushing at high doses<sup class="cite"><a href="#ref-9">[9]</a></sup>.
+Folate: 400 µg per serving, within the 1,000 µg upper limit.<sup class="cite"><a href="#ref-11">[11]</a></sup>
 
-One handy tip: biotin can affect the results of some laboratory tests, so if you're having blood tests, let your doctor know you take a supplement containing biotin<sup class="cite"><a href="#ref-13">[13]</a></sup>.
+Niacin: 48mg of nicotinamide per serving, well within the 900mg upper limit for nicotinamide.<sup class="cite"><a href="#ref-11">[11]</a></sup> Nicotinamide is a different form from nicotinic acid, the form that can cause skin flushes at high doses.<sup class="cite"><a href="#ref-9">[9]</a></sup>
+
+Biotin can interfere with some laboratory tests. If you're having blood tests, tell your doctor you take it.<sup class="cite"><a href="#ref-13">[13]</a></sup>
 
 ## The bottom line
 
-The form of a B vitamin tells you how much work your body has to do before it can use it. Scōp provides all eight B vitamins, with folate and B12 in methylated forms and B2 and B6 in their active coenzyme forms, all at clearly listed doses in one daily scoop. Vitamin B12 and folate **contribute to the reduction of tiredness and fatigue**, and thiamin, riboflavin, niacin, pantothenic acid, vitamin B6, biotin and vitamin B12 **contribute to normal energy-yielding metabolism**.
+The form of a B vitamin decides how much work your body has to do before it can use it. Scōp covers all eight, with folate and B12 in methylated forms and B2 and B6 in their active coenzyme forms.
 
-*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register. This article is for general information and is not medical advice.*
+*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register. This article is general information and is not medical advice.*
 
 ---
 

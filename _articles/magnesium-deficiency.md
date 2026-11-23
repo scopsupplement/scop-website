@@ -1,53 +1,54 @@
 ---
-title: "Why Magnesium Deficiency Is Silently Ageing You"
+title: "Magnesium: The Mineral With a Very Long To Do List"
 date: "2026-06-01"
 category: "nutrition"
 read_time: 7
-summary: "The overlooked mineral and its role in over 300 biological processes — from ATP synthesis to DNA repair. Most adults are chronically under-repleting it."
+summary: "Magnesium is involved in more than 300 enzyme systems in the body. What it does, how much adults need, why the form matters and how it fits into one daily scoop."
+seo_description: "What magnesium does in the body, how much adults need, why the form matters and how it fits into one daily scoop."
 ---
 
-## The most underrated compound in your body
+Magnesium rarely gets the attention vitamin D does, which is a little unfair given how much work it does.
 
-Magnesium is involved in over 300 enzymatic reactions. It's required for ATP synthesis, DNA repair, protein synthesis, and the regulation of muscle and nerve function. It's also the mineral that the majority of UK adults don't get enough of — quietly, chronically, without obvious symptoms until the deficit has accumulated.
+## A mineral with hundreds of jobs
 
-Scōp contains magnesium because it earns its place on that basis. The authorised claim is precise: magnesium **contributes to a reduction of tiredness and fatigue and to normal functioning of the nervous system**. That's not a soft claim. Tiredness and cognitive function are the two things most working adults flag when they feel off.
+Magnesium is a cofactor in more than 300 enzyme systems in the body. These regulate reactions including protein synthesis, muscle and nerve function, blood glucose control and blood pressure regulation. It's also needed for energy production and for making DNA and RNA.<sup class="cite"><a href="#ref-1">[1]</a></sup>
 
-## Why most people are deficient
+The UK authorised claims cover a fair bit of that ground:<sup class="cite"><a href="#ref-2">[2]</a></sup>
 
-Several converging factors drive widespread magnesium insufficiency in the UK:
+- ✓ Magnesium contributes to a reduction of tiredness and fatigue.
+- ✓ Magnesium contributes to normal energy-yielding metabolism.
+- ✓ Magnesium contributes to normal functioning of the nervous system.
+- ✓ Magnesium contributes to normal muscle function.
+- ✓ Magnesium contributes to normal psychological function.
 
-- **Soil depletion** — intensive agriculture over the past 60 years has meaningfully reduced the magnesium content of crops
-- **Refined food diets** — processing removes the magnesium-rich outer layers of grains
-- **Alcohol and caffeine** — both increase urinary magnesium excretion
-- **Stress** — cortisol mobilises magnesium from tissue stores, and high-output professional lives sustain elevated cortisol chronically
-- **Age** — absorption efficiency decreases with age while excretion increases
+## How much you need
 
-The result is that many people who eat a broadly healthy diet are still operating below optimal magnesium levels — without knowing it.
+The NHS says adults aged 19 to 64 need 300mg of magnesium a day for men and 270mg a day for women.<sup class="cite"><a href="#ref-3">[3]</a></sup> Good food sources include spinach, nuts and wholemeal bread.
 
-## What insufficiency looks like
+If you take a supplement, the NHS says having 400mg or less a day from supplements is unlikely to cause any harm.<sup class="cite"><a href="#ref-3">[3]</a></sup> Scōp contains 400mg per serving, so if you're already taking a separate magnesium supplement, you won't need both.
 
-Magnesium deficiency rarely presents dramatically. Instead it tends to manifest as:
+## Why the form matters
 
-- Persistent low-level fatigue that doesn't resolve with sleep
-- Increased anxiety or irritability
-- Muscle cramps or twitches, particularly at night
-- Poor sleep quality
-- Difficulty concentrating
+Magnesium comes in lots of forms, and the label should tell you which one you're getting. Scōp uses magnesium bisglycinate, where magnesium is bound to the amino acid glycine. It's a form that's generally well tolerated.
 
-These are also the symptoms most commonly attributed to "just being busy" or "getting older." In many cases, the underlying driver is a mineral gap that's straightforward to address.
+## Why people fall short
 
-## The sleep connection
+Plenty of everyday diets lean on refined foods, and processing strips out parts of grains that contain magnesium. A busy routine doesn't help either. Spinach and nuts are easy to forget about when lunch is a meal deal eaten at your desk.
 
-Magnesium plays a direct role in the regulation of melatonin and GABA — the neurotransmitter system that promotes sleep onset and maintenance. Adequate magnesium levels are associated with faster sleep onset and improved sleep architecture, particularly deeper slow-wave sleep.
-
-Given that sleep quality declines progressively from the mid-30s, addressing nutritional factors that support it is one of the highest-return interventions available.
+That's the case for a steady daily intake rather than an occasional good week.
 
 ## One less thing to think about
 
-The practical question isn't whether magnesium matters — the research is unambiguous on that. The question is whether you're consistently getting enough, from a form your body can absorb, every day.
+A separate magnesium tablet is one more thing to buy, remember and reorder. In Scōp it's part of the same scoop as your creatine, vitamin D3 and K2 and all eight B vitamins, so it gets taken whenever the rest does.
 
-Scōp closes that question with one scoop. No separate tablet. No measuring. No forgetting.
+*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register. This article is general information and is not medical advice. Food supplements should not be used as a substitute for a varied diet and healthy lifestyle. If you are pregnant, breastfeeding or taking medication, speak to a healthcare professional before taking a supplement.*
 
 ---
 
-*All health claims in this article use authorised wording from the Great Britain Nutrition and Health Claims Register only.*
+## Sources
+
+<ol class="article-sources">
+<li id="ref-1">NIH Office of Dietary Supplements. Magnesium: Fact Sheet for Health Professionals. <a href="https://ods.od.nih.gov/factsheets/Magnesium-HealthProfessional/" target="_blank" rel="noopener">ods.od.nih.gov</a></li>
+<li id="ref-2">Department of Health and Social Care. Great Britain Nutrition and Health Claims (NHC) Register. <a href="https://www.gov.uk/government/publications/great-britain-nutrition-and-health-claims-nhc-register" target="_blank" rel="noopener">gov.uk</a></li>
+<li id="ref-3">NHS. Others: vitamins and minerals (magnesium). <a href="https://www.nhs.uk/conditions/vitamins-and-minerals/others/" target="_blank" rel="noopener">nhs.uk</a></li>
+</ol>
