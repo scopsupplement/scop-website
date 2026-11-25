@@ -11,7 +11,9 @@
 //   It skips anyone who has since completed a purchase (checked with STRIPE_REPORT_KEY).
 // Referrals (v34): new subscribers get a personal referral code (REFCODE / REFLINK in Brevo,
 //   set before they join the list so the welcome email can show it), and when a checkout
-//   uses someone's referral code, that person gets a credit on their Stripe balance.
+//   uses someone's referral code, that person gets a credit on their Stripe balance:
+//   their next month free if the friend subscribes (worked out from their own monthly
+//   price). Single pouch orders get the friend £10 off and no reward for the referrer (v44).
 //   See netlify/lib/referrals.js.
 
 const crypto = require('crypto');

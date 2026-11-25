@@ -1,19 +1,26 @@
 // referrals.js
-// Scōp referral scheme: "give £10, get £10".
+// Scōp referral scheme: "give £10, get a month free" (v43).
 //
 //   - Every subscriber gets a personal Stripe promotion code (e.g. SARAH10) made from
-//     the coupon REFERRAL_COUPON_ID. It only works on a friend's first order.
+//     the coupon REFERRAL_COUPON_ID. It gives the friend £10 off their first order only.
 //   - The code is saved on the subscriber's Stripe customer (metadata.referral_code)
 //     and on their Brevo contact as REFCODE and REFLINK, so emails can show it.
-//   - When a friend's checkout uses a referral code, the referrer gets a credit on
-//     their Stripe balance (REFERRAL_CREDIT pence), which Stripe takes off their next
-//     invoice automatically. Grae gets an email each time.
+//   - When a friend SUBSCRIBES with the code and their first payment goes through, the
+//     referrer gets a credit on their Stripe balance equal to one month of their own
+//     subscription (what they actually pay, after any ongoing discount), so their next
+//     payment is covered. This happens automatically from the Stripe webhook.
+//   - When a friend buys a single pouch with the code, the friend still gets £10 off but
+//     the referrer gets nothing. Grae is still emailed so he can see the code was used.
+//   - Stripe takes credit off the referrer's next invoice automatically and credits
+//     stack. Grae gets an email each time. Every credit is a balance transaction on the
+//     referrer's customer with metadata reward=free_month or reward=credit.
 //
 // Netlify environment variables:
 //   STRIPE_REFERRAL_KEY   restricted Stripe key (Customers write, Promotion codes write,
 //                         Coupons read, Subscriptions read, Checkout Sessions read)
 //   REFERRAL_COUPON_ID    the Stripe coupon id, e.g. REFER10
-//   REFERRAL_CREDIT       credit for the referrer in pence, e.g. 1000 (= £10)
+//   REFERRAL_MONTH_FALLBACK  free month value in pence if the referrer's subscription
+//                         price can't be read, default 3900 (= £39)
 //   REFERRAL_LINK_BASE    optional, the page the share link opens
 //                         (defaults to the subscription payment link)
 //   BREVO_API_KEY         to write REFCODE / REFLINK onto contacts
@@ -29,7 +36,7 @@ function cfg() {
   return {
     key: e.STRIPE_REFERRAL_KEY,
     coupon: e.REFERRAL_COUPON_ID || 'REFER10',
-    credit: parseInt(e.REFERRAL_CREDIT || '1000', 10),
+    monthFallback: parseInt(e.REFERRAL_MONTH_FALLBACK || '3900', 10),
     linkBase: e.REFERRAL_LINK_BASE || DEFAULT_LINK,
     brevoKey: e.BREVO_API_KEY,
     mailKey: e.BREVO_REPORT_API_KEY || e.BREVO_API_KEY,
@@ -130,6 +137,30 @@ async function ensureReferralCode(customer, { syncBrevo = true } = {}) {
   return { code, link: shareLink(code), created, email: cust.email || '', name: cust.name || '' };
 }
 
+
+// One month of the referrer's own subscription, in pence, after any discount on it.
+// Uses Subscriptions read only (no extra key permissions needed).
+async function oneMonthValue(customerId) {
+  const c = cfg();
+  try {
+    const r = await stripe('GET', 'subscriptions', { customer: customerId, status: 'active', limit: 1 });
+    const sub = r.data[0];
+    if (!sub) return { amount: c.monthFallback, basis: 'no active subscription, standard month' };
+    let amount = 0;
+    for (const it of sub.items.data) amount += (it.price.unit_amount || 0) * (it.quantity || 1);
+    const coupon = sub.discount && sub.discount.coupon;
+    if (coupon && coupon.duration !== 'once') {
+      if (coupon.percent_off) amount = Math.round(amount * (1 - coupon.percent_off / 100));
+      else if (coupon.amount_off) amount = Math.max(0, amount - coupon.amount_off);
+    }
+    if (!amount) return { amount: c.monthFallback, basis: 'price unreadable, standard month' };
+    return { amount, basis: 'their monthly price' };
+  } catch (e) {
+    console.warn('oneMonthValue failed', e.message);
+    return { amount: c.monthFallback, basis: 'lookup failed, standard month' };
+  }
+}
+
 async function notifyGrae(subject, html) {
   const c = cfg();
   if (!c.mailKey || !c.to) return;
@@ -164,20 +195,29 @@ async function creditReferrer(sessionId) {
   // Stripe retries webhooks, so never credit the same checkout twice
   const existing = await stripe('GET', `customers/${referrer}/balance_transactions`, { limit: 100 });
   if (existing.data.some(t => t.metadata && t.metadata.checkout_session === s.id)) return 'already credited';
-  await stripe('POST', `customers/${referrer}/balance_transactions`, {
-    amount: String(-Math.abs(c.credit)), currency: 'gbp',
-    description: `Referral credit: ${promo.code} used by a friend`,
-    metadata: { checkout_session: s.id, referral_code: promo.code, friend_email: friendEmail },
-  });
   const ref = await stripe('GET', 'customers/' + referrer);
-  await notifyGrae(`Referral: ${promo.code} brought in a new ${s.mode === 'subscription' ? 'subscriber' : 'one-off order'}`,
+  if (s.mode !== 'subscription') {
+    // Single pouch: the friend's £10 off is the whole reward. Nothing for the referrer.
+    await notifyGrae(`Referral: ${promo.code} used for a single pouch (no free month)`,
+      `<div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a2540">
+        <p><b>${promo.code}</b> was used for a single pouch by ${friendEmail} (paid ${money(s.amount_total || 0)}).</p>
+        <p>Referrer: ${ref.name || ''} (${ref.email || referrer}). No free month, because free months are for new subscriptions only. Nothing to do.</p></div>`);
+    return 'single pouch, no reward';
+  }
+  const month = await oneMonthValue(referrer);
+  await stripe('POST', `customers/${referrer}/balance_transactions`, {
+    amount: String(-Math.abs(month.amount)), currency: 'gbp',
+    description: `Referral: next month free (${promo.code} used by a new subscriber)`,
+    metadata: { checkout_session: s.id, referral_code: promo.code, friend_email: friendEmail, reward: 'free_month' },
+  });
+  await notifyGrae(`Referral: ${promo.code} brought in a new subscriber`,
     `<div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a2540">
-      <p><b>${promo.code}</b> was just used.</p>
+      <p><b>${promo.code}</b> was just used for a new subscription.</p>
       <p>Referrer: ${ref.name || ''} (${ref.email || referrer})<br>
-      Friend: ${friendEmail} (${s.mode === 'subscription' ? 'subscription' : 'one-off order'}, paid ${money(s.amount_total || 0)})</p>
-      <p>${money(c.credit)} credit has been added to the referrer's Stripe balance. It comes off their next invoice automatically.</p>
+      Friend: ${friendEmail} (paid ${money(s.amount_total || 0)})</p>
+      <p>Reward: next month free (${money(month.amount)} credit, ${month.basis}). It has been added to the referrer's Stripe balance and comes off their next payment automatically. Nothing to do.</p>
       <p style="color:#6b6b6b;font-size:13px">If the friend's order is refunded, remove the credit in Stripe: Customers → ${ref.email || referrer} → Credit balance.</p></div>`);
-  return `credited ${referrer} ${money(c.credit)} for ${promo.code}`;
+  return `credited ${referrer} ${money(month.amount)} (free_month) for ${promo.code}`;
 }
 
-module.exports = { ensureReferralCode, creditReferrer, shareLink, candidates, stripe };
+module.exports = { ensureReferralCode, creditReferrer, shareLink, candidates, stripe, oneMonthValue };
