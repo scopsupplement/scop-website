@@ -343,6 +343,7 @@ const urls = [
   { loc: SITE + '/order.html', priority: '0.9', lastmod: today },
   { loc: SITE + '/shop.html', priority: '0.7', lastmod: today },
   { loc: SITE + '/education.html', priority: '0.8', lastmod: today },
+  { loc: SITE + '/privacy.html', priority: '0.3', lastmod: '2026-11-26' },
   ...pages.map(p => ({ ...p, priority: '0.7' })),
   ...index.map(a => ({ loc: `${SITE}/articles/${a.slug}.html`, lastmod: a.date, priority: '0.7' })),
 ];

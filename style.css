@@ -1694,3 +1694,8 @@ a:hover {
   }
   .hero__cta-reassurance { text-align: center; }
 }
+
+/* v45: privacy link in the footer legal line */
+.footer__privacy { color: inherit; text-decoration: underline; text-underline-offset: 2px; margin-left: var(--space-2); }
+.footer__privacy:hover { color: var(--color-accent); }
+.footer__legal p.footer__company { font-size: 0.72rem; color: var(--color-text-faint); margin-top: var(--space-2); line-height: 1.5; }
